@@ -1,0 +1,17 @@
+Installation
+------------
+
+To install, just run:
+
+ ./install.sh
+
+as root. You can set DESTDIR to change the installation target:
+
+ DESTDIR=/my/custom/installation/target ./install.sh
+
+Uninstallation
+--------------
+To remove, you can just:
+
+ rm /usr/bin/xdgmenumaker
+ rm /usr/share/desktop-directories/xdgmenumaker*

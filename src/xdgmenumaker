@@ -1,0 +1,220 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import getopt
+import xdg.DesktopEntry as dentry
+import xdg.Exceptions as exc
+from operator import attrgetter
+
+dirlist = os.listdir('/usr/share/applications')
+seticon = False
+desktop = False
+
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-applications.directory')
+applications = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-accessories.directory')
+accessories = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-development.directory')
+development = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-education.directory')
+education = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-games.directory')
+games = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-graphics.directory')
+graphics = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-multimedia.directory')
+multimedia = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-network.directory')
+network = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-office.directory')
+office = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-settings.directory')
+settings = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-system.directory')
+system = de.getName().encode('utf-8')
+de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-other.directory')
+other = de.getName().encode('utf-8')
+
+def main(argv):
+	global desktop
+	try:
+		opts, args = getopt.getopt(argv, "hf:", ["help", "format="])
+	except getopt.GetoptError:
+		usage()
+		sys.exit(2)
+	for opt, arg in opts:
+		if opt in ("-h", "--help"):
+			usage()
+			sys.exit(0)
+		elif opt in ("-f", "--format"):
+			desktop = arg
+	if desktop is False:
+		usage()
+		sys.exit('ERROR: You can only specify either a .dep file with the -f switch or dependencies using the -d switch.')
+	elif desktop == "fluxbox":
+		fluxboxmenu()
+	elif desktop == "windowmaker":
+		windowmakermenu()
+	else:
+		usage()
+		sys.exit(2)
+
+def usage():
+	print 'USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]'
+	print
+	print 'OPTIONS:'
+	print '    -f, --format     the output format to use. Valid options are fluxbox and windowmaker'
+	print '    -h, --help       show this help message'
+	print '  You have to use either the -f or the -d switch.'
+	print
+	print 'EXAMPLES:'
+	print '    xdgmenumaker -d fluxbox'
+
+class MenuEntry:
+	def __init__(self, category, name, icon, command):
+		self.category = category
+		self.name = name
+		self.icon = icon
+		self.command = command
+	
+	def __repr__(self):
+		return repr((self.category, self.name, self.icon, self.command))
+
+def get_entry_info(desktopfile):
+	global desktop
+	show = True
+	de = dentry.DesktopEntry(filename = desktopfile)
+	name = de.getName().encode('utf-8')
+	
+	if seticon == True:
+		# need to find a way to get the full path of the icon for the current theme
+		icon = de.getIcon()
+	else:
+		icon = None
+
+	hidden = de.getHidden()
+	if hidden == True:
+		show = False
+	nodisplay = de.getNoDisplay()
+	if nodisplay == True:
+		show = False
+
+	# removing any %U or %F from the exec line
+	command = de.getExec().partition('%')[0]
+
+	terminal = de.getTerminal()
+	if terminal is True:
+		command = 'xterm -e '+command
+	
+	# cleaning up categories and keeping only registered freedesktop.org main categories
+	categories = de.getCategories()
+	if 'AudioVideo' in categories:
+		category = multimedia
+	elif 'Audio' in categories:
+		category = multimedia
+	elif 'Video' in categories:
+		category = multimedia
+	elif 'Development' in categories:
+		category = development
+	elif 'Education' in categories:
+		category = education
+	elif 'Game' in categories:
+		category = games
+	elif 'Graphics' in categories:
+		category = graphics
+	elif 'Network' in categories:
+		category = network
+	elif 'Office' in categories:
+		category = office
+	elif 'System' in categories:
+		category = system
+	elif 'Settings' in categories:
+		category = settings
+	elif 'Utility' in categories:
+		category = accessories
+	else:
+		category = other
+
+	onlyshowin = de.getOnlyShowIn()
+	notshowin = de.getNotShowIn()
+	# none of the freedesktop registered environments are supported by this anyway
+	# http://standards.freedesktop.org/menu-spec/latest/apb.html
+	if onlyshowin != []:
+		show = False
+	if desktop in notshowin:
+		show = False
+	if show == True:
+		return [category, name, icon, command]
+	else:
+		return None
+
+def sortedcategories(applist):
+	categories = []
+	for e in applist:
+		categories.append(e.category)
+	categories = sorted(set(categories))
+	return categories
+
+def desktopfilelist():
+	systemdir = '/usr/share/applications'
+	localdir = os.path.expanduser('~/.local/share/applications')
+	filelist = []
+	for i in os.listdir(systemdir):
+		filelist.append(systemdir+'/'+i)
+	for i in os.listdir(localdir):
+		filelist.append(localdir+'/'+i)
+	return filelist
+
+
+def menu():
+	applist = []
+	for desktopfile in desktopfilelist():
+		try:
+			e = get_entry_info(desktopfile)
+			if e is not None:
+				applist.append(MenuEntry(e[0], e[1], e[2], e[3]))
+		except exc.ParsingError:
+			pass
+
+	sortedapplist = sorted(applist, key=attrgetter('category', 'name'))
+
+	menu = []
+	for c in sortedcategories(applist):
+		appsincategory = []
+		for i in sortedapplist:
+			if i.category == c:
+				appsincategory.append([i.name, i.icon, i.command])
+		menu.append([c, appsincategory])
+	return menu
+
+def fluxboxmenu():
+	print '[submenu] ('+applications+')'
+	for i in menu():
+		category = i[0]
+		print '  [submenu] ('+category+')'
+		for j in i[1]:
+			name = j[0]
+			icon = j[1]
+			command = j[2]
+			if icon is None:
+				print '    [exec] ('+name+') {'+command+'}'
+			else:
+				print '    [exec] ('+name+') {'+command+'} <'+icon+'>'
+		print '  [end] # ('+category+')'
+	print '[end] # ('+applications+')'
+
+def windowmakermenu():
+	print '"'+applications+'" MENU'
+	for i in menu():
+		category = i[0]
+		print ' "'+category+'" MENU'
+		for j in i[1]:
+			name = j[0]
+			command = j[2]
+			print '  "'+name+'" EXEC '+command
+		print ' "'+category+'" END'
+	print '"'+applications+'" END'
+
+if __name__ == "__main__":
+	main(sys.argv[1:])
