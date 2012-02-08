@@ -66,7 +66,7 @@ def usage():
 	print 'OPTIONS:'
 	print '    -f, --format     the output format to use. Valid options are fluxbox and windowmaker'
 	print '    -h, --help       show this help message'
-	print '  You have to use either the -f or the -d switch.'
+	print '  You have to specify the output format using the -f switch.'
 	print
 	print 'EXAMPLES:'
 	print '    xdgmenumaker -f fluxbox'
