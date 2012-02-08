@@ -69,7 +69,7 @@ def usage():
 	print '  You have to use either the -f or the -d switch.'
 	print
 	print 'EXAMPLES:'
-	print '    xdgmenumaker -d fluxbox'
+	print '    xdgmenumaker -f fluxbox'
 
 class MenuEntry:
 	def __init__(self, category, name, icon, command):
