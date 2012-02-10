@@ -171,9 +171,10 @@ def menu():
 	applist = []
 	for desktopfile in desktopfilelist():
 		try:
-			e = get_entry_info(desktopfile)
-			if e is not None:
-				applist.append(MenuEntry(e[0], e[1], e[2], e[3]))
+			if desktopfile.endswith('.desktop'):
+				e = get_entry_info(desktopfile)
+				if e is not None:
+					applist.append(MenuEntry(e[0], e[1], e[2], e[3]))
 		except exc.ParsingError:
 			pass
 
