@@ -6,9 +6,9 @@ import getopt
 import gtk
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
+import xdg.BaseDirectory as bd
 from operator import attrgetter
 
-dirlist = os.listdir('/usr/share/applications')
 seticon = False
 desktop = False
 
@@ -192,13 +192,14 @@ def sortedcategories(applist):
 	return categories
 
 def desktopfilelist():
-	systemdir = '/usr/share/applications'
-	localdir = os.path.expanduser('~/.local/share/applications')
+	dirs = bd.xdg_data_dirs
 	filelist = []
-	for i in os.listdir(systemdir):
-		filelist.append(systemdir+'/'+i)
-	for i in os.listdir(localdir):
-		filelist.append(localdir+'/'+i)
+	for d in dirs:
+		xdgdir = d+'/applications'
+		if os.path.isdir(xdgdir):
+			for i in os.listdir(xdgdir):
+				if i.endswith('.desktop'):
+					filelist.append(xdgdir+'/'+i)
 	return filelist
 
 def menu():
