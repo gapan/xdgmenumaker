@@ -251,6 +251,7 @@ def category_icon(category):
 	return icon
 
 def fluxboxmenu():
+	global seticon
 	if seticon == True:
 		app_icon = icon_full_path(applications_icon)
 		print '[submenu] ('+applications+') <'+app_icon+'>'
