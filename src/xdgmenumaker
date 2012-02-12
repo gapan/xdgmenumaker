@@ -14,28 +14,40 @@ desktop = False
 
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-applications.directory')
 applications = de.getName().encode('utf-8')
+applications_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-accessories.directory')
 accessories = de.getName().encode('utf-8')
+accessories_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-development.directory')
 development = de.getName().encode('utf-8')
+development_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-education.directory')
 education = de.getName().encode('utf-8')
+education_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-games.directory')
 games = de.getName().encode('utf-8')
+games_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-graphics.directory')
 graphics = de.getName().encode('utf-8')
+graphics_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-multimedia.directory')
 multimedia = de.getName().encode('utf-8')
+multimedia_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-network.directory')
 network = de.getName().encode('utf-8')
+network_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-office.directory')
 office = de.getName().encode('utf-8')
+office_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-settings.directory')
 settings = de.getName().encode('utf-8')
+settings_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-system.directory')
 system = de.getName().encode('utf-8')
+system_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-other.directory')
 other = de.getName().encode('utf-8')
+other_icon = de.getIcon()
 
 def main(argv):
 	global desktop
@@ -88,6 +100,20 @@ class MenuEntry:
 	def __repr__(self):
 		return repr((self.category, self.name, self.icon, self.command))
 
+def icon_full_path(icon):
+	icon = os.path.basename(icon)
+	if icon.endswith('.png'):
+		icon = icon.replace('.png', '')
+	elif icon.endswith('.svg'):
+		icon = icon.replace('.svg', '')
+	elif icon.endswith('.xpm'):
+		icon = icon.replace('.xpm', '')
+	icon_theme = gtk.icon_theme_get_default()
+	icon = icon_theme.lookup_icon(icon, 16, gtk.ICON_LOOKUP_NO_SVG)
+	if icon:
+		icon = icon.get_filename()
+	return icon
+
 def get_entry_info(desktopfile):
 	global desktop
 	global seticon
@@ -97,17 +123,8 @@ def get_entry_info(desktopfile):
 
 	if seticon == True:
 		# strip the directory and extension from the icon name
-		icon = os.path.basename(de.getIcon())
-		if icon.endswith('.png'):
-			icon = icon.replace('.png', '')
-		elif icon.endswith('.svg'):
-			icon = icon.replace('.svg', '')
-		elif icon.endswith('.xpm'):
-			icon = icon.replace('.xpm', '')
-		icon_theme = gtk.icon_theme_get_default()
-		icon = icon_theme.lookup_icon(icon, 16, gtk.ICON_LOOKUP_NO_SVG)
-		if icon:
-			icon = icon.get_filename()
+		icon = de.getIcon()
+		icon = icon_full_path(icon)
 	else:
 		icon = None
 
@@ -184,7 +201,6 @@ def desktopfilelist():
 		filelist.append(localdir+'/'+i)
 	return filelist
 
-
 def menu():
 	applist = []
 	for desktopfile in desktopfilelist():
@@ -207,11 +223,50 @@ def menu():
 		menu.append([c, appsincategory])
 	return menu
 
+def category_icon(category):
+	if category == accessories:
+		icon = accessories_icon
+	elif category == development:
+		icon = development_icon
+	elif category == education:
+		icon = education_icon
+	elif category == games:
+		icon = games_icon
+	elif category == graphics:
+		icon = graphics_icon
+	elif category == multimedia:
+		icon = multimedia_icon
+	elif category == network:
+		icon = network_icon
+	elif category == office:
+		icon = office_icon
+	elif category == settings:
+		icon = settings_icon
+	elif category == system:
+		icon = system_icon
+	elif category == other:
+		icon = other_icon
+	else:
+		icon = None
+	return icon
+
 def fluxboxmenu():
-	print '[submenu] ('+applications+')'
+	if seticon == True:
+		app_icon = icon_full_path(applications_icon)
+		print '[submenu] ('+applications+') <'+app_icon+'>'
+	else:
+		print '[submenu] ('+applications+')'
 	for i in menu():
 		category = i[0]
-		print '  [submenu] ('+category+')'
+		if seticon == True:
+			cat_icon = category_icon(category)
+			cat_icon = icon_full_path(cat_icon)
+			if cat_icon:
+				print '  [submenu] ('+category+') <'+cat_icon+'>'
+			else:
+				print '  [submenu] ('+category+')'
+		else:
+			print '  [submenu] ('+category+')'
 		for j in i[1]:
 			name = j[0]
 			icon = j[1]
