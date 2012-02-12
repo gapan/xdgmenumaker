@@ -3,6 +3,7 @@
 import os
 import sys
 import getopt
+import gtk
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 from operator import attrgetter
@@ -38,8 +39,9 @@ other = de.getName().encode('utf-8')
 
 def main(argv):
 	global desktop
+	global seticon
 	try:
-		opts, args = getopt.getopt(argv, "hf:", ["help", "format="])
+		opts, args = getopt.getopt(argv, "hif:", ["help", "icons" ,"format="])
 	except getopt.GetoptError:
 		usage()
 		sys.exit(2)
@@ -47,14 +49,17 @@ def main(argv):
 		if opt in ("-h", "--help"):
 			usage()
 			sys.exit(0)
+		elif opt in ("-i", "--icons"):
+			seticon = True
 		elif opt in ("-f", "--format"):
 			desktop = arg
 	if desktop is False:
 		usage()
-		sys.exit('ERROR: You can only specify either a .dep file with the -f switch or dependencies using the -d switch.')
+		sys.exit('ERROR: You must specify the output format with -f')
 	elif desktop == "fluxbox":
 		fluxboxmenu()
 	elif desktop == "windowmaker":
+		seticon = False
 		windowmakermenu()
 	else:
 		usage()
@@ -65,11 +70,13 @@ def usage():
 	print
 	print 'OPTIONS:'
 	print '    -f, --format     the output format to use. Valid options are fluxbox and windowmaker'
+	print '    -i, --icons      enable support for icons in the menus. Only works with fluxbox'
 	print '    -h, --help       show this help message'
 	print '  You have to specify the output format using the -f switch.'
 	print
 	print 'EXAMPLES:'
-	print '    xdgmenumaker -f fluxbox'
+	print '    xdgmenumaker -f windowmaker'
+	print '    xdgmenumaker -i -f fluxbox'
 
 class MenuEntry:
 	def __init__(self, category, name, icon, command):
@@ -83,13 +90,24 @@ class MenuEntry:
 
 def get_entry_info(desktopfile):
 	global desktop
+	global seticon
 	show = True
 	de = dentry.DesktopEntry(filename = desktopfile)
 	name = de.getName().encode('utf-8')
-	
+
 	if seticon == True:
-		# need to find a way to get the full path of the icon for the current theme
-		icon = de.getIcon()
+		# strip the directory and extension from the icon name
+		icon = os.path.basename(de.getIcon())
+		if icon.endswith('.png'):
+			icon = icon.replace('.png', '')
+		elif icon.endswith('.svg'):
+			icon = icon.replace('.svg', '')
+		elif icon.endswith('.xpm'):
+			icon = icon.replace('.xpm', '')
+		icon_theme = gtk.icon_theme_get_default()
+		icon = icon_theme.lookup_icon(icon, 16, gtk.ICON_LOOKUP_NO_SVG)
+		if icon:
+			icon = icon.get_filename()
 	else:
 		icon = None
 
