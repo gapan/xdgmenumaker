@@ -55,7 +55,7 @@ Definition section, add a Generated Submenu in your menu, by dragging it
 in. Click on the menu item you just dragged in and in the preferences
 window, in Command, add:
 
-xsgmenumaker -f windowmaker
+xdgmenumaker -f windowmaker
 
 Save and close the preferences window.
 
