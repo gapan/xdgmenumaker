@@ -200,7 +200,6 @@ def desktopfilelist():
 	dirs = set(dirs)
 	filelist = []
 	for d in dirs:
-		print d
 		xdgdir = d+'/applications'
 		if os.path.isdir(xdgdir):
 			for i in os.listdir(xdgdir):
