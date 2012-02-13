@@ -192,7 +192,12 @@ def sortedcategories(applist):
 	return categories
 
 def desktopfilelist():
-	dirs = bd.xdg_data_dirs
+	dirs = []
+	# some directories are mentioned twice in bd.xdg_data_dirs, once
+	# with and once without a trailing /
+	for i in bd.xdg_data_dirs:
+		dirs.append(i.rstrip('/'))
+	dirs = set(dirs)
 	filelist = []
 	for d in dirs:
 		xdgdir = d+'/applications'
@@ -206,10 +211,9 @@ def menu():
 	applist = []
 	for desktopfile in desktopfilelist():
 		try:
-			if desktopfile.endswith('.desktop'):
-				e = get_entry_info(desktopfile)
-				if e is not None:
-					applist.append(MenuEntry(e[0], e[1], e[2], e[3]))
+			e = get_entry_info(desktopfile)
+			if e is not None:
+				applist.append(MenuEntry(e[0], e[1], e[2], e[3]))
 		except exc.ParsingError:
 			pass
 
