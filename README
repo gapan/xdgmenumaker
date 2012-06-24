@@ -35,6 +35,36 @@ you want to update it, without having to run the command manually again:
 
   [exec] (Update Fluxbox Menu) (xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu)
 
+=====
+IceWM
+=====
+
+To generate an application menu for icewm, run xdgmenumaker like this:
+
+$ xdgmenumaker -f icewm > ~/.icewm/appmenu
+
+or if you want icons in your menu:
+
+$ xdgmenumaker -i -f icewm > ~/.icewm/appmenu
+
+and you can then edit your ~/.icewm/menu file and add this line
+somewhere:
+
+  include appmenu
+
+You can add the xdgmenumaker command as another item in your menu, if
+you want to update it, without having to run the command manually again:
+
+  prog "Update Menu" _none_ xdgmenumaker -i -f icewm > ~/.icewm/appmenu
+
+NOTE: If you don't request icons in the menu, or if an icon is not found
+for a certain app, the icon name in the menu for that app is set to
+"_none_". This doesn't actually set the icon for that app to none. Icewm
+menu entries should always include a menu item. So, by pointing it to a
+non existing icon, you essentially set it to use no icon. If you
+actually have an icewm icon named "_none_", that one will be used
+instead.
+
 ============
 Window Maker
 ============
