@@ -73,6 +73,8 @@ def main(argv):
 	elif desktop == "windowmaker":
 		seticon = False
 		windowmakermenu()
+	elif desktop == "icewm":
+		icewmmenu()
 	else:
 		usage()
 		sys.exit(2)
@@ -295,6 +297,26 @@ def windowmakermenu():
 			print '  "'+name+'" EXEC '+command
 		print ' "'+category+'" END'
 	print '"'+applications+'" END'
+
+def icewmmenu():
+	global seticon
+	for i in menu():
+		category = i[0]
+		cat_icon = category_icon(category)
+		cat_icon = icon_full_path(cat_icon)
+		if seticon is True and cat_icon is not None:
+			print 'menu "'+category+'" '+cat_icon+' {'
+		else:
+			print 'menu "'+category+'" _none_ {'
+		for j in i[1]:
+			name = j[0]
+			icon = j[1]
+			command = j[2]
+			if seticon is True and icon is not None:
+				print '  prog "'+name+'" '+icon+' '+command
+			else:
+				print '  prog "'+name+'" _none_ '+command
+		print '}'
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
