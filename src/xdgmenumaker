@@ -266,31 +266,34 @@ def fluxboxmenu():
 	global seticon
 	global submenu
 	if submenu is True:
+		spacing = '  '
 		if seticon == True:
 			app_icon = icon_full_path(applications_icon)
 			print '[submenu] ('+applications+') <'+app_icon+'>'
 		else:
 			print '[submenu] ('+applications+')'
+	else:
+		spacing = ''
 	for i in menu():
 		category = i[0]
 		if seticon == True:
 			cat_icon = category_icon(category)
 			cat_icon = icon_full_path(cat_icon)
 			if cat_icon:
-				print '  [submenu] ('+category+') <'+cat_icon+'>'
+				print spacing+'[submenu] ('+category+') <'+cat_icon+'>'
 			else:
-				print '  [submenu] ('+category+')'
+				print spacing+'[submenu] ('+category+')'
 		else:
-			print '  [submenu] ('+category+')'
+			print spacing+'[submenu] ('+category+')'
 		for j in i[1]:
 			name = j[0]
 			icon = j[1]
 			command = j[2]
 			if icon is None:
-				print '    [exec] ('+name+') {'+command+'}'
+				print spacing+'  [exec] ('+name+') {'+command+'}'
 			else:
-				print '    [exec] ('+name+') {'+command+'} <'+icon+'>'
-		print '  [end] # ('+category+')'
+				print spacing+'  [exec] ('+name+') {'+command+'} <'+icon+'>'
+		print spacing+'[end] # ('+category+')'
 	if submenu is True:
 		print '[end] # ('+applications+')'
 
