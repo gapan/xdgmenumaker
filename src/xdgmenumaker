@@ -11,6 +11,7 @@ from operator import attrgetter
 
 seticon = False
 desktop = False
+submenu = True
 
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-applications.directory')
 applications = de.getName().encode('utf-8')
@@ -52,8 +53,9 @@ other_icon = de.getIcon()
 def main(argv):
 	global desktop
 	global seticon
+	global submenu
 	try:
-		opts, args = getopt.getopt(argv, "hif:", ["help", "icons" ,"format="])
+		opts, args = getopt.getopt(argv, "hinf:", ["help", "icons" , "no-submenu", "format="])
 	except getopt.GetoptError:
 		usage()
 		sys.exit(2)
@@ -63,6 +65,8 @@ def main(argv):
 			sys.exit(0)
 		elif opt in ("-i", "--icons"):
 			seticon = True
+		elif opt in ("--no-submenu"):
+			submenu = False
 		elif opt in ("-f", "--format"):
 			desktop = arg
 	if desktop is False:
@@ -85,6 +89,7 @@ def usage():
 	print 'OPTIONS:'
 	print '    -f, --format     the output format to use. Valid options are fluxbox, icewm and windowmaker'
 	print '    -i, --icons      enable support for icons in the menus. Only works with fluxbox, icewm'
+	print '    --no-submenu     do not create a submenu. Only works with fluxbox, icewm'
 	print '    -h, --help       show this help message'
 	print '  You have to specify the output format using the -f switch.'
 	print
@@ -259,11 +264,13 @@ def category_icon(category):
 
 def fluxboxmenu():
 	global seticon
-	if seticon == True:
-		app_icon = icon_full_path(applications_icon)
-		print '[submenu] ('+applications+') <'+app_icon+'>'
-	else:
-		print '[submenu] ('+applications+')'
+	global submenu
+	if submenu is True:
+		if seticon == True:
+			app_icon = icon_full_path(applications_icon)
+			print '[submenu] ('+applications+') <'+app_icon+'>'
+		else:
+			print '[submenu] ('+applications+')'
 	for i in menu():
 		category = i[0]
 		if seticon == True:
@@ -284,7 +291,8 @@ def fluxboxmenu():
 			else:
 				print '    [exec] ('+name+') {'+command+'} <'+icon+'>'
 		print '  [end] # ('+category+')'
-	print '[end] # ('+applications+')'
+	if submenu is True:
+		print '[end] # ('+applications+')'
 
 def windowmakermenu():
 	print '"'+applications+'" MENU'
