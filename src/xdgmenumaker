@@ -311,22 +311,34 @@ def windowmakermenu():
 
 def icewmmenu():
 	global seticon
+	global submenu
+	if submenu is True:
+		spacing = '  '
+		if seticon == True:
+			app_icon = icon_full_path(applications_icon)
+			print 'menu "'+applications+'" '+app_icon+' {'
+		else:
+			print 'menu "'+applications+'" _none_ {'
+	else:
+		spacing = ''
 	for i in menu():
 		category = i[0]
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
 		if seticon is True and cat_icon is not None:
-			print 'menu "'+category+'" '+cat_icon+' {'
+			print spacing+'menu "'+category+'" '+cat_icon+' {'
 		else:
-			print 'menu "'+category+'" _none_ {'
+			print spacing+'menu "'+category+'" _none_ {'
 		for j in i[1]:
 			name = j[0]
 			icon = j[1]
 			command = j[2]
 			if seticon is True and icon is not None:
-				print '  prog "'+name+'" '+icon+' '+command
+				print spacing+'  prog "'+name+'" '+icon+' '+command
 			else:
-				print '  prog "'+name+'" _none_ '+command
+				print spacing+'  prog "'+name+'" _none_ '+command
+		print spacing+'}'
+	if submenu is True:
 		print '}'
 
 if __name__ == "__main__":
