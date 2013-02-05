@@ -269,7 +269,10 @@ def fluxboxmenu():
 		spacing = '  '
 		if seticon == True:
 			app_icon = icon_full_path(applications_icon)
-			print '[submenu] ('+applications+') <'+app_icon+'>'
+			if app_icon is None:
+				print '[submenu] ('+applications+')'
+			else:
+				print '[submenu] ('+applications+') <'+app_icon+'>'
 		else:
 			print '[submenu] ('+applications+')'
 	else:
@@ -316,6 +319,8 @@ def icewmmenu():
 		spacing = '  '
 		if seticon == True:
 			app_icon = icon_full_path(applications_icon)
+			if app_icon is None:
+				app_icon = "_none_"
 			print 'menu "'+applications+'" '+app_icon+' {'
 		else:
 			print 'menu "'+applications+'" _none_ {'
