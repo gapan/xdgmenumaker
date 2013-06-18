@@ -203,15 +203,24 @@ def desktopfilelist():
 	# some directories are mentioned twice in bd.xdg_data_dirs, once
 	# with and once without a trailing /
 	for i in bd.xdg_data_dirs:
-		dirs.append(i.rstrip('/'))
-	dirs = set(dirs)
+		i = i.rstrip('/')
+		if i not in dirs:
+			dirs.append(i)
 	filelist = []
+	df_temp = []
 	for d in dirs:
 		xdgdir = d+'/applications'
 		if os.path.isdir(xdgdir):
 			for i in os.listdir(xdgdir):
 				if i.endswith('.desktop'):
-					filelist.append(xdgdir+'/'+i)
+					# for duplicate .desktop files that exist in more
+					# than one locations, only keep the first occurence.
+					# That one should have precedence anyway (e.g.
+					# ~/.local/share/applications has precedence over
+					# /usr/share/applications
+					if i not in df_temp:
+						df_temp.append(i)
+						filelist.append(xdgdir+'/'+i)
 	return filelist
 
 def menu():
