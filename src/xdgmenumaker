@@ -65,7 +65,7 @@ def main(argv):
 			sys.exit(0)
 		elif opt in ("-i", "--icons"):
 			seticon = True
-		elif opt in ("--no-submenu"):
+		elif opt in ("-n", "--no-submenu"):
 			submenu = False
 		elif opt in ("-f", "--format"):
 			desktop = arg
@@ -87,10 +87,10 @@ def usage():
 	print 'USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]'
 	print
 	print 'OPTIONS:'
-	print '    -f, --format     the output format to use. Valid options are fluxbox, icewm and windowmaker'
-	print '    -i, --icons      enable support for icons in the menus. Only works with fluxbox, icewm'
-	print '    --no-submenu     do not create a submenu. Only works with fluxbox, icewm'
-	print '    -h, --help       show this help message'
+	print '    -f, --format         the output format to use. Valid options are fluxbox, icewm and windowmaker'
+	print '    -i, --icons          enable support for icons in the menus. Only works with fluxbox, icewm'
+	print '    -n, --no-submenu     do not create a submenu. Only works with fluxbox, icewm'
+	print '    -h, --help           show this help message'
 	print '  You have to specify the output format using the -f switch.'
 	print
 	print 'EXAMPLES:'
