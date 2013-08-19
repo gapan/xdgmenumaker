@@ -57,6 +57,110 @@ Prints a usage message briefly summarizing all command-line options
 and exits.
 
 
+= USAGE =
+
+: **Fluxbox**
+
+To generate an application menu for Fluxbox, you can run
+**xdgmenumaker** like this:
+
+**$ xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu**
+
+and then change your main Fluxbox menu to include this file as a
+submenu. For example, add this somewhere in your //~/.fluxbox/menu// file:
+
+**[include] (~/.fluxbox/xdg_menu)**
+
+You can add the **xdgmenumaker** command as another item in your menu,
+if you want to update it, without having to run the command manually
+again:
+
+**[exec] (Update Fluxbox Menu) (xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu)**
+
+: **IceWM**
+
+To generate an application menu for IceWM, run **xdgmenumaker** like this:
+
+**$ xdgmenumaker -f icewm > ~/.icewm/appmenu**
+
+or if you want icons in your menu:
+
+**$ xdgmenumaker -i -f icewm > ~/.icewm/appmenu**
+
+and you can then edit your //~/.icewm/menu// file and add this line
+somewhere:
+
+**include appmenu**
+
+You can add the **xdgmenumaker** command as another item in your menu, if
+you want to update it, without having to run the command manually again:
+
+**prog "Update Menu" _none_ xdgmenumaker -i -f icewm > ~/.icewm/appmenu**
+
+//NOTE:// If you don't request icons in the menu, or if an icon is not found
+for a certain app, the icon name in the menu for that app is set to
+"_none_". This doesn't actually set the icon for that app to none.
+IceWM menu entries should always include an icon . So, by pointing it
+to a non existing icon, you essentially set it to use no icon. If you
+actually have an icewm icon named "_none_", that one will be used instead.
+
+: **WindowMaker**
+
+There are two ways to have an XDG menu in WindowMaker. The first one,
+auto-updates the menu, every time the menu is called. The second one,
+updates the menu only when the user wants to.
+
+**xdgmenumaker** uses utf8 encoding and localised strings by default
+and has been tested only with wmaker-crm>=0.95.1. No idea if utf8 works
+properly with older WindowMaker versions.
+
+**Method 1**
+
+Open the WindowMaker preferences tool. In the //Application Menu
+Definition// section, add a //Generated Submenu// in your menu, by dragging it
+in. Click on the menu item you just dragged in and in the preferences
+window, in //Command//, add:
+
+**xdgmenumaker -f windowmaker**
+
+Save and close the preferences window.
+
+That command will be run every time you access that submenu, so the
+application list in there will be always up to date. The downside is
+that with running this command every time, especially if
+you are on a very old PC, it might slow things down a bit. Even then it
+is probably not anything considerable.
+
+**Method 2**
+
+Run
+
+**$ xdgmenumaker -f windowmaker > ~/GNUstep/Defaults/xdg_menu**
+
+Then open the WindowMaker preferences tool and in the //Application Menu
+Definition// section, add an //External Submenu// by dragging it in your menu.
+Click on the menu item you just dragged in and in the preferences
+window, in //Path for Menu//, add the location of the menu file you just
+created:
+
+**~/GNUstep/Defaults/xdg_menu**
+
+You can add the above mentioned **xdgmenumaker** command as another
+item in your menu, if you want to update it, without having to run the
+command manually again.
+In the //Application Menu Definition// section in the WindowMaker
+preferences window, add a //Run Program// item in your menu by dragging it
+your menu. Click on the menu item you just dragged in and in the
+preferences window, in //Program to Run//, add the **xdgmenumaker** command as
+mentioned above.
+
+The downside of this method, is that the menu contents will not be
+updated when you install a new application or remove one. You will need
+to run the xfgmenumaker command every time you want the menu to be
+updated. The upside is that the menu will not be generated every time
+you access the menu. This might be a better choice for (really) older
+hardware.
+
 
 = WEBSITE =
 
