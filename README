@@ -60,7 +60,7 @@ you want to update it, without having to run the command manually again:
 NOTE: If you don't request icons in the menu, or if an icon is not found
 for a certain app, the icon name in the menu for that app is set to
 "_none_". This doesn't actually set the icon for that app to none. Icewm
-menu entries should always include a menu item. So, by pointing it to a
+menu entries should always include an icon. So, by pointing it to a
 non existing icon, you essentially set it to use no icon. If you
 actually have an icewm icon named "_none_", that one will be used
 instead.
