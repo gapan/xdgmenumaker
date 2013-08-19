@@ -295,7 +295,9 @@ def fluxboxmenu():
 		else:
 			print spacing+'[submenu] ('+category+')'
 		for j in i[1]:
-			name = j[0]
+			# closing parentheses need to be escaped, otherwise they are
+			# cropped out, along with everything that comes after them
+			name = j[0].replace(')', '\)')
 			icon = j[1]
 			command = j[2]
 			if icon is None:
