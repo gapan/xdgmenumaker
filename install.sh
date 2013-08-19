@@ -2,7 +2,9 @@
 
 cd $(dirname $0)
 
-if [ -x $( which txt2tags ) ]; then
+which txt2tags &> /dev/null
+retval=$?
+if [ $retval -eq 0 ]; then
         cd man
         txt2tags xdgmenumaker.t2t
         cd ..
