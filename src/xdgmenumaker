@@ -108,18 +108,24 @@ class MenuEntry:
 		return repr((self.category, self.name, self.icon, self.command))
 
 def icon_full_path(icon):
-	icon = os.path.basename(icon)
-	if icon.endswith('.png'):
-		icon = icon.replace('.png', '')
-	elif icon.endswith('.svg'):
-		icon = icon.replace('.svg', '')
-	elif icon.endswith('.xpm'):
-		icon = icon.replace('.xpm', '')
-	icon_theme = gtk.icon_theme_get_default()
-	icon = icon_theme.lookup_icon(icon, 16, gtk.ICON_LOOKUP_NO_SVG)
-	if icon:
-		icon = icon.get_filename()
-	return icon
+	# If the icon path is absolute and exists, leave it alone.
+	# This takes care of software that has its own icons stored
+	# in non-standard directories
+	if os.path.exists(icon) == True:
+		return icon
+	else:
+		icon = os.path.basename(icon)
+		if icon.endswith('.png'):
+			icon = icon.replace('.png', '')
+		elif icon.endswith('.svg'):
+			icon = icon.replace('.svg', '')
+		elif icon.endswith('.xpm'):
+			icon = icon.replace('.xpm', '')
+		icon_theme = gtk.icon_theme_get_default()
+		icon = icon_theme.lookup_icon(icon, 16, gtk.ICON_LOOKUP_NO_SVG)
+		if icon:
+			icon = icon.get_filename()
+		return icon
 
 def get_entry_info(desktopfile):
 	global desktop
@@ -278,7 +284,10 @@ def fluxboxmenu():
 		spacing = '  '
 		if seticon == True:
 			app_icon = icon_full_path(applications_icon)
-			print '[submenu] ('+applications+') <'+app_icon+'>'
+			if app_icon is None:
+				print '[submenu] ('+applications+')'
+			else:
+				print '[submenu] ('+applications+') <'+app_icon+'>'
 		else:
 			print '[submenu] ('+applications+')'
 	else:
@@ -327,6 +336,8 @@ def icewmmenu():
 		spacing = '  '
 		if seticon == True:
 			app_icon = icon_full_path(applications_icon)
+			if app_icon is None:
+				app_icon = "_none_"
 			print 'menu "'+applications+'" '+app_icon+' {'
 		else:
 			print 'menu "'+applications+'" _none_ {'
