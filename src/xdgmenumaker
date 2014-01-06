@@ -151,6 +151,10 @@ def get_entry_info(desktopfile):
 	# removing any %U or %F from the exec line
 	command = de.getExec().partition('%')[0]
 
+	depath = de.getPath()
+	if depath:
+		    command = 'cd %s && %s' % (depath, command)
+
 	terminal = de.getTerminal()
 	if terminal is True:
 		command = 'xterm -e '+command
