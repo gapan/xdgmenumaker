@@ -158,13 +158,13 @@ def get_entry_info(desktopfile):
 	# removing any %U or %F from the exec line
 	command = de.getExec().partition('%')[0]
 
-	depath = de.getPath()
-	if depath:
-		    command = 'cd %s && %s' % (depath, command)
-
 	use_terminal = de.getTerminal()
 	if use_terminal is True:
 		command = '%s -e %s' % (terminal, command)
+
+	depath = de.getPath()
+	if depath:
+		    command = 'cd %s && %s' % (depath, command)
 	
 	# cleaning up categories and keeping only registered freedesktop.org main categories
 	categories = de.getCategories()
