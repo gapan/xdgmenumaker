@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import os.path
 import sys
 import getopt
 import gtk
@@ -12,6 +13,12 @@ from operator import attrgetter
 seticon = False
 desktop = False
 submenu = True
+
+# use debians alternative system if available
+if os.path.exists('/etc/alternatives/x-terminal-emulator'):
+	terminal = 'x-terminal-emulator'
+else:
+	terminal = 'xterm'
 
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-applications.directory')
 applications = de.getName().encode('utf-8')
@@ -151,9 +158,13 @@ def get_entry_info(desktopfile):
 	# removing any %U or %F from the exec line
 	command = de.getExec().partition('%')[0]
 
-	terminal = de.getTerminal()
-	if terminal is True:
-		command = 'xterm -e '+command
+	use_terminal = de.getTerminal()
+	if use_terminal is True:
+		command = '%s -e %s' % (terminal, command)
+
+	depath = de.getPath()
+	if depath:
+		    command = 'cd %s && %s' % (depath, command)
 	
 	# cleaning up categories and keeping only registered freedesktop.org main categories
 	categories = de.getCategories()
