@@ -98,14 +98,16 @@ def usage():
 	print '    xdgmenumaker -i -f fluxbox'
 
 class MenuEntry:
-	def __init__(self, category, name, icon, command):
+	def __init__(self, category, name, icon, command, path):
 		self.category = category
 		self.name = name
 		self.icon = icon
 		self.command = command
+		self.path = path
 	
 	def __repr__(self):
-		return repr((self.category, self.name, self.icon, self.command))
+		return repr((self.category, self.name, self.icon, self.command,
+			self.path))
 
 def icon_full_path(icon):
 	# If the icon path is absolute and exists, leave it alone.
@@ -154,8 +156,12 @@ def get_entry_info(desktopfile):
 	terminal = de.getTerminal()
 	if terminal is True:
 		command = 'xterm -e '+command
-	
-	# cleaning up categories and keeping only registered freedesktop.org main categories
+
+	path = de.getPath()
+	if not path:
+		path = None
+
+	#cleaning up categories and keeping only registered freedesktop.org main categories
 	categories = de.getCategories()
 	if 'AudioVideo' in categories:
 		category = multimedia
@@ -193,7 +199,7 @@ def get_entry_info(desktopfile):
 	if desktop in notshowin:
 		show = False
 	if show == True:
-		return [category, name, icon, command]
+		return [category, name, icon, command, path]
 	else:
 		return None
 
@@ -235,7 +241,7 @@ def menu():
 		try:
 			e = get_entry_info(desktopfile)
 			if e is not None:
-				applist.append(MenuEntry(e[0], e[1], e[2], e[3]))
+				applist.append(MenuEntry(e[0], e[1], e[2], e[3], e[4]))
 		except exc.ParsingError:
 			pass
 
@@ -246,7 +252,8 @@ def menu():
 		appsincategory = []
 		for i in sortedapplist:
 			if i.category == c:
-				appsincategory.append([i.name, i.icon, i.command])
+				appsincategory.append([i.name, i.icon, i.command,
+						i.path])
 		menu.append([c, appsincategory])
 	return menu
 
@@ -309,6 +316,9 @@ def fluxboxmenu():
 			name = j[0].replace(')', '\)')
 			icon = j[1]
 			command = j[2]
+			path = j[3]
+			if path is not None:
+				command = 'cd '+path+' ; '+command
 			if icon is None:
 				print spacing+'  [exec] ('+name+') {'+command+'}'
 			else:
