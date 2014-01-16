@@ -57,6 +57,22 @@ Prints a usage message briefly summarizing all command-line options
 and exits.
 
 
+= CONFIGURATION =
+
+The terminal emulator to be used for menu entries that state that an
+application must be launched inside a terminal, can be specified in a
+//~/.config/xdgmenumaker.cfg// configuration file. Here's an example
+specifying **rxvt** as the default terminal emulator:
+```
+[Terminal]
+terminal = rxvt
+```
+If no such file is present, or if no terminal is set within the file,
+xdgmenumaker will default to the one specified in the debian
+alternatives system on debian and debian-like systems and to xterm in
+any other case.
+
+
 = USAGE =
 
 : **Fluxbox**
