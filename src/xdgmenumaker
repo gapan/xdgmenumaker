@@ -49,6 +49,11 @@ system_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-other.directory')
 other = de.getName().encode('utf-8')
 other_icon = de.getIcon()
+# use debians alternative system if available
+if os.path.exists('/etc/alternatives/x-terminal-emulator') and os.path.exists('/usr/bin/x-terminal-emulator'):
+	terminal_app = '/usr/bin/x-terminal-emulator'
+else:
+	terminal_app = 'xterm'
 
 def main(argv):
 	global desktop
@@ -155,7 +160,7 @@ def get_entry_info(desktopfile):
 
 	terminal = de.getTerminal()
 	if terminal is True:
-		command = 'xterm -e '+command
+		command = terminal_app+' -e '+command
 
 	path = de.getPath()
 	if not path:
