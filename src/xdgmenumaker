@@ -7,6 +7,7 @@ import gtk
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
+import ConfigParser
 from operator import attrgetter
 
 seticon = False
@@ -49,11 +50,21 @@ system_icon = de.getIcon()
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-other.directory')
 other = de.getName().encode('utf-8')
 other_icon = de.getIcon()
-# use debians alternative system if available
-if os.path.exists('/etc/alternatives/x-terminal-emulator') and os.path.exists('/usr/bin/x-terminal-emulator'):
-	terminal_app = '/usr/bin/x-terminal-emulator'
-else:
-	terminal_app = 'xterm'
+# Find out which terminal emulator to use for apps that need to be
+# launched in a terminal.
+# First see if there is a user specified terminal emulator in the
+# xdgmenumaker.cfg file.
+try:
+	config = ConfigParser.SafeConfigParser()
+	config.read(os.path.expanduser('~/.config/xdgmenumaker.cfg'))
+	terminal_app = config.get('Terminal', 'terminal')
+# if there isn't, on debian and debian-likes, use the alternatives
+# system, otherwise default to xterm
+except (ConfigParser.NoSectionError, ConfigParser.NoOptionError) as e:
+	if os.path.exists('/etc/alternatives/x-terminal-emulator') and os.path.exists('/usr/bin/x-terminal-emulator'):
+		terminal_app = '/usr/bin/x-terminal-emulator'
+	else:
+		terminal_app = 'xterm'
 
 def main(argv):
 	global desktop
