@@ -13,6 +13,7 @@ from operator import attrgetter
 seticon = False
 desktop = False
 submenu = True
+pekwmdynamic = False
 
 de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-applications.directory')
 applications = de.getName().encode('utf-8')
@@ -70,8 +71,10 @@ def main(argv):
 	global desktop
 	global seticon
 	global submenu
+	global pekwmdynamic
 	try:
-		opts, args = getopt.getopt(argv, "hinf:", ["help", "icons" , "no-submenu", "format="])
+		opts, args = getopt.getopt(argv, "hinf:", ["help", "icons" ,
+			"no-submenu", "pekwm-dynamic", "format="])
 	except getopt.GetoptError:
 		usage()
 		sys.exit(2)
@@ -83,6 +86,8 @@ def main(argv):
 			seticon = True
 		elif opt in ("-n", "--no-submenu"):
 			submenu = False
+		elif opt in ("--pekwm-dynamic"):
+			pekwmdynamic = True
 		elif opt in ("-f", "--format"):
 			desktop = arg
 	if desktop is False:
@@ -107,7 +112,8 @@ def usage():
 	print 'OPTIONS:'
 	print '    -f, --format         the output format to use. Valid options are fluxbox, icewm, windowmaker and pekwm'
 	print '    -i, --icons          enable support for icons in the menus. Only works with fluxbox, icewm'
-	print '    -n, --no-submenu     do not create a submenu. Only works with fluxbox, icewm'
+	print '    -n, --no-submenu     do not create a submenu. Does not work with windowmaker'
+	print '        --pekwm-dynamic  generate dynamic menus for pekwm'
 	print '    -h, --help           show this help message'
 	print '  You have to specify the output format using the -f switch.'
 	print
@@ -394,13 +400,19 @@ def icewmmenu():
 def pekwmmenu():
 	global seticon
 	global submenu
+	global pekwmdynamic
+	if pekwmdynamic is True:
+		print "Dynamic {"
+		dspacing = '  '
+	else:
+		dspacing = ''
 	if submenu is True:
 		spacing = '  '
 		if seticon == True:
 			app_icon = icon_full_path(applications_icon)
-			print 'Submenu = "'+applications+'" { Icon = "'+app_icon+'"'
+			print dspacing+'Submenu = "'+applications+'" { Icon = "'+app_icon+'"'
 		else:
-			print 'Submenu = "'+applications+'" {'
+			print dspacing+'Submenu = "'+applications+'" {'
 	else:
 		spacing = ''
 	for i in menu():
@@ -408,9 +420,9 @@ def pekwmmenu():
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
 		if seticon is True and cat_icon is not None:
-			print spacing+'Submenu = "'+category+'" { Icon = "'+cat_icon+'"'
+			print dspacing+spacing+'Submenu = "'+category+'" { Icon = "'+cat_icon+'"'
 		else:
-			print spacing+'Submenu = "'+category+'" {'
+			print dspacing+spacing+'Submenu = "'+category+'" {'
 		for j in i[1]:
 			name = j[0]
 			icon = j[1]
@@ -426,12 +438,14 @@ def pekwmmenu():
 				# path does not exist
 				command = 'cd '+path+' && '+command+' || '+command
 			if seticon is True and icon is not None:
-				print spacing+'  Entry = "'+name+'" { Icon = "'+icon+'"; Actions = "Exec '+command+' &" }'
+				print dspacing+spacing+'  Entry = "'+name+'" { Icon = "'+icon+'"; Actions = "Exec '+command+' &" }'
 			else:
-				print spacing+'  Entry = "'+name+'" { Actions = "Exec '+command+' &" }'
-		print spacing+'}'
+				print dspacing+spacing+'  Entry = "'+name+'" { Actions = "Exec '+command+' &" }'
+		print dspacing+spacing+'}'
 	if submenu is True:
-		print '}'
+		print dspacing+'}'
+	if pekwmdynamic is True:
+		print "}"
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
