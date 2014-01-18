@@ -23,7 +23,7 @@ Fluxbox
 
 To generate an application menu for fluxbox, run xdgmenumaker like this:
 
-$ xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu
+  $ xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu
 
 and then change your main fluxbox menu to include this file as a
 submenu. For example, add this somewhere in your ~/.fluxbox/menu file:
@@ -41,11 +41,11 @@ IceWM
 
 To generate an application menu for icewm, run xdgmenumaker like this:
 
-$ xdgmenumaker -f icewm > ~/.icewm/appmenu
+  $ xdgmenumaker -f icewm > ~/.icewm/appmenu
 
 or if you want icons in your menu:
 
-$ xdgmenumaker -i -f icewm > ~/.icewm/appmenu
+  $ xdgmenumaker -i -f icewm > ~/.icewm/appmenu
 
 and you can then edit your ~/.icewm/menu file and add this line
 somewhere:
@@ -64,6 +64,48 @@ menu entries should always include an icon. So, by pointing it to a
 non existing icon, you essentially set it to use no icon. If you
 actually have an icewm icon named "_none_", that one will be used
 instead.
+
+=====
+pekwm
+=====
+
+There are two ways to have an XDG menu in pekwm. The first one,
+auto-updates the menu, every time the menu is called. The second one,
+updates the menu only when the user wants to.
+
+Dynamic Menus
+-------------
+
+Edit your ~/.pekwm/menu file with your favourite text editor and add
+a like like the following one in the location that you want the
+dynamically generated menu to appear:
+
+  Entry = "" { Actions = "Dynamic /usr/bin/xdgmenumaker -n -i -f pekwm --pekwm-dynamic" }
+
+Restart pekwm and the generated menu should appear. The menu will be
+automatically generated every time you access it, so it will always be
+up to date. But since xdgmenumaker will run every time you access the
+menu, the menu might not appear instantly, especially if you are using
+an older PC.
+
+Static Menus
+------------
+
+Run:
+
+  $ xdgmenumaker -n -i -f pekwm > ~/.pekwm/appsmenu
+
+to create a file with the menu contents. Then edit your
+~/.pekwm/menu file to include that menu, by adding a line like the
+following, in the location that you want the menu to appear:
+
+  INCLUDE = "/home/your_user_name/.pekwm/appsmenu"
+
+Restart pekwm and the generated menu should appear. The menu is static
+and if you add/remove any applications, you will have to run the
+xdgmenumaker command and restart pekwm all over again to update it. The
+advantage is that there will be no delay in displaying the menu.
+
 
 ============
 Window Maker
@@ -85,7 +127,7 @@ Definition section, add a Generated Submenu in your menu, by dragging it
 in. Click on the menu item you just dragged in and in the preferences
 window, in Command, add:
 
-xdgmenumaker -f windowmaker
+  xdgmenumaker -f windowmaker
 
 Save and close the preferences window.
 
@@ -100,7 +142,7 @@ Method 2
 
 Run
 
-$ xdgmenumaker -f windowmaker > ~/GNUstep/Defaults/xdg_menu
+  $ xdgmenumaker -f windowmaker > ~/GNUstep/Defaults/xdg_menu
 
 Then open the WindowMaker preferences tool and in the Application Menu
 Definition section, add an External Submenu by dragging it in your menu.
