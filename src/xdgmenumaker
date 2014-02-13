@@ -86,7 +86,7 @@ def main(argv):
 			seticon = True
 		elif opt in ("-n", "--no-submenu"):
 			submenu = False
-		elif opt in ("--pekwm-dynamic"):
+		elif opt in ("--pekwm-dynamic",):
 			pekwmdynamic = True
 		elif opt in ("-f", "--format"):
 			desktop = arg
