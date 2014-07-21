@@ -65,6 +65,59 @@ non existing icon, you essentially set it to use no icon. If you
 actually have an icewm icon named "_none_", that one will be used
 instead.
 
+===
+JWM
+===
+
+There are two ways to have an XDG menu in JWM. The first one,
+auto-updates the menu, every time the menu is called. The second one,
+updates the menu only when the user wants to.
+
+Dynamic Menus
+-------------
+
+You can edit your ~/.jwmrc file and add a line that generates the
+applications menu on the fly, like this:
+
+  <Include>exec: xdgmenumaker -n -i -f jwm</Include>
+
+You need to put that line somewhere in the "RootMenu" section of the
+~/.jwmrc file.
+
+Restart JWM and the generated menu should appear. The menu will be
+automatically generated every time you access it, so it will always be
+up to date. But since xdgmenumaker will run every time you access the
+menu, the menu might not appear instantly, especially if you are using
+an older PC.
+
+Static Menus
+------------
+
+To generate an application menu for JWM, you can run
+xdgmenumaker like this:
+
+  $ xdgmenumaker -n -i -f jwm > ~/.jwm_xdg_menu
+
+and then change your ~/.jwmrc to include this file as a
+submenu. For example, add this somewhere in the "RootMenu" section:
+
+  <Include>$HOME/.jwm_xdg_menu</Include>
+
+Note the use of the $HOME variable. JWM doesn't seem to support the
+"~" symbol to specify the user's home directory when including files.
+
+You can add the xdgmenumaker command as another item in your menu,
+if you want to update it, without having to run the command manually
+again, by adding a line like this in the "RootMenu" section of your
+~/.jwmrc file:
+
+  <Program label="Update JWM Menu">xdgmenumaker -n -i -f jwm > ~/.jwm_xdg_menu</Program>
+
+Restart jwm and the generated menu should appear. The menu is static
+and if you add/remove any applications, you will have to run the
+xdgmenumaker command and restart jwm all over again to update it. The
+advantage is that there will be no delay in displaying the menu.
+
 =====
 pekwm
 =====
