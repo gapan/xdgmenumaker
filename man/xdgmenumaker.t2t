@@ -41,13 +41,13 @@ specify the output format to use. Valid options are //fluxbox//,
 mandatory.
 
 : **-i, --icons**
-enable support for icons in the menus. Only works with //fluxbox// and
-//icewm//.
+enable support for icons in the menus. This option does not have any
+effect for //windowmaker// menus.
 
 : **-n, --no-submenu**
 do not create a submenu. Instead, place the application categories menus
-in the window manager's main menu. Only works with //fluxbox// and
-//icewm//.
+in the window manager's main menu. This option does not have any effect
+for //windowmaker// menus.
 
 : **--pekwm-dynamic**
 create dynamic menus for pekwm. If you want to have dynamically
