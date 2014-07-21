@@ -172,6 +172,11 @@ again, by adding a line like this in the //RootMenu// section of your
 
 ``<Program label="Update JWM Menu">xdgmenumaker -n -i -f jwm > ~/.jwm_xdg_menu</Program>``
 
+Restart JWM and the generated menu should appear. The menu is static
+and if you add/remove any applications, you will have to run the
+xdgmenumaker command and restart JWM all over again to update it. The
+advantage is that there will be no delay in displaying the menu.
+
 
 : **pekwm**
 
