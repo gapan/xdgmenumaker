@@ -102,6 +102,8 @@ def main(argv):
 		icewmmenu()
 	elif desktop == "pekwm":
 		pekwmmenu()
+	elif desktop == "jwm":
+		jwmmenu()
 	else:
 		usage()
 		sys.exit(2)
@@ -446,6 +448,47 @@ def pekwmmenu():
 		print dspacing+'}'
 	if pekwmdynamic is True:
 		print "}"
+
+def jwmmenu():
+	global seticon
+	global submenu
+	print '<?xml version="1.0"?>'
+	print '<JWM>'
+	if submenu is True:
+		spacing = '  '
+		if seticon == True:
+			app_icon = icon_full_path(applications_icon)
+			if app_icon is None:
+				print '<Menu label="'+applications+'">'
+			else:
+				print '<Menu icon="'+app_icon+'" label="'+applications+'">'
+		else:
+			print '<Menu label="'+applications+'">'
+	else:
+		spacing = ''
+	for i in menu():
+		category = i[0]
+		cat_icon = category_icon(category)
+		cat_icon = icon_full_path(cat_icon)
+		if seticon is True and cat_icon is not None:
+			print spacing+'<Menu icon="'+cat_icon+'" label="'+category+'">'
+		else:
+			print spacing+'<Menu label="'+category+'">'
+		for j in i[1]:
+			name = j[0]
+			icon = j[1]
+			command = j[2]
+			path = j[3]
+			if path is not None:
+				command = 'cd '+path+' ; '+command
+			if seticon is True and icon is not None:
+				print spacing+'  <Program icon="'+icon+'" label="'+name+'">'+command+'</Program>'
+			else:
+				print spacing+'  <Program label="'+name+'">'+command+'</Program>'
+		print spacing+'</Menu>'
+	if submenu is True:
+		print '</Menu>'
+	print '</JWM>'
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
