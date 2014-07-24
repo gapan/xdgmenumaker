@@ -112,8 +112,8 @@ def usage():
 	print 'USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]'
 	print
 	print 'OPTIONS:'
-	print '    -f, --format         the output format to use. Valid options are fluxbox, icewm, windowmaker and pekwm'
-	print '    -i, --icons          enable support for icons in the menus. Only works with fluxbox, icewm'
+	print '    -f, --format         the output format to use. Valid options are fluxbox, icewm, jwm, windowmaker and pekwm'
+	print '    -i, --icons          enable support for icons in the menus. Does not work with windowmaker'
 	print '    -n, --no-submenu     do not create a submenu. Does not work with windowmaker'
 	print '        --pekwm-dynamic  generate dynamic menus for pekwm'
 	print '    -h, --help           show this help message'
