@@ -11,6 +11,7 @@ import ConfigParser
 from operator import attrgetter
 
 seticon = False
+iconsize = 16
 desktop = False
 submenu = True
 pekwmdynamic = False
@@ -70,11 +71,12 @@ except (ConfigParser.NoSectionError, ConfigParser.NoOptionError) as e:
 def main(argv):
 	global desktop
 	global seticon
+	global iconsize
 	global submenu
 	global pekwmdynamic
 	try:
-		opts, args = getopt.getopt(argv, "hinf:", ["help", "icons" ,
-			"no-submenu", "pekwm-dynamic", "format="])
+		opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons" ,
+			"no-submenu", "pekwm-dynamic", "size=", "format="])
 	except getopt.GetoptError:
 		usage()
 		sys.exit(2)
@@ -84,6 +86,12 @@ def main(argv):
 			sys.exit(0)
 		elif opt in ("-i", "--icons"):
 			seticon = True
+		elif opt in ("-s", "--size"):
+			try:
+				iconsize = int(arg)
+			except ValueError:
+				usage()
+				sys.exit('ERROR: size must be a number')
 		elif opt in ("-n", "--no-submenu"):
 			submenu = False
 		elif opt in ("--pekwm-dynamic",):
@@ -114,6 +122,7 @@ def usage():
 	print 'OPTIONS:'
 	print '    -f, --format         the output format to use. Valid options are fluxbox, icewm, jwm, windowmaker and pekwm'
 	print '    -i, --icons          enable support for icons in the menus. Does not work with windowmaker'
+	print '    -s, --size           preferred icon size in pixels (default: 16)'
 	print '    -n, --no-submenu     do not create a submenu. Does not work with windowmaker'
 	print '        --pekwm-dynamic  generate dynamic menus for pekwm'
 	print '    -h, --help           show this help message'
@@ -136,6 +145,7 @@ class MenuEntry:
 			self.path))
 
 def icon_full_path(icon):
+	global iconsize
 	# If the icon path is absolute and exists, leave it alone.
 	# This takes care of software that has its own icons stored
 	# in non-standard directories
@@ -150,7 +160,7 @@ def icon_full_path(icon):
 		elif icon.endswith('.xpm'):
 			icon = icon.replace('.xpm', '')
 		icon_theme = gtk.icon_theme_get_default()
-		icon = icon_theme.lookup_icon(icon, 16, gtk.ICON_LOOKUP_NO_SVG)
+		icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
 		if icon:
 			icon = icon.get_filename()
 		return icon
