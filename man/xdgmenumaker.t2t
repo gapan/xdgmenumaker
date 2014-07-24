@@ -44,6 +44,13 @@ format is mandatory.
 enable support for icons in the menus. This option does not have any
 effect for //windowmaker// menus.
 
+: **-s, --size**
+set the preferred icon size in pixels. The default size is 16. You can
+set this to any number, but it generally makes sense to use standard
+icons sizes, like 16, 22, 24, 32 etc. Obviously this has an effect only
+if the //--icons// option is used. You have to be careful with the sizes
+you use; some window managers don't support large icons in the menu.
+
 : **-n, --no-submenu**
 do not create a submenu. Instead, place the application categories menus
 in the window manager's main menu. This option does not have any effect
