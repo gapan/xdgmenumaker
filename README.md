@@ -72,7 +72,7 @@ applications menu, like this:
 
     <Include>exec: xdgmenumaker -n -i -f jwm</Include>
 
-You need to put that line somewhere in the //RootMenu// section of the
+You need to put that line somewhere in the *RootMenu* section of the
 `~/.jwmrc` file.
 
 You can update the menu with:
