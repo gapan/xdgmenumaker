@@ -24,7 +24,7 @@ To generate an application menu for fluxbox, run xdgmenumaker like this:
     $ xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu
 
 and then change your main fluxbox menu to include this file as a
-submenu. For example, add this somewhere in your ~/.fluxbox/menu file:
+submenu. For example, add this somewhere in your `~/.fluxbox/menu` file:
 
     [include] (~/.fluxbox/xdg_menu)
 
@@ -45,7 +45,7 @@ or if you want icons in your menu:
 
     $ xdgmenumaker -i -f icewm > ~/.icewm/appmenu
 
-and you can then edit your ~/.icewm/menu file and add this line
+and you can then edit your `~/.icewm/menu` file and add this line
 somewhere:
 
     include appmenu
@@ -55,25 +55,25 @@ you want to update it, without having to run the command manually again:
 
     prog "Update Menu" _none_ xdgmenumaker -i -f icewm > ~/.icewm/appmenu
 
-NOTE: If you don't request icons in the menu, or if an icon is not found
+**NOTE:** If you don't request icons in the menu, or if an icon is not found
 for a certain app, the icon name in the menu for that app is set to
-"_none_". This doesn't actually set the icon for that app to none. Icewm
+`"_none_"`. This doesn't actually set the icon for that app to none. Icewm
 menu entries should always include an icon. So, by pointing it to a
 non existing icon, you essentially set it to use no icon. If you
-actually have an icewm icon named "_none_", that one will be used
+actually have an icewm icon named `"_none_"`, that one will be used
 instead.
 
 
 JWM
 ===
 
-You can edit your ~/.jwmrc file and add a line that generates the
+You can edit your `~/.jwmrc` file and add a line that generates the
 applications menu, like this:
 
     <Include>exec: xdgmenumaker -n -i -f jwm</Include>
 
 You need to put that line somewhere in the //RootMenu// section of the
-~/.jwmrc file.
+`~/.jwmrc` file.
 
 You can update the menu with:
 
@@ -97,7 +97,7 @@ updates the menu only when the user wants to.
 Dynamic Menus
 -------------
 
-Edit your ~/.pekwm/menu file with your favourite text editor and add
+Edit your `~/.pekwm/menu` file with your favourite text editor and add
 a like like the following one in the location that you want the
 dynamically generated menu to appear:
 
@@ -117,7 +117,7 @@ Run:
     $ xdgmenumaker -n -i -f pekwm > ~/.pekwm/appsmenu
 
 to create a file with the menu contents. Then edit your
-~/.pekwm/menu file to include that menu, by adding a line like the
+`~/.pekwm/menu` file to include that menu, by adding a line like the
 following, in the location that you want the menu to appear:
 
     INCLUDE = "/home/your_user_name/.pekwm/appsmenu"
