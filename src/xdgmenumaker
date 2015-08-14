@@ -145,7 +145,6 @@ class MenuEntry:
 			self.path))
 
 def icon_full_path(icon):
-	global iconsize
 	# If the icon path is absolute and exists, leave it alone.
 	# This takes care of software that has its own icons stored
 	# in non-standard directories
@@ -166,8 +165,6 @@ def icon_full_path(icon):
 		return icon
 
 def get_entry_info(desktopfile):
-	global desktop
-	global seticon
 	show = True
 	de = dentry.DesktopEntry(filename = desktopfile)
 	name = de.getName().encode('utf-8')
@@ -321,8 +318,6 @@ def category_icon(category):
 	return icon
 
 def fluxboxmenu():
-	global seticon
-	global submenu
 	if submenu:
 		spacing = '  '
 		if seticon:
@@ -376,8 +371,6 @@ def windowmakermenu():
 	print '"'+applications+'" END'
 
 def icewmmenu():
-	global seticon
-	global submenu
 	if submenu:
 		spacing = '  '
 		if seticon:
@@ -410,9 +403,6 @@ def icewmmenu():
 		print '}'
 
 def pekwmmenu():
-	global seticon
-	global submenu
-	global pekwmdynamic
 	if pekwmdynamic:
 		print "Dynamic {"
 		dspacing = '  '
@@ -460,8 +450,6 @@ def pekwmmenu():
 		print "}"
 
 def jwmmenu():
-	global seticon
-	global submenu
 	print '<?xml version="1.0"?>'
 	print '<JWM>'
 	if submenu:
