@@ -98,7 +98,7 @@ def main(argv):
 			pekwmdynamic = True
 		elif opt in ("-f", "--format"):
 			desktop = arg
-	if desktop is False:
+	if not desktop:
 		usage()
 		sys.exit('ERROR: You must specify the output format with -f')
 	elif desktop == "fluxbox":
