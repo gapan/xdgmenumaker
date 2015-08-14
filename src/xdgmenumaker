@@ -149,7 +149,7 @@ def icon_full_path(icon):
 	# If the icon path is absolute and exists, leave it alone.
 	# This takes care of software that has its own icons stored
 	# in non-standard directories
-	if os.path.exists(icon) == True:
+	if os.path.exists(icon):
 		return icon
 	else:
 		icon = os.path.basename(icon)
@@ -172,7 +172,7 @@ def get_entry_info(desktopfile):
 	de = dentry.DesktopEntry(filename = desktopfile)
 	name = de.getName().encode('utf-8')
 
-	if seticon == True:
+	if seticon:
 		# strip the directory and extension from the icon name
 		icon = de.getIcon()
 		icon = icon_full_path(icon)
@@ -180,17 +180,17 @@ def get_entry_info(desktopfile):
 		icon = None
 
 	hidden = de.getHidden()
-	if hidden == True:
+	if hidden:
 		show = False
 	nodisplay = de.getNoDisplay()
-	if nodisplay == True:
+	if nodisplay:
 		show = False
 
 	# removing any %U or %F from the exec line
 	command = de.getExec().partition('%')[0]
 
 	terminal = de.getTerminal()
-	if terminal is True:
+	if terminal:
 		command = terminal_app+' -e '+command
 
 	path = de.getPath()
@@ -234,7 +234,7 @@ def get_entry_info(desktopfile):
 		show = False
 	if desktop in notshowin:
 		show = False
-	if show == True:
+	if show:
 		return [category, name, icon, command, path]
 	else:
 		return None
@@ -323,9 +323,9 @@ def category_icon(category):
 def fluxboxmenu():
 	global seticon
 	global submenu
-	if submenu is True:
+	if submenu:
 		spacing = '  '
-		if seticon == True:
+		if seticon:
 			app_icon = icon_full_path(applications_icon)
 			if app_icon is None:
 				print '[submenu] ('+applications+')'
@@ -337,7 +337,7 @@ def fluxboxmenu():
 		spacing = ''
 	for i in menu():
 		category = i[0]
-		if seticon == True:
+		if seticon:
 			cat_icon = category_icon(category)
 			cat_icon = icon_full_path(cat_icon)
 			if cat_icon:
@@ -360,7 +360,7 @@ def fluxboxmenu():
 			else:
 				print spacing+'  [exec] ('+name+') {'+command+'} <'+icon+'>'
 		print spacing+'[end] # ('+category+')'
-	if submenu is True:
+	if submenu:
 		print '[end] # ('+applications+')'
 
 def windowmakermenu():
@@ -378,9 +378,9 @@ def windowmakermenu():
 def icewmmenu():
 	global seticon
 	global submenu
-	if submenu is True:
+	if submenu:
 		spacing = '  '
-		if seticon == True:
+		if seticon:
 			app_icon = icon_full_path(applications_icon)
 			if app_icon is None:
 				app_icon = "_none_"
@@ -393,7 +393,7 @@ def icewmmenu():
 		category = i[0]
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
-		if seticon is True and cat_icon is not None:
+		if seticon and cat_icon is not None:
 			print spacing+'menu "'+category+'" '+cat_icon+' {'
 		else:
 			print spacing+'menu "'+category+'" _none_ {'
@@ -401,26 +401,26 @@ def icewmmenu():
 			name = j[0]
 			icon = j[1]
 			command = j[2]
-			if seticon is True and icon is not None:
+			if seticon and icon is not None:
 				print spacing+'  prog "'+name+'" '+icon+' '+command
 			else:
 				print spacing+'  prog "'+name+'" _none_ '+command
 		print spacing+'}'
-	if submenu is True:
+	if submenu:
 		print '}'
 
 def pekwmmenu():
 	global seticon
 	global submenu
 	global pekwmdynamic
-	if pekwmdynamic is True:
+	if pekwmdynamic:
 		print "Dynamic {"
 		dspacing = '  '
 	else:
 		dspacing = ''
-	if submenu is True:
+	if submenu:
 		spacing = '  '
-		if seticon == True:
+		if seticon:
 			app_icon = icon_full_path(applications_icon)
 			print dspacing+'Submenu = "'+applications+'" { Icon = "'+app_icon+'"'
 		else:
@@ -431,7 +431,7 @@ def pekwmmenu():
 		category = i[0]
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
-		if seticon is True and cat_icon is not None:
+		if seticon and cat_icon is not None:
 			print dspacing+spacing+'Submenu = "'+category+'" { Icon = "'+cat_icon+'"'
 		else:
 			print dspacing+spacing+'Submenu = "'+category+'" {'
@@ -449,14 +449,14 @@ def pekwmmenu():
 				# with "&&" and "||", so we'll launch the command even if the
 				# path does not exist
 				command = 'cd '+path+' && '+command+' || '+command
-			if seticon is True and icon is not None:
+			if seticon and icon is not None:
 				print dspacing+spacing+'  Entry = "'+name+'" { Icon = "'+icon+'"; Actions = "Exec '+command+' &" }'
 			else:
 				print dspacing+spacing+'  Entry = "'+name+'" { Actions = "Exec '+command+' &" }'
 		print dspacing+spacing+'}'
-	if submenu is True:
+	if submenu:
 		print dspacing+'}'
-	if pekwmdynamic is True:
+	if pekwmdynamic:
 		print "}"
 
 def jwmmenu():
@@ -464,9 +464,9 @@ def jwmmenu():
 	global submenu
 	print '<?xml version="1.0"?>'
 	print '<JWM>'
-	if submenu is True:
+	if submenu:
 		spacing = '  '
-		if seticon == True:
+		if seticon:
 			app_icon = icon_full_path(applications_icon)
 			if app_icon is None:
 				print '<Menu label="'+applications+'">'
@@ -480,7 +480,7 @@ def jwmmenu():
 		category = i[0]
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
-		if seticon is True and cat_icon is not None:
+		if seticon and cat_icon is not None:
 			print spacing+'<Menu icon="'+cat_icon+'" label="'+category+'">'
 		else:
 			print spacing+'<Menu label="'+category+'">'
@@ -491,12 +491,12 @@ def jwmmenu():
 			path = j[3]
 			if path is not None:
 				command = 'cd '+path+' ; '+command
-			if seticon is True and icon is not None:
+			if seticon and icon is not None:
 				print spacing+'  <Program icon="'+icon+'" label="'+name+'">'+command+'</Program>'
 			else:
 				print spacing+'  <Program label="'+name+'">'+command+'</Program>'
 		print spacing+'</Menu>'
-	if submenu is True:
+	if submenu:
 		print '</Menu>'
 	print '</JWM>'
 
