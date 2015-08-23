@@ -10,7 +10,7 @@ install:
 	install -d -m 755 $(DESTDIR)/usr/share/desktop-directories
 	install -m 755 src/xdgmenumaker $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 desktop-directories/* $(DESTDIR)/usr/share/desktop-directories
-	if [ -f man/xdgmenumaker.man ]; then \
+	if [ -f man/xdgmenumaker.1 ]; then \
 		install -d -m 755 $(DESTDIR)/$(PREFIX)/share/man/man1; \
 		install -m 644 man/xdgmenumaker.1 $(DESTDIR)/$(PREFIX)/share/man/man1/; \
 	fi
