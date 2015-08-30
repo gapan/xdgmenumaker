@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+# vim:et:sta:sts=4:sw=4:ts=8:tw=79:
 
 from __future__ import print_function
 
@@ -25,47 +26,57 @@ pekwmdynamic = False
 # for them, where they should be if this was installed properly
 prefix = 'not_set'
 if prefix == 'not_set':
-	desktop_dir = '../desktop-directories/'
+    desktop_dir = '../desktop-directories/'
 else:
-	desktop_dir = prefix+'/share/desktop-directories/'
+    desktop_dir = prefix + '/share/desktop-directories/'
 
 if not os.path.isdir(desktop_dir):
-	sys.exit('ERROR: Could not find '+desktop_dir)
+    sys.exit('ERROR: Could not find ' + desktop_dir)
 
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-applications.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-applications.directory')
 applications = de.getName().encode('utf-8')
 applications_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-accessories.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-accessories.directory')
 accessories = de.getName().encode('utf-8')
 accessories_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-development.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-development.directory')
 development = de.getName().encode('utf-8')
 development_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-education.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-education.directory')
 education = de.getName().encode('utf-8')
 education_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-games.directory')
+de = dentry.DesktopEntry(filename=desktop_dir + 'xdgmenumaker-games.directory')
 games = de.getName().encode('utf-8')
 games_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-graphics.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-graphics.directory')
 graphics = de.getName().encode('utf-8')
 graphics_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-multimedia.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-multimedia.directory')
 multimedia = de.getName().encode('utf-8')
 multimedia_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-network.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-network.directory')
 network = de.getName().encode('utf-8')
 network_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-office.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-office.directory')
 office = de.getName().encode('utf-8')
 office_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-settings.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-settings.directory')
 settings = de.getName().encode('utf-8')
 settings_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-system.directory')
+de = dentry.DesktopEntry(filename=desktop_dir +
+                         'xdgmenumaker-system.directory')
 system = de.getName().encode('utf-8')
 system_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-other.directory')
+de = dentry.DesktopEntry(filename=desktop_dir + 'xdgmenumaker-other.directory')
 other = de.getName().encode('utf-8')
 other_icon = de.getIcon()
 # Find out which terminal emulator to use for apps that need to be
@@ -73,440 +84,467 @@ other_icon = de.getIcon()
 # First see if there is a user specified terminal emulator in the
 # xdgmenumaker.cfg file.
 try:
-	config = ConfigParser.SafeConfigParser()
-	config.read(os.path.expanduser('~/.config/xdgmenumaker.cfg'))
-	terminal_app = config.get('Terminal', 'terminal')
+    config = ConfigParser.SafeConfigParser()
+    config.read(os.path.expanduser('~/.config/xdgmenumaker.cfg'))
+    terminal_app = config.get('Terminal', 'terminal')
 # if there isn't, on debian and debian-likes, use the alternatives
 # system, otherwise default to xterm
 except (ConfigParser.NoSectionError, ConfigParser.NoOptionError) as e:
-	if os.path.exists('/etc/alternatives/x-terminal-emulator') and os.path.exists('/usr/bin/x-terminal-emulator'):
-		terminal_app = '/usr/bin/x-terminal-emulator'
-	else:
-		terminal_app = 'xterm'
+    if os.path.exists('/etc/alternatives/x-terminal-emulator') and os.path.exists('/usr/bin/x-terminal-emulator'):
+        terminal_app = '/usr/bin/x-terminal-emulator'
+    else:
+        terminal_app = 'xterm'
+
 
 def main(argv):
-	global desktop
-	global seticon
-	global iconsize
-	global submenu
-	global pekwmdynamic
-	try:
-		opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons" ,
-			"no-submenu", "pekwm-dynamic", "size=", "format="])
-	except getopt.GetoptError:
-		usage()
-		sys.exit(2)
-	for opt, arg in opts:
-		if opt in ("-h", "--help"):
-			usage()
-			sys.exit(0)
-		elif opt in ("-i", "--icons"):
-			seticon = True
-		elif opt in ("-s", "--size"):
-			try:
-				iconsize = int(arg)
-			except ValueError:
-				usage()
-				sys.exit('ERROR: size must be a number')
-		elif opt in ("-n", "--no-submenu"):
-			submenu = False
-		elif opt in ("--pekwm-dynamic",):
-			pekwmdynamic = True
-		elif opt in ("-f", "--format"):
-			desktop = arg
-	if not desktop:
-		usage()
-		sys.exit('ERROR: You must specify the output format with -f')
-	elif desktop == "fluxbox":
-		fluxboxmenu()
-	elif desktop == "windowmaker":
-		seticon = False
-		windowmakermenu()
-	elif desktop == "icewm":
-		icewmmenu()
-	elif desktop == "pekwm":
-		pekwmmenu()
-	elif desktop == "jwm":
-		jwmmenu()
-	else:
-		usage()
-		sys.exit(2)
+    global desktop
+    global seticon
+    global iconsize
+    global submenu
+    global pekwmdynamic
+    try:
+        opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
+                                                     "no-submenu", "pekwm-dynamic", "size=", "format="])
+    except getopt.GetoptError:
+        usage()
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            usage()
+            sys.exit(0)
+        elif opt in ("-i", "--icons"):
+            seticon = True
+        elif opt in ("-s", "--size"):
+            try:
+                iconsize = int(arg)
+            except ValueError:
+                usage()
+                sys.exit('ERROR: size must be a number')
+        elif opt in ("-n", "--no-submenu"):
+            submenu = False
+        elif opt in ("--pekwm-dynamic",):
+            pekwmdynamic = True
+        elif opt in ("-f", "--format"):
+            desktop = arg
+    if not desktop:
+        usage()
+        sys.exit('ERROR: You must specify the output format with -f')
+    elif desktop == "fluxbox":
+        fluxboxmenu()
+    elif desktop == "windowmaker":
+        seticon = False
+        windowmakermenu()
+    elif desktop == "icewm":
+        icewmmenu()
+    elif desktop == "pekwm":
+        pekwmmenu()
+    elif desktop == "jwm":
+        jwmmenu()
+    else:
+        usage()
+        sys.exit(2)
+
 
 def usage():
-	print('USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]')
-	print()
-	print('OPTIONS:')
-	print('    -f, --format         the output format to use.')
-	print('                         Valid options are fluxbox, icewm,')
-	print('                         jwm, windowmaker and pekwm')
-	print('    -i, --icons          enable support for icons in the')
-	print('                         menus. Does not work with windowmaker')
-	print('    -s, --size           preferred icon size in pixels (default: 16)')
-	print('    -n, --no-submenu     do not create a submenu. Does not work with')
-	print('                         windowmaker')
-	print('        --pekwm-dynamic  generate dynamic menus for pekwm')
-	print('    -h, --help           show this help message')
-	print('  You have to specify the output format using the -f switch.')
-	print()
-	print('EXAMPLES:')
-	print('    xdgmenumaker -f windowmaker')
-	print('    xdgmenumaker -i -f fluxbox')
+    print('USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]')
+    print()
+    print('OPTIONS:')
+    print('    -f, --format         the output format to use.')
+    print('                         Valid options are fluxbox, icewm,')
+    print('                         jwm, windowmaker and pekwm')
+    print('    -i, --icons          enable support for icons in the')
+    print('                         menus. Does not work with windowmaker')
+    print('    -s, --size           preferred icon size in pixels (default: 16)')
+    print('    -n, --no-submenu     do not create a submenu. Does not work with')
+    print('                         windowmaker')
+    print('        --pekwm-dynamic  generate dynamic menus for pekwm')
+    print('    -h, --help           show this help message')
+    print('  You have to specify the output format using the -f switch.')
+    print()
+    print('EXAMPLES:')
+    print('    xdgmenumaker -f windowmaker')
+    print('    xdgmenumaker -i -f fluxbox')
+
 
 class MenuEntry:
-	def __init__(self, category, name, icon, command, path):
-		self.category = category
-		self.name = name
-		self.icon = icon
-		self.command = command
-		self.path = path
-	
-	def __repr__(self):
-		return repr((self.category, self.name, self.icon, self.command,
-			self.path))
+
+    def __init__(self, category, name, icon, command, path):
+        self.category = category
+        self.name = name
+        self.icon = icon
+        self.command = command
+        self.path = path
+
+    def __repr__(self):
+        return repr((self.category, self.name, self.icon, self.command,
+                     self.path))
+
 
 def icon_full_path(icon):
-	# If the icon path is absolute and exists, leave it alone.
-	# This takes care of software that has its own icons stored
-	# in non-standard directories
-	if os.path.exists(icon):
-		return icon
-	else:
-		icon = os.path.basename(icon)
-		if icon.endswith('.png'):
-			icon = icon.replace('.png', '')
-		elif icon.endswith('.svg'):
-			icon = icon.replace('.svg', '')
-		elif icon.endswith('.xpm'):
-			icon = icon.replace('.xpm', '')
-		icon_theme = gtk.icon_theme_get_default()
-		icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
-		if icon:
-			icon = icon.get_filename()
-		return icon
+    # If the icon path is absolute and exists, leave it alone.
+    # This takes care of software that has its own icons stored
+    # in non-standard directories
+    if os.path.exists(icon):
+        return icon
+    else:
+        icon = os.path.basename(icon)
+        if icon.endswith('.png'):
+            icon = icon.replace('.png', '')
+        elif icon.endswith('.svg'):
+            icon = icon.replace('.svg', '')
+        elif icon.endswith('.xpm'):
+            icon = icon.replace('.xpm', '')
+        icon_theme = gtk.icon_theme_get_default()
+        icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+        if icon:
+            icon = icon.get_filename()
+        return icon
+
 
 def get_entry_info(desktopfile):
-	show = True
-	de = dentry.DesktopEntry(filename = desktopfile)
-	name = de.getName().encode('utf-8')
+    show = True
+    de = dentry.DesktopEntry(filename=desktopfile)
+    name = de.getName().encode('utf-8')
 
-	if seticon:
-		# strip the directory and extension from the icon name
-		icon = de.getIcon()
-		icon = icon_full_path(icon)
-	else:
-		icon = None
+    if seticon:
+        # strip the directory and extension from the icon name
+        icon = de.getIcon()
+        icon = icon_full_path(icon)
+    else:
+        icon = None
 
-	hidden = de.getHidden()
-	if hidden:
-		show = False
-	nodisplay = de.getNoDisplay()
-	if nodisplay:
-		show = False
+    hidden = de.getHidden()
+    if hidden:
+        show = False
+    nodisplay = de.getNoDisplay()
+    if nodisplay:
+        show = False
 
-	# removing any %U or %F from the exec line
-	command = de.getExec().partition('%')[0]
+    # removing any %U or %F from the exec line
+    command = de.getExec().partition('%')[0]
 
-	terminal = de.getTerminal()
-	if terminal:
-		command = terminal_app+' -e '+command
+    terminal = de.getTerminal()
+    if terminal:
+        command = terminal_app + ' -e ' + command
 
-	path = de.getPath()
-	if not path:
-		path = None
+    path = de.getPath()
+    if not path:
+        path = None
 
-	#cleaning up categories and keeping only registered freedesktop.org main categories
-	categories = de.getCategories()
-	if 'AudioVideo' in categories:
-		category = multimedia
-	elif 'Audio' in categories:
-		category = multimedia
-	elif 'Video' in categories:
-		category = multimedia
-	elif 'Development' in categories:
-		category = development
-	elif 'Education' in categories:
-		category = education
-	elif 'Game' in categories:
-		category = games
-	elif 'Graphics' in categories:
-		category = graphics
-	elif 'Network' in categories:
-		category = network
-	elif 'Office' in categories:
-		category = office
-	elif 'System' in categories:
-		category = system
-	elif 'Settings' in categories:
-		category = settings
-	elif 'Utility' in categories:
-		category = accessories
-	else:
-		category = other
+    # cleaning up categories and keeping only registered freedesktop.org main
+    # categories
+    categories = de.getCategories()
+    if 'AudioVideo' in categories:
+        category = multimedia
+    elif 'Audio' in categories:
+        category = multimedia
+    elif 'Video' in categories:
+        category = multimedia
+    elif 'Development' in categories:
+        category = development
+    elif 'Education' in categories:
+        category = education
+    elif 'Game' in categories:
+        category = games
+    elif 'Graphics' in categories:
+        category = graphics
+    elif 'Network' in categories:
+        category = network
+    elif 'Office' in categories:
+        category = office
+    elif 'System' in categories:
+        category = system
+    elif 'Settings' in categories:
+        category = settings
+    elif 'Utility' in categories:
+        category = accessories
+    else:
+        category = other
 
-	onlyshowin = de.getOnlyShowIn()
-	notshowin = de.getNotShowIn()
-	# none of the freedesktop registered environments are supported by this anyway
-	# http://standards.freedesktop.org/menu-spec/latest/apb.html
-	if onlyshowin != []:
-		show = False
-	if desktop in notshowin:
-		show = False
-	if show:
-		return [category, name, icon, command, path]
-	else:
-		return None
+    onlyshowin = de.getOnlyShowIn()
+    notshowin = de.getNotShowIn()
+    # none of the freedesktop registered environments are supported by this anyway
+    # http://standards.freedesktop.org/menu-spec/latest/apb.html
+    if onlyshowin != []:
+        show = False
+    if desktop in notshowin:
+        show = False
+    if show:
+        return [category, name, icon, command, path]
+    else:
+        return None
+
 
 def sortedcategories(applist):
-	categories = []
-	for e in applist:
-		categories.append(e.category)
-	categories = sorted(set(categories))
-	return categories
+    categories = []
+    for e in applist:
+        categories.append(e.category)
+    categories = sorted(set(categories))
+    return categories
+
 
 def desktopfilelist():
-	dirs = []
-	# some directories are mentioned twice in bd.xdg_data_dirs, once
-	# with and once without a trailing /
-	for i in bd.xdg_data_dirs:
-		i = i.rstrip('/')
-		if i not in dirs:
-			dirs.append(i)
-	filelist = []
-	df_temp = []
-	for d in dirs:
-		xdgdir = d+'/applications'
-		if os.path.isdir(xdgdir):
-			for i in os.listdir(xdgdir):
-				if i.endswith('.desktop'):
-					# for duplicate .desktop files that exist in more
-					# than one locations, only keep the first occurence.
-					# That one should have precedence anyway (e.g.
-					# ~/.local/share/applications has precedence over
-					# /usr/share/applications
-					if i not in df_temp:
-						df_temp.append(i)
-						filelist.append(xdgdir+'/'+i)
-	return filelist
+    dirs = []
+    # some directories are mentioned twice in bd.xdg_data_dirs, once
+    # with and once without a trailing /
+    for i in bd.xdg_data_dirs:
+        i = i.rstrip('/')
+        if i not in dirs:
+            dirs.append(i)
+    filelist = []
+    df_temp = []
+    for d in dirs:
+        xdgdir = d + '/applications'
+        if os.path.isdir(xdgdir):
+            for i in os.listdir(xdgdir):
+                if i.endswith('.desktop'):
+                    # for duplicate .desktop files that exist in more
+                    # than one locations, only keep the first occurence.
+                    # That one should have precedence anyway (e.g.
+                    # ~/.local/share/applications has precedence over
+                    # /usr/share/applications
+                    if i not in df_temp:
+                        df_temp.append(i)
+                        filelist.append(xdgdir + '/' + i)
+    return filelist
+
 
 def menu():
-	applist = []
-	for desktopfile in desktopfilelist():
-		try:
-			e = get_entry_info(desktopfile)
-			if e is not None:
-				applist.append(MenuEntry(e[0], e[1], e[2], e[3], e[4]))
-		except exc.ParsingError:
-			pass
+    applist = []
+    for desktopfile in desktopfilelist():
+        try:
+            e = get_entry_info(desktopfile)
+            if e is not None:
+                applist.append(MenuEntry(e[0], e[1], e[2], e[3], e[4]))
+        except exc.ParsingError:
+            pass
 
-	sortedapplist = sorted(applist, key=attrgetter('category', 'name'))
+    sortedapplist = sorted(applist, key=attrgetter('category', 'name'))
 
-	menu = []
-	for c in sortedcategories(applist):
-		appsincategory = []
-		for i in sortedapplist:
-			if i.category == c:
-				appsincategory.append([i.name, i.icon, i.command,
-						i.path])
-		menu.append([c, appsincategory])
-	return menu
+    menu = []
+    for c in sortedcategories(applist):
+        appsincategory = []
+        for i in sortedapplist:
+            if i.category == c:
+                appsincategory.append([i.name, i.icon, i.command,
+                                       i.path])
+        menu.append([c, appsincategory])
+    return menu
+
 
 def category_icon(category):
-	if category == accessories:
-		icon = accessories_icon
-	elif category == development:
-		icon = development_icon
-	elif category == education:
-		icon = education_icon
-	elif category == games:
-		icon = games_icon
-	elif category == graphics:
-		icon = graphics_icon
-	elif category == multimedia:
-		icon = multimedia_icon
-	elif category == network:
-		icon = network_icon
-	elif category == office:
-		icon = office_icon
-	elif category == settings:
-		icon = settings_icon
-	elif category == system:
-		icon = system_icon
-	elif category == other:
-		icon = other_icon
-	else:
-		icon = None
-	return icon
+    if category == accessories:
+        icon = accessories_icon
+    elif category == development:
+        icon = development_icon
+    elif category == education:
+        icon = education_icon
+    elif category == games:
+        icon = games_icon
+    elif category == graphics:
+        icon = graphics_icon
+    elif category == multimedia:
+        icon = multimedia_icon
+    elif category == network:
+        icon = network_icon
+    elif category == office:
+        icon = office_icon
+    elif category == settings:
+        icon = settings_icon
+    elif category == system:
+        icon = system_icon
+    elif category == other:
+        icon = other_icon
+    else:
+        icon = None
+    return icon
+
 
 def fluxboxmenu():
-	if submenu:
-		spacing = '  '
-		if seticon:
-			app_icon = icon_full_path(applications_icon)
-			if app_icon is None:
-				print('[submenu] ('+applications+')')
-			else:
-				print('[submenu] ('+applications+') <'+app_icon+'>')
-		else:
-			print('[submenu] ('+applications+')')
-	else:
-		spacing = ''
-	for i in menu():
-		category = i[0]
-		if seticon:
-			cat_icon = category_icon(category)
-			cat_icon = icon_full_path(cat_icon)
-			if cat_icon:
-				print(spacing+'[submenu] ('+category+') <'+cat_icon+'>')
-			else:
-				print(spacing+'[submenu] ('+category+')')
-		else:
-			print(spacing+'[submenu] ('+category+')')
-		for j in i[1]:
-			# closing parentheses need to be escaped, otherwise they are
-			# cropped out, along with everything that comes after them
-			name = j[0].replace(')', '\)')
-			icon = j[1]
-			command = j[2]
-			path = j[3]
-			if path is not None:
-				command = 'cd '+path+' ; '+command
-			if icon is None:
-				print(spacing+'  [exec] ('+name+') {'+command+'}')
-			else:
-				print(spacing+'  [exec] ('+name+') {'+command+'} <'+icon+'>')
-		print(spacing+'[end] # ('+category+')')
-	if submenu:
-		print('[end] # ('+applications+')')
+    if submenu:
+        spacing = '  '
+        if seticon:
+            app_icon = icon_full_path(applications_icon)
+            if app_icon is None:
+                print('[submenu] (' + applications + ')')
+            else:
+                print('[submenu] (' + applications + ') <' + app_icon + '>')
+        else:
+            print('[submenu] (' + applications + ')')
+    else:
+        spacing = ''
+    for i in menu():
+        category = i[0]
+        if seticon:
+            cat_icon = category_icon(category)
+            cat_icon = icon_full_path(cat_icon)
+            if cat_icon:
+                print(spacing + '[submenu] (' +
+                      category + ') <' + cat_icon + '>')
+            else:
+                print(spacing + '[submenu] (' + category + ')')
+        else:
+            print(spacing + '[submenu] (' + category + ')')
+        for j in i[1]:
+            # closing parentheses need to be escaped, otherwise they are
+            # cropped out, along with everything that comes after them
+            name = j[0].replace(')', '\)')
+            icon = j[1]
+            command = j[2]
+            path = j[3]
+            if path is not None:
+                command = 'cd ' + path + ' ; ' + command
+            if icon is None:
+                print(spacing + '  [exec] (' + name + ') {' + command + '}')
+            else:
+                print(spacing + '  [exec] (' + name +
+                      ') {' + command + '} <' + icon + '>')
+        print(spacing + '[end] # (' + category + ')')
+    if submenu:
+        print('[end] # (' + applications + ')')
+
 
 def windowmakermenu():
-	print('"'+applications+'" MENU')
-	for i in menu():
-		category = i[0]
-		print(' "'+category+'" MENU')
-		for j in i[1]:
-			name = j[0]
-			command = j[2]
-			print('  "'+name+'" EXEC '+command)
-		print(' "'+category+'" END')
-	print('"'+applications+'" END')
+    print('"' + applications + '" MENU')
+    for i in menu():
+        category = i[0]
+        print(' "' + category + '" MENU')
+        for j in i[1]:
+            name = j[0]
+            command = j[2]
+            print('  "' + name + '" EXEC ' + command)
+        print(' "' + category + '" END')
+    print('"' + applications + '" END')
+
 
 def icewmmenu():
-	if submenu:
-		spacing = '  '
-		if seticon:
-			app_icon = icon_full_path(applications_icon)
-			if app_icon is None:
-				app_icon = "_none_"
-			print('menu "'+applications+'" '+app_icon+' {')
-		else:
-			print('menu "'+applications+'" _none_ {')
-	else:
-		spacing = ''
-	for i in menu():
-		category = i[0]
-		cat_icon = category_icon(category)
-		cat_icon = icon_full_path(cat_icon)
-		if seticon and cat_icon is not None:
-			print(spacing+'menu "'+category+'" '+cat_icon+' {')
-		else:
-			print(spacing+'menu "'+category+'" _none_ {')
-		for j in i[1]:
-			name = j[0]
-			icon = j[1]
-			command = j[2]
-			if seticon and icon is not None:
-				print(spacing+'  prog "'+name+'" '+icon+' '+command)
-			else:
-				print(spacing+'  prog "'+name+'" _none_ '+command)
-		print(spacing+'}')
-	if submenu:
-		print('}')
+    if submenu:
+        spacing = '  '
+        if seticon:
+            app_icon = icon_full_path(applications_icon)
+            if app_icon is None:
+                app_icon = "_none_"
+            print('menu "' + applications + '" ' + app_icon + ' {')
+        else:
+            print('menu "' + applications + '" _none_ {')
+    else:
+        spacing = ''
+    for i in menu():
+        category = i[0]
+        cat_icon = category_icon(category)
+        cat_icon = icon_full_path(cat_icon)
+        if seticon and cat_icon is not None:
+            print(spacing + 'menu "' + category + '" ' + cat_icon + ' {')
+        else:
+            print(spacing + 'menu "' + category + '" _none_ {')
+        for j in i[1]:
+            name = j[0]
+            icon = j[1]
+            command = j[2]
+            if seticon and icon is not None:
+                print(spacing + '  prog "' + name +
+                      '" ' + icon + ' ' + command)
+            else:
+                print(spacing + '  prog "' + name + '" _none_ ' + command)
+        print(spacing + '}')
+    if submenu:
+        print('}')
+
 
 def pekwmmenu():
-	if pekwmdynamic:
-		print("Dynamic {")
-		dspacing = '  '
-	else:
-		dspacing = ''
-	if submenu:
-		spacing = '  '
-		if seticon:
-			app_icon = icon_full_path(applications_icon)
-			print(dspacing+'Submenu = "'+applications+'" { Icon = "'+app_icon+'"')
-		else:
-			print(dspacing+'Submenu = "'+applications+'" {')
-	else:
-		spacing = ''
-	for i in menu():
-		category = i[0]
-		cat_icon = category_icon(category)
-		cat_icon = icon_full_path(cat_icon)
-		if seticon and cat_icon is not None:
-			print(dspacing+spacing+'Submenu = "'+category+'" { Icon = "'+cat_icon+'"')
-		else:
-			print(dspacing+spacing+'Submenu = "'+category+'" {')
-		for j in i[1]:
-			name = j[0]
-			icon = j[1]
-			# for some apps (like netbeans) the command is launched with
-			# /bin/sh "command"
-			# and the quotes get mixed up with the quotes pekwm puts
-			# around Actions, so we're just stripping the quotes
-			command = j[2].replace('"', '')
-			path = j[3]
-			if path is not None:
-				# pekwm doesn't like "cd path ; command", but it works
-				# with "&&" and "||", so we'll launch the command even if the
-				# path does not exist
-				command = 'cd '+path+' && '+command+' || '+command
-			if seticon and icon is not None:
-				print(dspacing+spacing+'  Entry = "'+name+'" { Icon = "'+icon+'"; Actions = "Exec '+command+' &" }')
-			else:
-				print(dspacing+spacing+'  Entry = "'+name+'" { Actions = "Exec '+command+' &" }')
-		print(dspacing+spacing+'}')
-	if submenu:
-		print(dspacing+'}')
-	if pekwmdynamic:
-		print("}")
+    if pekwmdynamic:
+        print("Dynamic {")
+        dspacing = '  '
+    else:
+        dspacing = ''
+    if submenu:
+        spacing = '  '
+        if seticon:
+            app_icon = icon_full_path(applications_icon)
+            print(dspacing + 'Submenu = "' + applications +
+                  '" { Icon = "' + app_icon + '"')
+        else:
+            print(dspacing + 'Submenu = "' + applications + '" {')
+    else:
+        spacing = ''
+    for i in menu():
+        category = i[0]
+        cat_icon = category_icon(category)
+        cat_icon = icon_full_path(cat_icon)
+        if seticon and cat_icon is not None:
+            print(dspacing + spacing + 'Submenu = "' +
+                  category + '" { Icon = "' + cat_icon + '"')
+        else:
+            print(dspacing + spacing + 'Submenu = "' + category + '" {')
+        for j in i[1]:
+            name = j[0]
+            icon = j[1]
+            # for some apps (like netbeans) the command is launched with
+            # /bin/sh "command"
+            # and the quotes get mixed up with the quotes pekwm puts
+            # around Actions, so we're just stripping the quotes
+            command = j[2].replace('"', '')
+            path = j[3]
+            if path is not None:
+                # pekwm doesn't like "cd path ; command", but it works
+                # with "&&" and "||", so we'll launch the command even if the
+                # path does not exist
+                command = 'cd ' + path + ' && ' + command + ' || ' + command
+            if seticon and icon is not None:
+                print(dspacing + spacing + '  Entry = "' + name +
+                      '" { Icon = "' + icon + '"; Actions = "Exec ' + command + ' &" }')
+            else:
+                print(dspacing + spacing + '  Entry = "' + name +
+                      '" { Actions = "Exec ' + command + ' &" }')
+        print(dspacing + spacing + '}')
+    if submenu:
+        print(dspacing + '}')
+    if pekwmdynamic:
+        print("}")
+
 
 def jwmmenu():
-	print('<?xml version="1.0"?>')
-	print('<JWM>')
-	if submenu:
-		spacing = '  '
-		if seticon:
-			app_icon = icon_full_path(applications_icon)
-			if app_icon is None:
-				print('<Menu label="'+applications+'">')
-			else:
-				print('<Menu icon="'+app_icon+'" label="'+applications+'">')
-		else:
-			print('<Menu label="'+applications+'">')
-	else:
-		spacing = ''
-	for i in menu():
-		category = i[0]
-		cat_icon = category_icon(category)
-		cat_icon = icon_full_path(cat_icon)
-		if seticon and cat_icon is not None:
-			print(spacing+'<Menu icon="'+cat_icon+'" label="'+category+'">')
-		else:
-			print(spacing+'<Menu label="'+category+'">')
-		for j in i[1]:
-			name = j[0]
-			icon = j[1]
-			command = j[2]
-			path = j[3]
-			if path is not None:
-				command = 'cd '+path+' ; '+command
-			if seticon and icon is not None:
-				print(spacing+'  <Program icon="'+icon+'" label="'+name+'">'+command+'</Program>')
-			else:
-				print(spacing+'  <Program label="'+name+'">'+command+'</Program>')
-		print(spacing+'</Menu>')
-	if submenu:
-		print('</Menu>')
-	print('</JWM>')
+    print('<?xml version="1.0"?>')
+    print('<JWM>')
+    if submenu:
+        spacing = '  '
+        if seticon:
+            app_icon = icon_full_path(applications_icon)
+            if app_icon is None:
+                print('<Menu label="' + applications + '">')
+            else:
+                print('<Menu icon="' + app_icon +
+                      '" label="' + applications + '">')
+        else:
+            print('<Menu label="' + applications + '">')
+    else:
+        spacing = ''
+    for i in menu():
+        category = i[0]
+        cat_icon = category_icon(category)
+        cat_icon = icon_full_path(cat_icon)
+        if seticon and cat_icon is not None:
+            print(spacing + '<Menu icon="' + cat_icon +
+                  '" label="' + category + '">')
+        else:
+            print(spacing + '<Menu label="' + category + '">')
+        for j in i[1]:
+            name = j[0]
+            icon = j[1]
+            command = j[2]
+            path = j[3]
+            if path is not None:
+                command = 'cd ' + path + ' ; ' + command
+            if seticon and icon is not None:
+                print(spacing + '  <Program icon="' + icon +
+                      '" label="' + name + '">' + command + '</Program>')
+            else:
+                print(spacing + '  <Program label="' +
+                      name + '">' + command + '</Program>')
+        print(spacing + '</Menu>')
+    if submenu:
+        print('</Menu>')
+    print('</JWM>')
 
 if __name__ == "__main__":
-	main(sys.argv[1:])
+    main(sys.argv[1:])
