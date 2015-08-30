@@ -22,9 +22,9 @@ pekwmdynamic = False
 # for them, where they should be if this was installed properly
 prefix = 'not_set'
 if prefix == 'not_set':
-	desktop_dir = '../desktop-directories'
+	desktop_dir = '../desktop-directories/'
 else:
-	desktop_dir = prefix+'/share/desktop-directories'
+	desktop_dir = prefix+'/share/desktop-directories/'
 
 if not os.path.isdir(desktop_dir):
 	sys.exit('ERROR: Could not find '+desktop_dir)
