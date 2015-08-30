@@ -90,7 +90,8 @@ try:
 # if there isn't, on debian and debian-likes, use the alternatives
 # system, otherwise default to xterm
 except (ConfigParser.NoSectionError, ConfigParser.NoOptionError) as e:
-    if os.path.exists('/etc/alternatives/x-terminal-emulator') and os.path.exists('/usr/bin/x-terminal-emulator'):
+    if (os.path.exists('/etc/alternatives/x-terminal-emulator')
+            and os.path.exists('/usr/bin/x-terminal-emulator')):
         terminal_app = '/usr/bin/x-terminal-emulator'
     else:
         terminal_app = 'xterm'
@@ -104,7 +105,10 @@ def main(argv):
     global pekwmdynamic
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
-                                                     "no-submenu", "pekwm-dynamic", "size=", "format="])
+                                                     "no-submenu",
+                                                     "pekwm-dynamic",
+                                                     "size=",
+                                                     "format="])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -492,7 +496,8 @@ def pekwmmenu():
                 command = 'cd ' + path + ' && ' + command + ' || ' + command
             if seticon and icon is not None:
                 print(dspacing + spacing + '  Entry = "' + name +
-                      '" { Icon = "' + icon + '"; Actions = "Exec ' + command + ' &" }')
+                      '" { Icon = "' + icon + '"; Actions = "Exec ' +
+                      command + ' &" }')
             else:
                 print(dspacing + spacing + '  Entry = "' + name +
                       '" { Actions = "Exec ' + command + ' &" }')
