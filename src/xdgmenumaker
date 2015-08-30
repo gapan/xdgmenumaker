@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+from __future__ import print_function
+
 import os
 import sys
 import getopt
@@ -131,24 +133,24 @@ def main(argv):
 		sys.exit(2)
 
 def usage():
-	print 'USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]'
-	print
-	print 'OPTIONS:'
-	print '    -f, --format         the output format to use.'
-	print '                         Valid options are fluxbox, icewm,'
-	print '                         jwm, windowmaker and pekwm'
-	print '    -i, --icons          enable support for icons in the'
-	print '                         menus. Does not work with windowmaker'
-	print '    -s, --size           preferred icon size in pixels (default: 16)'
-	print '    -n, --no-submenu     do not create a submenu. Does not work with'
-	print '                         windowmaker'
-	print '        --pekwm-dynamic  generate dynamic menus for pekwm'
-	print '    -h, --help           show this help message'
-	print '  You have to specify the output format using the -f switch.'
-	print
-	print 'EXAMPLES:'
-	print '    xdgmenumaker -f windowmaker'
-	print '    xdgmenumaker -i -f fluxbox'
+	print('USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]')
+	print()
+	print('OPTIONS:')
+	print('    -f, --format         the output format to use.')
+	print('                         Valid options are fluxbox, icewm,')
+	print('                         jwm, windowmaker and pekwm')
+	print('    -i, --icons          enable support for icons in the')
+	print('                         menus. Does not work with windowmaker')
+	print('    -s, --size           preferred icon size in pixels (default: 16)')
+	print('    -n, --no-submenu     do not create a submenu. Does not work with')
+	print('                         windowmaker')
+	print('        --pekwm-dynamic  generate dynamic menus for pekwm')
+	print('    -h, --help           show this help message')
+	print('  You have to specify the output format using the -f switch.')
+	print()
+	print('EXAMPLES:')
+	print('    xdgmenumaker -f windowmaker')
+	print('    xdgmenumaker -i -f fluxbox')
 
 class MenuEntry:
 	def __init__(self, category, name, icon, command, path):
@@ -341,11 +343,11 @@ def fluxboxmenu():
 		if seticon:
 			app_icon = icon_full_path(applications_icon)
 			if app_icon is None:
-				print '[submenu] ('+applications+')'
+				print('[submenu] ('+applications+')')
 			else:
-				print '[submenu] ('+applications+') <'+app_icon+'>'
+				print('[submenu] ('+applications+') <'+app_icon+'>')
 		else:
-			print '[submenu] ('+applications+')'
+			print('[submenu] ('+applications+')')
 	else:
 		spacing = ''
 	for i in menu():
@@ -354,11 +356,11 @@ def fluxboxmenu():
 			cat_icon = category_icon(category)
 			cat_icon = icon_full_path(cat_icon)
 			if cat_icon:
-				print spacing+'[submenu] ('+category+') <'+cat_icon+'>'
+				print(spacing+'[submenu] ('+category+') <'+cat_icon+'>')
 			else:
-				print spacing+'[submenu] ('+category+')'
+				print(spacing+'[submenu] ('+category+')')
 		else:
-			print spacing+'[submenu] ('+category+')'
+			print(spacing+'[submenu] ('+category+')')
 		for j in i[1]:
 			# closing parentheses need to be escaped, otherwise they are
 			# cropped out, along with everything that comes after them
@@ -369,24 +371,24 @@ def fluxboxmenu():
 			if path is not None:
 				command = 'cd '+path+' ; '+command
 			if icon is None:
-				print spacing+'  [exec] ('+name+') {'+command+'}'
+				print(spacing+'  [exec] ('+name+') {'+command+'}')
 			else:
-				print spacing+'  [exec] ('+name+') {'+command+'} <'+icon+'>'
-		print spacing+'[end] # ('+category+')'
+				print(spacing+'  [exec] ('+name+') {'+command+'} <'+icon+'>')
+		print(spacing+'[end] # ('+category+')')
 	if submenu:
-		print '[end] # ('+applications+')'
+		print('[end] # ('+applications+')')
 
 def windowmakermenu():
-	print '"'+applications+'" MENU'
+	print('"'+applications+'" MENU')
 	for i in menu():
 		category = i[0]
-		print ' "'+category+'" MENU'
+		print(' "'+category+'" MENU')
 		for j in i[1]:
 			name = j[0]
 			command = j[2]
-			print '  "'+name+'" EXEC '+command
-		print ' "'+category+'" END'
-	print '"'+applications+'" END'
+			print('  "'+name+'" EXEC '+command)
+		print(' "'+category+'" END')
+	print('"'+applications+'" END')
 
 def icewmmenu():
 	if submenu:
@@ -395,9 +397,9 @@ def icewmmenu():
 			app_icon = icon_full_path(applications_icon)
 			if app_icon is None:
 				app_icon = "_none_"
-			print 'menu "'+applications+'" '+app_icon+' {'
+			print('menu "'+applications+'" '+app_icon+' {')
 		else:
-			print 'menu "'+applications+'" _none_ {'
+			print('menu "'+applications+'" _none_ {')
 	else:
 		spacing = ''
 	for i in menu():
@@ -405,24 +407,24 @@ def icewmmenu():
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
 		if seticon and cat_icon is not None:
-			print spacing+'menu "'+category+'" '+cat_icon+' {'
+			print(spacing+'menu "'+category+'" '+cat_icon+' {')
 		else:
-			print spacing+'menu "'+category+'" _none_ {'
+			print(spacing+'menu "'+category+'" _none_ {')
 		for j in i[1]:
 			name = j[0]
 			icon = j[1]
 			command = j[2]
 			if seticon and icon is not None:
-				print spacing+'  prog "'+name+'" '+icon+' '+command
+				print(spacing+'  prog "'+name+'" '+icon+' '+command)
 			else:
-				print spacing+'  prog "'+name+'" _none_ '+command
-		print spacing+'}'
+				print(spacing+'  prog "'+name+'" _none_ '+command)
+		print(spacing+'}')
 	if submenu:
-		print '}'
+		print('}')
 
 def pekwmmenu():
 	if pekwmdynamic:
-		print "Dynamic {"
+		print("Dynamic {")
 		dspacing = '  '
 	else:
 		dspacing = ''
@@ -430,9 +432,9 @@ def pekwmmenu():
 		spacing = '  '
 		if seticon:
 			app_icon = icon_full_path(applications_icon)
-			print dspacing+'Submenu = "'+applications+'" { Icon = "'+app_icon+'"'
+			print(dspacing+'Submenu = "'+applications+'" { Icon = "'+app_icon+'"')
 		else:
-			print dspacing+'Submenu = "'+applications+'" {'
+			print(dspacing+'Submenu = "'+applications+'" {')
 	else:
 		spacing = ''
 	for i in menu():
@@ -440,9 +442,9 @@ def pekwmmenu():
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
 		if seticon and cat_icon is not None:
-			print dspacing+spacing+'Submenu = "'+category+'" { Icon = "'+cat_icon+'"'
+			print(dspacing+spacing+'Submenu = "'+category+'" { Icon = "'+cat_icon+'"')
 		else:
-			print dspacing+spacing+'Submenu = "'+category+'" {'
+			print(dspacing+spacing+'Submenu = "'+category+'" {')
 		for j in i[1]:
 			name = j[0]
 			icon = j[1]
@@ -458,28 +460,28 @@ def pekwmmenu():
 				# path does not exist
 				command = 'cd '+path+' && '+command+' || '+command
 			if seticon and icon is not None:
-				print dspacing+spacing+'  Entry = "'+name+'" { Icon = "'+icon+'"; Actions = "Exec '+command+' &" }'
+				print(dspacing+spacing+'  Entry = "'+name+'" { Icon = "'+icon+'"; Actions = "Exec '+command+' &" }')
 			else:
-				print dspacing+spacing+'  Entry = "'+name+'" { Actions = "Exec '+command+' &" }'
-		print dspacing+spacing+'}'
+				print(dspacing+spacing+'  Entry = "'+name+'" { Actions = "Exec '+command+' &" }')
+		print(dspacing+spacing+'}')
 	if submenu:
-		print dspacing+'}'
+		print(dspacing+'}')
 	if pekwmdynamic:
-		print "}"
+		print("}")
 
 def jwmmenu():
-	print '<?xml version="1.0"?>'
-	print '<JWM>'
+	print('<?xml version="1.0"?>')
+	print('<JWM>')
 	if submenu:
 		spacing = '  '
 		if seticon:
 			app_icon = icon_full_path(applications_icon)
 			if app_icon is None:
-				print '<Menu label="'+applications+'">'
+				print('<Menu label="'+applications+'">')
 			else:
-				print '<Menu icon="'+app_icon+'" label="'+applications+'">'
+				print('<Menu icon="'+app_icon+'" label="'+applications+'">')
 		else:
-			print '<Menu label="'+applications+'">'
+			print('<Menu label="'+applications+'">')
 	else:
 		spacing = ''
 	for i in menu():
@@ -487,9 +489,9 @@ def jwmmenu():
 		cat_icon = category_icon(category)
 		cat_icon = icon_full_path(cat_icon)
 		if seticon and cat_icon is not None:
-			print spacing+'<Menu icon="'+cat_icon+'" label="'+category+'">'
+			print(spacing+'<Menu icon="'+cat_icon+'" label="'+category+'">')
 		else:
-			print spacing+'<Menu label="'+category+'">'
+			print(spacing+'<Menu label="'+category+'">')
 		for j in i[1]:
 			name = j[0]
 			icon = j[1]
@@ -498,13 +500,13 @@ def jwmmenu():
 			if path is not None:
 				command = 'cd '+path+' ; '+command
 			if seticon and icon is not None:
-				print spacing+'  <Program icon="'+icon+'" label="'+name+'">'+command+'</Program>'
+				print(spacing+'  <Program icon="'+icon+'" label="'+name+'">'+command+'</Program>')
 			else:
-				print spacing+'  <Program label="'+name+'">'+command+'</Program>'
-		print spacing+'</Menu>'
+				print(spacing+'  <Program label="'+name+'">'+command+'</Program>')
+		print(spacing+'</Menu>')
 	if submenu:
-		print '</Menu>'
-	print '</JWM>'
+		print('</Menu>')
+	print('</JWM>')
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
