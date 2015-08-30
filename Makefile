@@ -7,19 +7,20 @@ man:
 
 install:
 	install -d -m 755 $(DESTDIR)/$(PREFIX)/bin
-	install -d -m 755 $(DESTDIR)/usr/share/desktop-directories
+	install -d -m 755 $(DESTDIR)/$(PREFIX)/share/desktop-directories
 	install -m 755 src/xdgmenumaker $(DESTDIR)/$(PREFIX)/bin/
-	install -m 644 desktop-directories/* $(DESTDIR)/usr/share/desktop-directories
+	install -m 644 desktop-directories/* $(DESTDIR)/$(PREFIX)/share/desktop-directories
 	if [ -f man/xdgmenumaker.1 ]; then \
 		install -d -m 755 $(DESTDIR)/$(PREFIX)/share/man/man1; \
 		install -m 644 man/xdgmenumaker.1 $(DESTDIR)/$(PREFIX)/share/man/man1/; \
 	fi
+	sed -i "s|^prefix = 'not_set'|prefix = '$(PREFIX)'|" $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
 
 clean:
 	rm -f man/xdgmenumaker.1
 
 uninstall:
 	rm -f $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
-	rm -f $(DESTDIR)/usr/share/desktop-directories/xdgmenumaker*
+	rm -f $(DESTDIR)/$(PREFIX)/share/desktop-directories/xdgmenumaker*
 
 .PHONY: man clean install

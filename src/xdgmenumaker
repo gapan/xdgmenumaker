@@ -16,40 +16,53 @@ desktop = False
 submenu = True
 pekwmdynamic = False
 
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-applications.directory')
+# the following line gets changed by the Makefile. If it is set to
+# 'not_set' it looks in the currect directory tree for the .directory
+# files. If it is actually set to something else, it looks under there
+# for them, where they should be if this was installed properly
+prefix = 'not_set'
+if prefix == 'not_set':
+	desktop_dir = '../desktop-directories'
+else:
+	desktop_dir = prefix+'/share/desktop-directories'
+
+if not os.path.isdir(desktop_dir):
+	sys.exit('ERROR: Could not find '+desktop_dir)
+
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-applications.directory')
 applications = de.getName().encode('utf-8')
 applications_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-accessories.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-accessories.directory')
 accessories = de.getName().encode('utf-8')
 accessories_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-development.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-development.directory')
 development = de.getName().encode('utf-8')
 development_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-education.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-education.directory')
 education = de.getName().encode('utf-8')
 education_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-games.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-games.directory')
 games = de.getName().encode('utf-8')
 games_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-graphics.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-graphics.directory')
 graphics = de.getName().encode('utf-8')
 graphics_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-multimedia.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-multimedia.directory')
 multimedia = de.getName().encode('utf-8')
 multimedia_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-network.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-network.directory')
 network = de.getName().encode('utf-8')
 network_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-office.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-office.directory')
 office = de.getName().encode('utf-8')
 office_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-settings.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-settings.directory')
 settings = de.getName().encode('utf-8')
 settings_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-system.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-system.directory')
 system = de.getName().encode('utf-8')
 system_icon = de.getIcon()
-de = dentry.DesktopEntry(filename = '/usr/share/desktop-directories/xdgmenumaker-other.directory')
+de = dentry.DesktopEntry(filename = desktop_dir+'xdgmenumaker-other.directory')
 other = de.getName().encode('utf-8')
 other_icon = de.getIcon()
 # Find out which terminal emulator to use for apps that need to be
