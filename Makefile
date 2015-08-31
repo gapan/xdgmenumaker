@@ -2,6 +2,7 @@ PREFIX ?= /usr/local
 DESTDIR ?= /
 
 man:
+	@echo "Generating manpage..."
 	@txt2tags -o man/xdgmenumaker.1 man/xdgmenumaker.t2t || \
 		echo "WARNING: txt2tags is not installed. The xdgmenumaker manpage will not be created."
 
