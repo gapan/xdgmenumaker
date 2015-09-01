@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<JWM>
+<Menu label="Applications">
+  <Menu label="Accessories">
+    <Program label="Engrampa Archive Manager">engrampa </Program>
+    <Program label="GTKMan Manual Page Viewer">gtkman salix</Program>
+    <Program label="Galculator">galculator</Program>
+    <Program label="KeePassX">keepassx </Program>
+    <Program label="Leafpad">leafpad </Program>
+    <Program label="Search for Files...">mate-search-tool</Program>
+    <Program label="Take Screenshot">mate-screenshot --interactive</Program>
+    <Program label="Xournal">xournal </Program>
+    <Program label="Zim Desktop Wiki">zim</Program>
+  </Menu>
+  <Menu label="Development">
+    <Program label="CMake">cmake-gui </Program>
+    <Program label="Geany">geany </Program>
+    <Program label="Glade">glade-3 </Program>
+    <Program label="Meld">meld </Program>
+    <Program label="Poedit">poedit </Program>
+    <Program label="Qt4 Assistant">assistant</Program>
+    <Program label="Qt4 Designer">designer</Program>
+    <Program label="Qt4 Linguist">linguist</Program>
+    <Program label="RStudio">/usr/lib64/rstudio/bin/rstudio </Program>
+  </Menu>
+  <Menu label="Education">
+    <Program label="LibreOffice 4.4 Math">libreoffice4.4 --math </Program>
+    <Program label="R">xterm -e R</Program>
+  </Menu>
+  <Menu label="Games">
+    <Program label="KEGS">xterm -e aoss xkegs</Program>
+  </Menu>
+  <Menu label="Graphics">
+    <Program label="Dia Diagram Editor">dia </Program>
+    <Program label="E-book Viewer">ebook-viewer </Program>
+    <Program label="GNU Image Manipulation Program">gimp-2.8 </Program>
+    <Program label="Gcolor2">gcolor2</Program>
+    <Program label="LRF Viewer">lrfviewer </Program>
+    <Program label="LibreOffice 4.4 Draw">libreoffice4.4 --draw </Program>
+    <Program label="Simple Scan">simple-scan</Program>
+    <Program label="Viewnior">viewnior </Program>
+  </Menu>
+  <Menu label="Multimedia">
+    <Program label="Asunder CD Ripper">asunder</Program>
+    <Program label="Audacity">audacity </Program>
+    <Program label="Ex Falso">exfalso</Program>
+    <Program label="Exaile">exaile </Program>
+    <Program label="GNOME MPlayer">gnome-mplayer </Program>
+    <Program label="Gaupol">gaupol </Program>
+    <Program label="ISO Master">isomaster</Program>
+    <Program label="Quod Libet">quodlibet</Program>
+  </Menu>
+  <Menu label="Network">
+    <Program label="Claws Mail">claws-mail </Program>
+    <Program label="Firefox">firefox </Program>
+    <Program label="Pidgin Internet Messenger">pidgin</Program>
+    <Program label="Transmission">transmission-gtk </Program>
+    <Program label="gFTP">gftp </Program>
+    <Program label="ownCloud desktop sync client">/usr/bin/owncloud</Program>
+  </Menu>
+  <Menu label="Office">
+    <Program label="Atril Document Viewer">atril </Program>
+    <Program label="Dictionary">mate-dictionary</Program>
+    <Program label="HTMLDOC">htmldoc </Program>
+    <Program label="LibreOffice 4.4 Base">libreoffice4.4 --base </Program>
+    <Program label="LibreOffice 4.4 Calc">libreoffice4.4 --calc </Program>
+    <Program label="LibreOffice 4.4 Impress">libreoffice4.4 --impress </Program>
+    <Program label="LibreOffice 4.4 Writer">libreoffice4.4 --writer </Program>
+    <Program label="calibre">calibre </Program>
+  </Menu>
+  <Menu label="Settings">
+    <Program label="Bluetooth Manager">blueman-manager</Program>
+    <Program label="Power Management">mate-power-preferences</Program>
+    <Program label="Qt4 Config">qtconfig</Program>
+    <Program label="Screensaver">xscreensaver-demo</Program>
+  </Menu>
+  <Menu label="System">
+    <Program label="ALSA sound card">gksu gtkalsasetup</Program>
+    <Program label="Disk Usage Analyzer">mate-disk-usage-analyzer</Program>
+    <Program label="Dotnew">gksu dotnew-gtk</Program>
+    <Program label="Grsync">/usr/bin/grsync -i </Program>
+    <Program label="Gslapt Package Manager">gksu /usr/sbin/gslapt</Program>
+    <Program label="Hostnames">gksu gtkhostsetup</Program>
+    <Program label="Htop">xterm -e htop</Program>
+    <Program label="Keyboard">gksu gtkkeyboardsetup</Program>
+    <Program label="Log File Viewer">mate-system-log</Program>
+    <Program label="MATE Terminal">mate-terminal</Program>
+    <Program label="Manage Printing">/usr/bin/xdg-open http://localhost:631/</Program>
+    <Program label="Power Statistics">mate-power-statistics</Program>
+    <Program label="Sourcery SlackBuild Manager">gksu sourcery</Program>
+    <Program label="System clock">gksu gtkclocksetup</Program>
+    <Program label="System language">gksu gtklocalesetup</Program>
+    <Program label="System services">gksu gtkservicesetup</Program>
+    <Program label="Users and groups">gksu gtkusersetup</Program>
+    <Program label="dconf Editor">dconf-editor</Program>
+  </Menu>
+</Menu>
+</JWM>

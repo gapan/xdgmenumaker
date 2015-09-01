@@ -1,0 +1,95 @@
+menu "Anwendungen" _none_ {
+  menu "Bildung" _none_ {
+    prog "LibreOffice 4.4 Math" _none_ libreoffice4.4 --math 
+    prog "R" _none_ xterm -e R
+  }
+  menu "Büro" _none_ {
+    prog "Atril Dokumentenbetrachter" _none_ atril 
+    prog "HTMLDOC" _none_ htmldoc 
+    prog "LibreOffice 4.4 Base" _none_ libreoffice4.4 --base 
+    prog "LibreOffice 4.4 Calc" _none_ libreoffice4.4 --calc 
+    prog "LibreOffice 4.4 Impress" _none_ libreoffice4.4 --impress 
+    prog "LibreOffice 4.4 Writer" _none_ libreoffice4.4 --writer 
+    prog "Wörterbuch" _none_ mate-dictionary
+    prog "calibre" _none_ calibre 
+  }
+  menu "Einstellungen" _none_ {
+    prog "Bildschirmschoner" _none_ xscreensaver-demo
+    prog "Bluetooth-Manager" _none_ blueman-manager
+    prog "Energieverwaltung" _none_ mate-power-preferences
+    prog "Qt4 Config" _none_ qtconfig
+  }
+  menu "Entwicklung" _none_ {
+    prog "CMake" _none_ cmake-gui 
+    prog "Geany" _none_ geany 
+    prog "Glade" _none_ glade-3 
+    prog "Meld" _none_ meld 
+    prog "Poedit" _none_ poedit 
+    prog "Qt4 Assistant" _none_ assistant
+    prog "Qt4 Designer" _none_ designer
+    prog "Qt4 Linguist" _none_ linguist
+    prog "RStudio" _none_ /usr/lib64/rstudio/bin/rstudio 
+  }
+  menu "Grafik" _none_ {
+    prog "Dia Diagrammeditor" _none_ dia 
+    prog "E-book Viewer" _none_ ebook-viewer 
+    prog "GNU Image Manipulation Program" _none_ gimp-2.8 
+    prog "Gcolor2" _none_ gcolor2
+    prog "LRF Viewer" _none_ lrfviewer 
+    prog "LibreOffice 4.4 Draw" _none_ libreoffice4.4 --draw 
+    prog "Simple Scan" _none_ simple-scan
+    prog "Viewnior" _none_ viewnior 
+  }
+  menu "Multimedia" _none_ {
+    prog "Asunder" _none_ asunder
+    prog "Audacity" _none_ audacity 
+    prog "Ex Falso" _none_ exfalso
+    prog "Exaile" _none_ exaile 
+    prog "GNOME MPlayer" _none_ gnome-mplayer 
+    prog "Gaupol" _none_ gaupol 
+    prog "ISO Master" _none_ isomaster
+    prog "Quod Libet" _none_ quodlibet
+  }
+  menu "Netzwerk" _none_ {
+    prog "Claws Mail" _none_ claws-mail 
+    prog "Firefox" _none_ firefox 
+    prog "Pidgin Internet-Sofortnachrichtendienst" _none_ pidgin
+    prog "Transmission" _none_ transmission-gtk 
+    prog "gFTP" _none_ gftp 
+    prog "ownCloud desktop sync client" _none_ /usr/bin/owncloud
+  }
+  menu "Spiele" _none_ {
+    prog "KEGS" _none_ xterm -e aoss xkegs
+  }
+  menu "System" _none_ {
+    prog "ALSA Soundkarte" _none_ gksu gtkalsasetup
+    prog "Benutzerverwaltung" _none_ gksu gtkusersetup
+    prog "Dotnew" _none_ gksu dotnew-gtk
+    prog "Druckerverwaltung" _none_ /usr/bin/xdg-open http://localhost:631/
+    prog "Energiestatistiken" _none_ mate-power-statistics
+    prog "Festplattenbelegung analysieren" _none_ mate-disk-usage-analyzer
+    prog "Grsync" _none_ /usr/bin/grsync -i 
+    prog "Gslapt-Paketverwaltung" _none_ gksu /usr/sbin/gslapt
+    prog "Hostnamen" _none_ gksu gtkhostsetup
+    prog "Htop" _none_ xterm -e htop
+    prog "MATE-Terminal" _none_ mate-terminal
+    prog "Sourcery SlackBuild Manager" _none_ gksu sourcery
+    prog "Systemdienste" _none_ gksu gtkservicesetup
+    prog "Systemprotokollbetrachter" _none_ mate-system-log
+    prog "Systemsprache" _none_ gksu gtklocalesetup
+    prog "Systemuhrzeit" _none_ gksu gtkclocksetup
+    prog "Tastatur" _none_ gksu gtkkeyboardsetup
+    prog "dconf-Editor" _none_ dconf-editor
+  }
+  menu "Zubehör" _none_ {
+    prog "Bildschirmfoto aufnehmen" _none_ mate-screenshot --interactive
+    prog "Engrampa-Archivverwaltung" _none_ engrampa 
+    prog "GTKMan Handbuchseiten-Betrachter" _none_ gtkman salix
+    prog "Galculator" _none_ galculator
+    prog "KeePassX" _none_ keepassx 
+    prog "Leafpad" _none_ leafpad 
+    prog "Nach Dateien suchen …" _none_ mate-search-tool
+    prog "Xournal" _none_ xournal 
+    prog "Zim Desktop Wiki" _none_ zim
+  }
+}

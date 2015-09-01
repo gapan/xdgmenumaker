@@ -1,0 +1,97 @@
+Dynamic {
+  Submenu = "Applications" {
+    Submenu = "Accessories" {
+      Entry = "Engrampa Archive Manager" { Actions = "Exec engrampa  &" }
+      Entry = "GTKMan Manual Page Viewer" { Actions = "Exec gtkman salix &" }
+      Entry = "Galculator" { Actions = "Exec galculator &" }
+      Entry = "KeePassX" { Actions = "Exec keepassx  &" }
+      Entry = "Leafpad" { Actions = "Exec leafpad  &" }
+      Entry = "Search for Files..." { Actions = "Exec mate-search-tool &" }
+      Entry = "Take Screenshot" { Actions = "Exec mate-screenshot --interactive &" }
+      Entry = "Xournal" { Actions = "Exec xournal  &" }
+      Entry = "Zim Desktop Wiki" { Actions = "Exec zim &" }
+    }
+    Submenu = "Development" {
+      Entry = "CMake" { Actions = "Exec cmake-gui  &" }
+      Entry = "Geany" { Actions = "Exec geany  &" }
+      Entry = "Glade" { Actions = "Exec glade-3  &" }
+      Entry = "Meld" { Actions = "Exec meld  &" }
+      Entry = "Poedit" { Actions = "Exec poedit  &" }
+      Entry = "Qt4 Assistant" { Actions = "Exec assistant &" }
+      Entry = "Qt4 Designer" { Actions = "Exec designer &" }
+      Entry = "Qt4 Linguist" { Actions = "Exec linguist &" }
+      Entry = "RStudio" { Actions = "Exec /usr/lib64/rstudio/bin/rstudio  &" }
+    }
+    Submenu = "Education" {
+      Entry = "LibreOffice 4.4 Math" { Actions = "Exec libreoffice4.4 --math  &" }
+      Entry = "R" { Actions = "Exec xterm -e R &" }
+    }
+    Submenu = "Games" {
+      Entry = "KEGS" { Actions = "Exec xterm -e aoss xkegs &" }
+    }
+    Submenu = "Graphics" {
+      Entry = "Dia Diagram Editor" { Actions = "Exec dia  &" }
+      Entry = "E-book Viewer" { Actions = "Exec ebook-viewer  &" }
+      Entry = "GNU Image Manipulation Program" { Actions = "Exec gimp-2.8  &" }
+      Entry = "Gcolor2" { Actions = "Exec gcolor2 &" }
+      Entry = "LRF Viewer" { Actions = "Exec lrfviewer  &" }
+      Entry = "LibreOffice 4.4 Draw" { Actions = "Exec libreoffice4.4 --draw  &" }
+      Entry = "Simple Scan" { Actions = "Exec simple-scan &" }
+      Entry = "Viewnior" { Actions = "Exec viewnior  &" }
+    }
+    Submenu = "Multimedia" {
+      Entry = "Asunder CD Ripper" { Actions = "Exec asunder &" }
+      Entry = "Audacity" { Actions = "Exec audacity  &" }
+      Entry = "Ex Falso" { Actions = "Exec exfalso &" }
+      Entry = "Exaile" { Actions = "Exec exaile  &" }
+      Entry = "GNOME MPlayer" { Actions = "Exec gnome-mplayer  &" }
+      Entry = "Gaupol" { Actions = "Exec gaupol  &" }
+      Entry = "ISO Master" { Actions = "Exec isomaster &" }
+      Entry = "Quod Libet" { Actions = "Exec quodlibet &" }
+    }
+    Submenu = "Network" {
+      Entry = "Claws Mail" { Actions = "Exec claws-mail  &" }
+      Entry = "Firefox" { Actions = "Exec firefox  &" }
+      Entry = "Pidgin Internet Messenger" { Actions = "Exec pidgin &" }
+      Entry = "Transmission" { Actions = "Exec transmission-gtk  &" }
+      Entry = "gFTP" { Actions = "Exec gftp  &" }
+      Entry = "ownCloud desktop sync client" { Actions = "Exec /usr/bin/owncloud &" }
+    }
+    Submenu = "Office" {
+      Entry = "Atril Document Viewer" { Actions = "Exec atril  &" }
+      Entry = "Dictionary" { Actions = "Exec mate-dictionary &" }
+      Entry = "HTMLDOC" { Actions = "Exec htmldoc  &" }
+      Entry = "LibreOffice 4.4 Base" { Actions = "Exec libreoffice4.4 --base  &" }
+      Entry = "LibreOffice 4.4 Calc" { Actions = "Exec libreoffice4.4 --calc  &" }
+      Entry = "LibreOffice 4.4 Impress" { Actions = "Exec libreoffice4.4 --impress  &" }
+      Entry = "LibreOffice 4.4 Writer" { Actions = "Exec libreoffice4.4 --writer  &" }
+      Entry = "calibre" { Actions = "Exec calibre  &" }
+    }
+    Submenu = "Settings" {
+      Entry = "Bluetooth Manager" { Actions = "Exec blueman-manager &" }
+      Entry = "Power Management" { Actions = "Exec mate-power-preferences &" }
+      Entry = "Qt4 Config" { Actions = "Exec qtconfig &" }
+      Entry = "Screensaver" { Actions = "Exec xscreensaver-demo &" }
+    }
+    Submenu = "System" {
+      Entry = "ALSA sound card" { Actions = "Exec gksu gtkalsasetup &" }
+      Entry = "Disk Usage Analyzer" { Actions = "Exec mate-disk-usage-analyzer &" }
+      Entry = "Dotnew" { Actions = "Exec gksu dotnew-gtk &" }
+      Entry = "Grsync" { Actions = "Exec /usr/bin/grsync -i  &" }
+      Entry = "Gslapt Package Manager" { Actions = "Exec gksu /usr/sbin/gslapt &" }
+      Entry = "Hostnames" { Actions = "Exec gksu gtkhostsetup &" }
+      Entry = "Htop" { Actions = "Exec xterm -e htop &" }
+      Entry = "Keyboard" { Actions = "Exec gksu gtkkeyboardsetup &" }
+      Entry = "Log File Viewer" { Actions = "Exec mate-system-log &" }
+      Entry = "MATE Terminal" { Actions = "Exec mate-terminal &" }
+      Entry = "Manage Printing" { Actions = "Exec /usr/bin/xdg-open http://localhost:631/ &" }
+      Entry = "Power Statistics" { Actions = "Exec mate-power-statistics &" }
+      Entry = "Sourcery SlackBuild Manager" { Actions = "Exec gksu sourcery &" }
+      Entry = "System clock" { Actions = "Exec gksu gtkclocksetup &" }
+      Entry = "System language" { Actions = "Exec gksu gtklocalesetup &" }
+      Entry = "System services" { Actions = "Exec gksu gtkservicesetup &" }
+      Entry = "Users and groups" { Actions = "Exec gksu gtkusersetup &" }
+      Entry = "dconf Editor" { Actions = "Exec dconf-editor &" }
+    }
+  }
+}

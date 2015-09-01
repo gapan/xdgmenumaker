@@ -1,0 +1,95 @@
+[submenu] (Εφαρμογές)
+  [submenu] (Ανάπτυξη)
+    [exec] (CMake) {cmake-gui }
+    [exec] (Geany) {geany }
+    [exec] (Glade) {glade-3 }
+    [exec] (Meld) {meld }
+    [exec] (Poedit) {poedit }
+    [exec] (Qt4 Assistant) {assistant}
+    [exec] (Qt4 Designer) {designer}
+    [exec] (Qt4 Linguist) {linguist}
+    [exec] (RStudio) {/usr/lib64/rstudio/bin/rstudio }
+  [end] # (Ανάπτυξη)
+  [submenu] (Βοηθήματα)
+    [exec] (Galculator) {galculator}
+    [exec] (KeePassX) {keepassx }
+    [exec] (Leafpad) {leafpad }
+    [exec] (Xournal) {xournal }
+    [exec] (Zim Desktop Wiki) {zim}
+    [exec] (Αναζήτηση για αρχεία...) {mate-search-tool}
+    [exec] (Διαχειριστής συμπιεσμένων αρχείων Engrampa) {engrampa }
+    [exec] (Εμφάνιση σελίδων εγχειριδίου) {gtkman salix}
+    [exec] (Λήψη στιγμιότυπου οθόνης) {mate-screenshot --interactive}
+  [end] # (Βοηθήματα)
+  [submenu] (Γραφείο)
+    [exec] (HTMLDOC) {htmldoc }
+    [exec] (LibreOffice 4.4 Base) {libreoffice4.4 --base }
+    [exec] (LibreOffice 4.4 Calc) {libreoffice4.4 --calc }
+    [exec] (LibreOffice 4.4 Impress) {libreoffice4.4 --impress }
+    [exec] (LibreOffice 4.4 Writer) {libreoffice4.4 --writer }
+    [exec] (calibre) {calibre }
+    [exec] (Εφαρμογή προβολής εγγράφων Atril) {atril }
+    [exec] (Λεξικό) {mate-dictionary}
+  [end] # (Γραφείο)
+  [submenu] (Γραφικά)
+    [exec] (E-book Viewer) {ebook-viewer }
+    [exec] (Gcolor2) {gcolor2}
+    [exec] (LRF Viewer) {lrfviewer }
+    [exec] (LibreOffice 4.4 Draw) {libreoffice4.4 --draw }
+    [exec] (Viewnior) {viewnior }
+    [exec] (Επεξεργαστής διαγραμμάτων Dia) {dia }
+    [exec] (Πρόγραμμα επεξεργασίας εικόνων GNU) {gimp-2.8 }
+    [exec] (Σάρωση) {simple-scan}
+  [end] # (Γραφικά)
+  [submenu] (Δίκτυο)
+    [exec] (Claws Mail) {claws-mail }
+    [exec] (Firefox) {firefox }
+    [exec] (Transmission) {transmission-gtk }
+    [exec] (gFTP) {gftp }
+    [exec] (ownCloud desktop sync client) {/usr/bin/owncloud}
+    [exec] (Αποστολέας μηνυμάτων διαδικτύου Pidgin) {pidgin}
+  [end] # (Δίκτυο)
+  [submenu] (Εκπαίδευση)
+    [exec] (LibreOffice 4.4 Math) {libreoffice4.4 --math }
+    [exec] (R) {xterm -e R}
+  [end] # (Εκπαίδευση)
+  [submenu] (Παιχνίδια)
+    [exec] (KEGS) {xterm -e aoss xkegs}
+  [end] # (Παιχνίδια)
+  [submenu] (Πολυμέσα)
+    [exec] (Asunder CD Ripper) {asunder}
+    [exec] (Audacity) {audacity }
+    [exec] (Ex Falso) {exfalso}
+    [exec] (Exaile) {exaile }
+    [exec] (GNOME MPlayer) {gnome-mplayer }
+    [exec] (Gaupol) {gaupol }
+    [exec] (ISO Master) {isomaster}
+    [exec] (Quod Libet) {quodlibet}
+  [end] # (Πολυμέσα)
+  [submenu] (Ρυθμίσεις)
+    [exec] (Qt4 Config) {qtconfig}
+    [exec] (Screensaver) {xscreensaver-demo}
+    [exec] (Διαχείριση ενέργειας) {mate-power-preferences}
+    [exec] (Διαχειριστής Bluetooth) {blueman-manager}
+  [end] # (Ρυθμίσεις)
+  [submenu] (Σύστημα)
+    [exec] (Dotnew) {gksu dotnew-gtk}
+    [exec] (Grsync) {/usr/bin/grsync -i }
+    [exec] (Htop) {xterm -e htop}
+    [exec] (Manage Printing) {/usr/bin/xdg-open http://localhost:631/}
+    [exec] (Sourcery - Διαχειριστής SlackBuild) {gksu sourcery}
+    [exec] (Ανάλυση χρήσης δίσκου) {mate-disk-usage-analyzer}
+    [exec] (Γλώσσα συστήματος) {gksu gtklocalesetup}
+    [exec] (Διαχειριστής Πακέτων Gslapt) {gksu /usr/sbin/gslapt}
+    [exec] (Επεξεργαστής dconf) {dconf-editor}
+    [exec] (Κάρτα ήχου ALSA) {gksu gtkalsasetup}
+    [exec] (Ονόματα υπολογιστών) {gksu gtkhostsetup}
+    [exec] (Παρακολούθηση αρχείων καταγραφών) {mate-system-log}
+    [exec] (Πληκτρολόγιο) {gksu gtkkeyboardsetup}
+    [exec] (Ρολόι συστήματος) {gksu gtkclocksetup}
+    [exec] (Στατιστικά ενέργειας) {mate-power-statistics}
+    [exec] (Τερματικό MATE) {mate-terminal}
+    [exec] (Υπηρεσίες συστήματος) {gksu gtkservicesetup}
+    [exec] (Χρήστες και ομάδες) {gksu gtkusersetup}
+  [end] # (Σύστημα)
+[end] # (Εφαρμογές)

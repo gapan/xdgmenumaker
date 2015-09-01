@@ -1,0 +1,95 @@
+"Applications" MENU
+ "Accessories" MENU
+  "Engrampa Archive Manager" EXEC engrampa 
+  "GTKMan Manual Page Viewer" EXEC gtkman salix
+  "Galculator" EXEC galculator
+  "KeePassX" EXEC keepassx 
+  "Leafpad" EXEC leafpad 
+  "Search for Files..." EXEC mate-search-tool
+  "Take Screenshot" EXEC mate-screenshot --interactive
+  "Xournal" EXEC xournal 
+  "Zim Desktop Wiki" EXEC zim
+ "Accessories" END
+ "Development" MENU
+  "CMake" EXEC cmake-gui 
+  "Geany" EXEC geany 
+  "Glade" EXEC glade-3 
+  "Meld" EXEC meld 
+  "Poedit" EXEC poedit 
+  "Qt4 Assistant" EXEC assistant
+  "Qt4 Designer" EXEC designer
+  "Qt4 Linguist" EXEC linguist
+  "RStudio" EXEC /usr/lib64/rstudio/bin/rstudio 
+ "Development" END
+ "Education" MENU
+  "LibreOffice 4.4 Math" EXEC libreoffice4.4 --math 
+  "R" EXEC xterm -e R
+ "Education" END
+ "Games" MENU
+  "KEGS" EXEC xterm -e aoss xkegs
+ "Games" END
+ "Graphics" MENU
+  "Dia Diagram Editor" EXEC dia 
+  "E-book Viewer" EXEC ebook-viewer 
+  "GNU Image Manipulation Program" EXEC gimp-2.8 
+  "Gcolor2" EXEC gcolor2
+  "LRF Viewer" EXEC lrfviewer 
+  "LibreOffice 4.4 Draw" EXEC libreoffice4.4 --draw 
+  "Simple Scan" EXEC simple-scan
+  "Viewnior" EXEC viewnior 
+ "Graphics" END
+ "Multimedia" MENU
+  "Asunder CD Ripper" EXEC asunder
+  "Audacity" EXEC audacity 
+  "Ex Falso" EXEC exfalso
+  "Exaile" EXEC exaile 
+  "GNOME MPlayer" EXEC gnome-mplayer 
+  "Gaupol" EXEC gaupol 
+  "ISO Master" EXEC isomaster
+  "Quod Libet" EXEC quodlibet
+ "Multimedia" END
+ "Network" MENU
+  "Claws Mail" EXEC claws-mail 
+  "Firefox" EXEC firefox 
+  "Pidgin Internet Messenger" EXEC pidgin
+  "Transmission" EXEC transmission-gtk 
+  "gFTP" EXEC gftp 
+  "ownCloud desktop sync client" EXEC /usr/bin/owncloud
+ "Network" END
+ "Office" MENU
+  "Atril Document Viewer" EXEC atril 
+  "Dictionary" EXEC mate-dictionary
+  "HTMLDOC" EXEC htmldoc 
+  "LibreOffice 4.4 Base" EXEC libreoffice4.4 --base 
+  "LibreOffice 4.4 Calc" EXEC libreoffice4.4 --calc 
+  "LibreOffice 4.4 Impress" EXEC libreoffice4.4 --impress 
+  "LibreOffice 4.4 Writer" EXEC libreoffice4.4 --writer 
+  "calibre" EXEC calibre 
+ "Office" END
+ "Settings" MENU
+  "Bluetooth Manager" EXEC blueman-manager
+  "Power Management" EXEC mate-power-preferences
+  "Qt4 Config" EXEC qtconfig
+  "Screensaver" EXEC xscreensaver-demo
+ "Settings" END
+ "System" MENU
+  "ALSA sound card" EXEC gksu gtkalsasetup
+  "Disk Usage Analyzer" EXEC mate-disk-usage-analyzer
+  "Dotnew" EXEC gksu dotnew-gtk
+  "Grsync" EXEC /usr/bin/grsync -i 
+  "Gslapt Package Manager" EXEC gksu /usr/sbin/gslapt
+  "Hostnames" EXEC gksu gtkhostsetup
+  "Htop" EXEC xterm -e htop
+  "Keyboard" EXEC gksu gtkkeyboardsetup
+  "Log File Viewer" EXEC mate-system-log
+  "MATE Terminal" EXEC mate-terminal
+  "Manage Printing" EXEC /usr/bin/xdg-open http://localhost:631/
+  "Power Statistics" EXEC mate-power-statistics
+  "Sourcery SlackBuild Manager" EXEC gksu sourcery
+  "System clock" EXEC gksu gtkclocksetup
+  "System language" EXEC gksu gtklocalesetup
+  "System services" EXEC gksu gtkservicesetup
+  "Users and groups" EXEC gksu gtkusersetup
+  "dconf Editor" EXEC dconf-editor
+ "System" END
+"Applications" END

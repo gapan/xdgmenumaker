@@ -1,0 +1,95 @@
+[submenu] (Applications) </usr/share/icons/mate/16x16/categories/applications-other.png>
+  [submenu] (Accessories) </usr/share/icons/mate-colors-common/16x16/categories/applications-accessories.png>
+    [exec] (Engrampa Archive Manager) {engrampa } </usr/share/icons/hicolor/16x16/apps/engrampa.png>
+    [exec] (GTKMan Manual Page Viewer) {gtkman salix} </usr/share/icons/hicolor/16x16/apps/gtkman.png>
+    [exec] (Galculator) {galculator} </usr/share/icons/hicolor/48x48/apps/galculator.png>
+    [exec] (KeePassX) {keepassx } </usr/share/pixmaps/keepassx.xpm>
+    [exec] (Leafpad) {leafpad } </usr/share/icons/hicolor/16x16/apps/leafpad.png>
+    [exec] (Search for Files...) {mate-search-tool} </usr/share/icons/mate-colors-common/16x16/actions/system-search.png>
+    [exec] (Take Screenshot) {mate-screenshot --interactive} </usr/share/icons/mate-colors-common/16x16/devices/applets-screenshooter.png>
+    [exec] (Xournal) {xournal }
+    [exec] (Zim Desktop Wiki) {zim} </usr/share/icons/mate-colors-common/16x16/apps/zim.png>
+  [end] # (Accessories)
+  [submenu] (Development) </usr/share/icons/mate-colors-common/16x16/categories/applications-development.png>
+    [exec] (CMake) {cmake-gui } </usr/share/pixmaps/CMakeSetup32.png>
+    [exec] (Geany) {geany } </usr/share/icons/mate-colors-common/16x16/apps/geany.png>
+    [exec] (Glade) {glade-3 } </usr/share/icons/hicolor/16x16/apps/glade-3.png>
+    [exec] (Meld) {meld } </usr/share/icons/mate-colors-common/16x16/apps/meld.png>
+    [exec] (Poedit) {poedit } </usr/share/icons/hicolor/16x16/apps/poedit.png>
+    [exec] (Qt4 Assistant) {assistant} </usr/share/icons/hicolor/32x32/apps/assistant.png>
+    [exec] (Qt4 Designer) {designer} </usr/share/icons/hicolor/128x128/apps/designer.png>
+    [exec] (Qt4 Linguist) {linguist} </usr/share/icons/hicolor/16x16/apps/linguist.png>
+    [exec] (RStudio) {/usr/lib64/rstudio/bin/rstudio } </usr/share/icons/hicolor/16x16/apps/rstudio.png>
+  [end] # (Development)
+  [submenu] (Education)
+    [exec] (LibreOffice 4.4 Math) {libreoffice4.4 --math } </usr/share/icons/hicolor/16x16/apps/libreoffice4.4-math.png>
+    [exec] (R) {xterm -e R} </usr/share/icons/hicolor/16x16/apps/R.png>
+  [end] # (Education)
+  [submenu] (Games) </usr/share/icons/mate-colors-common/16x16/categories/applications-games.png>
+    [exec] (KEGS) {xterm -e aoss xkegs} </usr/share/pixmaps/kegs.png>
+  [end] # (Games)
+  [submenu] (Graphics) </usr/share/icons/mate/16x16/categories/applications-graphics.png>
+    [exec] (Dia Diagram Editor) {dia } </usr/share/icons/mate-colors-common/16x16/apps/dia.png>
+    [exec] (E-book Viewer) {ebook-viewer } </usr/share/icons/hicolor/16x16/apps/calibre-viewer.png>
+    [exec] (GNU Image Manipulation Program) {gimp-2.8 } </usr/share/icons/hicolor/16x16/apps/gimp.png>
+    [exec] (Gcolor2) {gcolor2} </usr/share/icons/hicolor/16x16/apps/gcolor2.png>
+    [exec] (LRF Viewer) {lrfviewer } </usr/share/icons/hicolor/16x16/apps/calibre-viewer.png>
+    [exec] (LibreOffice 4.4 Draw) {libreoffice4.4 --draw } </usr/share/icons/hicolor/16x16/apps/libreoffice4.4-draw.png>
+    [exec] (Simple Scan) {simple-scan} </usr/share/icons/mate/16x16/devices/scanner.png>
+    [exec] (Viewnior) {viewnior } </usr/share/icons/hicolor/16x16/apps/viewnior.png>
+  [end] # (Graphics)
+  [submenu] (Multimedia) </usr/share/icons/mate-colors-common/16x16/categories/applications-multimedia.png>
+    [exec] (Asunder CD Ripper) {asunder} </usr/share/icons/hicolor/48x48/apps/asunder.png>
+    [exec] (Audacity) {audacity } </usr/share/icons/mate-colors-common/16x16/apps/audacity.png>
+    [exec] (Ex Falso) {exfalso} </usr/share/icons/hicolor/64x64/apps/exfalso.png>
+    [exec] (Exaile) {exaile } </usr/share/icons/mate-colors-common/16x16/apps/exaile.png>
+    [exec] (GNOME MPlayer) {gnome-mplayer } </usr/share/icons/mate-colors-common/16x16/apps/gnome-mplayer.png>
+    [exec] (Gaupol) {gaupol } </usr/share/icons/hicolor/16x16/apps/gaupol.png>
+    [exec] (ISO Master) {isomaster} </usr/share/icons/hicolor/16x16/apps/isomaster.png>
+    [exec] (Quod Libet) {quodlibet} </usr/share/icons/hicolor/64x64/apps/quodlibet.png>
+  [end] # (Multimedia)
+  [submenu] (Network) </usr/share/icons/mate-colors-common/16x16/categories/applications-internet.png>
+    [exec] (Claws Mail) {claws-mail } </usr/share/icons/mate-colors-common/16x16/apps/claws-mail.png>
+    [exec] (Firefox) {firefox } </usr/share/icons/hicolor/16x16/apps/firefox.png>
+    [exec] (Pidgin Internet Messenger) {pidgin} </usr/share/icons/mate-colors-common/16x16/apps/pidgin.png>
+    [exec] (Transmission) {transmission-gtk } </usr/share/icons/hicolor/16x16/apps/transmission.png>
+    [exec] (gFTP) {gftp } </usr/share/icons/mate-colors-common/16x16/apps/gftp.png>
+    [exec] (ownCloud desktop sync client) {/usr/bin/owncloud} </usr/share/icons/hicolor/22x22/apps/owncloud.png>
+  [end] # (Network)
+  [submenu] (Office) </usr/share/icons/mate-colors-common/16x16/categories/applications-office.png>
+    [exec] (Atril Document Viewer) {atril } </usr/share/icons/hicolor/16x16/apps/atril.png>
+    [exec] (Dictionary) {mate-dictionary} </usr/share/icons/mate/16x16/apps/accessories-dictionary.png>
+    [exec] (HTMLDOC) {htmldoc } </usr/share/icons/hicolor/16x16/apps/htmldoc.png>
+    [exec] (LibreOffice 4.4 Base) {libreoffice4.4 --base } </usr/share/icons/hicolor/16x16/apps/libreoffice4.4-base.png>
+    [exec] (LibreOffice 4.4 Calc) {libreoffice4.4 --calc } </usr/share/icons/hicolor/16x16/apps/libreoffice4.4-calc.png>
+    [exec] (LibreOffice 4.4 Impress) {libreoffice4.4 --impress } </usr/share/icons/hicolor/16x16/apps/libreoffice4.4-impress.png>
+    [exec] (LibreOffice 4.4 Writer) {libreoffice4.4 --writer } </usr/share/icons/hicolor/16x16/apps/libreoffice4.4-writer.png>
+    [exec] (calibre) {calibre } </usr/share/icons/hicolor/16x16/apps/calibre-gui.png>
+  [end] # (Office)
+  [submenu] (Settings) </usr/share/icons/mate-colors-common/16x16/categories/preferences-desktop.png>
+    [exec] (Bluetooth Manager) {blueman-manager} </usr/share/icons/hicolor/16x16/apps/blueman.png>
+    [exec] (Power Management) {mate-power-preferences} </usr/share/icons/hicolor/16x16/apps/mate-power-manager.png>
+    [exec] (Qt4 Config) {qtconfig}
+    [exec] (Screensaver) {xscreensaver-demo} </usr/share/icons/mate-colors-common/16x16/apps/xscreensaver.png>
+  [end] # (Settings)
+  [submenu] (System) </usr/share/icons/mate-colors-common/16x16/categories/applications-system.png>
+    [exec] (ALSA sound card) {gksu gtkalsasetup} </usr/share/icons/hicolor/16x16/apps/gtkalsasetup.png>
+    [exec] (Disk Usage Analyzer) {mate-disk-usage-analyzer} </usr/share/icons/hicolor/24x24/apps/mate-disk-usage-analyzer.png>
+    [exec] (Dotnew) {gksu dotnew-gtk} </usr/share/icons/hicolor/16x16/apps/dotnew.png>
+    [exec] (Grsync) {/usr/bin/grsync -i } </usr/share/icons/hicolor/48x48/apps/grsync.png>
+    [exec] (Gslapt Package Manager) {gksu /usr/sbin/gslapt} </usr/share/icons/hicolor/48x48/apps/gslapt.png>
+    [exec] (Hostnames) {gksu gtkhostsetup} </usr/share/icons/hicolor/16x16/apps/gtkhostsetup.png>
+    [exec] (Htop) {xterm -e htop} </usr/share/icons/mate-colors-common/16x16/apps/htop.png>
+    [exec] (Keyboard) {gksu gtkkeyboardsetup} </usr/share/icons/hicolor/16x16/apps/gtkkeyboardsetup.png>
+    [exec] (Log File Viewer) {mate-system-log} </usr/share/icons/mate/16x16/apps/logviewer.png>
+    [exec] (MATE Terminal) {mate-terminal} </usr/share/icons/mate-colors-common/16x16/apps/utilities-terminal.png>
+    [exec] (Manage Printing) {/usr/bin/xdg-open http://localhost:631/} </usr/share/icons/mate-colors-common/16x16/devices/cups.png>
+    [exec] (Power Statistics) {mate-power-statistics} </usr/share/icons/hicolor/16x16/apps/mate-power-statistics.png>
+    [exec] (Sourcery SlackBuild Manager) {gksu sourcery} </usr/share/icons/hicolor/16x16/apps/sourcery.png>
+    [exec] (System clock) {gksu gtkclocksetup} </usr/share/icons/hicolor/16x16/apps/gtkclocksetup.png>
+    [exec] (System language) {gksu gtklocalesetup} </usr/share/icons/hicolor/16x16/apps/gtklocalesetup.png>
+    [exec] (System services) {gksu gtkservicesetup} </usr/share/icons/hicolor/16x16/apps/gtkservicesetup.png>
+    [exec] (Users and groups) {gksu gtkusersetup} </usr/share/icons/hicolor/16x16/apps/gtkusersetup.png>
+    [exec] (dconf Editor) {dconf-editor} </usr/share/icons/mate/16x16/apps/dconf-editor.png>
+  [end] # (System)
+[end] # (Applications)

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<JWM>
+<Menu label="Logiciels">
+  <Menu label="Accessoires">
+    <Program label="Capture d'écran">mate-screenshot --interactive</Program>
+    <Program label="GTKMan - visionneuse de pages de manuel">gtkman salix</Program>
+    <Program label="Galculator">galculator</Program>
+    <Program label="Gestionnaire d'archives Engrampa">engrampa </Program>
+    <Program label="KeePassX">keepassx </Program>
+    <Program label="Leafpad">leafpad </Program>
+    <Program label="Rechercher des fichiers...">mate-search-tool</Program>
+    <Program label="Xournal">xournal </Program>
+    <Program label="Zim, le Wiki de bureau">zim</Program>
+  </Menu>
+  <Menu label="Bureautique">
+    <Program label="Dictionnaire">mate-dictionary</Program>
+    <Program label="HTMLDOC">htmldoc </Program>
+    <Program label="LibreOffice 4.4 Base">libreoffice4.4 --base </Program>
+    <Program label="LibreOffice 4.4 Calc">libreoffice4.4 --calc </Program>
+    <Program label="LibreOffice 4.4 Impress">libreoffice4.4 --impress </Program>
+    <Program label="LibreOffice 4.4 Writer">libreoffice4.4 --writer </Program>
+    <Program label="Visionneuse de document Atril">atril </Program>
+    <Program label="calibre">calibre </Program>
+  </Menu>
+  <Menu label="Développement">
+    <Program label="CMake">cmake-gui </Program>
+    <Program label="Geany">geany </Program>
+    <Program label="Glade">glade-3 </Program>
+    <Program label="Meld">meld </Program>
+    <Program label="Poedit">poedit </Program>
+    <Program label="Qt4 Assistant">assistant</Program>
+    <Program label="Qt4 Designer">designer</Program>
+    <Program label="Qt4 Linguist">linguist</Program>
+    <Program label="RStudio">/usr/lib64/rstudio/bin/rstudio </Program>
+  </Menu>
+  <Menu label="Graphisme">
+    <Program label="E-book Viewer">ebook-viewer </Program>
+    <Program label="Gcolor2">gcolor2</Program>
+    <Program label="LRF Viewer">lrfviewer </Program>
+    <Program label="LibreOffice 4.4 Draw">libreoffice4.4 --draw </Program>
+    <Program label="Numérisation simple">simple-scan</Program>
+    <Program label="Viewnior">viewnior </Program>
+    <Program label="Éditeur d'image GIMP">gimp-2.8 </Program>
+    <Program label="Éditeur de diagrammes Dia">dia </Program>
+  </Menu>
+  <Menu label="Internet">
+    <Program label="Claws Mail">claws-mail </Program>
+    <Program label="Firefox">firefox </Program>
+    <Program label="Messagerie internet Pidgin">pidgin</Program>
+    <Program label="Transmission">transmission-gtk </Program>
+    <Program label="gFTP">gftp </Program>
+    <Program label="ownCloud desktop sync client">/usr/bin/owncloud</Program>
+  </Menu>
+  <Menu label="Jeux">
+    <Program label="KEGS">xterm -e aoss xkegs</Program>
+  </Menu>
+  <Menu label="Multimédia">
+    <Program label="Asunder">asunder</Program>
+    <Program label="Audacity">audacity </Program>
+    <Program label="Ex Falso">exfalso</Program>
+    <Program label="Exaile">exaile </Program>
+    <Program label="GNOME MPlayer">gnome-mplayer </Program>
+    <Program label="Gaupol">gaupol </Program>
+    <Program label="ISO Master">isomaster</Program>
+    <Program label="Quod Libet">quodlibet</Program>
+  </Menu>
+  <Menu label="Paramètres">
+    <Program label="Gestionnaire Bluetooth">blueman-manager</Program>
+    <Program label="Gestionnaire d'énergie">mate-power-preferences</Program>
+    <Program label="Qt4 Config">qtconfig</Program>
+    <Program label="Économiseur d'écran">xscreensaver-demo</Program>
+  </Menu>
+  <Menu label="Système">
+    <Program label="Analyseur d'utilisation des disques">mate-disk-usage-analyzer</Program>
+    <Program label="Carte son ALSA">gksu gtkalsasetup</Program>
+    <Program label="Clavier">gksu gtkkeyboardsetup</Program>
+    <Program label="Dotnew">gksu dotnew-gtk</Program>
+    <Program label="Gestion des utilisateurs et groupes">gksu gtkusersetup</Program>
+    <Program label="Gestionnaire d'impression">/usr/bin/xdg-open http://localhost:631/</Program>
+    <Program label="Gestionnaire de paquets Gslapt">gksu /usr/sbin/gslapt</Program>
+    <Program label="Grsync">/usr/bin/grsync -i </Program>
+    <Program label="Horloge système">gksu gtkclocksetup</Program>
+    <Program label="Htop">xterm -e htop</Program>
+    <Program label="Langue système">gksu gtklocalesetup</Program>
+    <Program label="Noms d'hôtes">gksu gtkhostsetup</Program>
+    <Program label="Services du système">gksu gtkservicesetup</Program>
+    <Program label="Sourcery, gestionnaire de SlackBuild">gksu sourcery</Program>
+    <Program label="Statistiques de l'alimentation">mate-power-statistics</Program>
+    <Program label="Terminal MATE">mate-terminal</Program>
+    <Program label="Visionneur de journaux système">mate-system-log</Program>
+    <Program label="Éditeur dconf">dconf-editor</Program>
+  </Menu>
+  <Menu label="Éducation">
+    <Program label="LibreOffice 4.4 Math">libreoffice4.4 --math </Program>
+    <Program label="R">xterm -e R</Program>
+  </Menu>
+</Menu>
+</JWM>
