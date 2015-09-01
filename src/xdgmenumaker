@@ -33,6 +33,44 @@ else:
 if not os.path.isdir(desktop_dir):
     sys.exit('ERROR: Could not find ' + desktop_dir)
 
+
+class App:
+    '''
+    A class to keep individual app details in.
+    '''
+    def __init__(self, name, icon, command, path):
+        self.name = name
+        self.icon = icon
+        self.command = command
+        self.path = path
+
+    def __repr__(self):
+        return repr((self.name, self.icon, self.command,
+            self.path))
+
+class MenuEntry:
+    '''
+    A class for each menu entry. Includes the class category and app details
+    from the App class.
+    '''
+    def __init__(self, category, app):
+        self.category = category
+        self.app = app
+
+    def __repr__(self):
+        return repr((self.category, self.app.name, self.app.icon,
+            self.app.command, self.app.path))
+
+class MenuCategory:
+    '''
+    A class for each menu category. Keeps the category name and the list of
+    apps that go in that category.
+    '''
+    def __init__(self, category, applist):
+        self.category = category
+        self.applist = applist
+
+
 de = dentry.DesktopEntry(filename=desktop_dir +
                          'xdgmenumaker-applications.directory')
 applications = de.getName().encode('utf-8')
@@ -169,33 +207,6 @@ def usage():
     print('    xdgmenumaker -f windowmaker')
     print('    xdgmenumaker -i -f fluxbox')
 
-class App:
-
-    def __init__(self, name, icon, command, path):
-        self.name = name
-        self.icon = icon
-        self.command = command
-        self.path = path
-
-    def __repr__(self):
-        return repr((self.name, self.icon, self.command,
-            self.path))
-
-class MenuEntry:
-
-    def __init__(self, category, app):
-        self.category = category
-        self.app = app
-
-    def __repr__(self):
-        return repr((self.category, self.app.name, self.app.icon,
-            self.app.command, self.app.path))
-
-class MenuCategory:
-
-    def __init__(self, category, applist):
-        self.category = category
-        self.applist = applist
 
 def icon_full_path(icon):
     # If the icon path is absolute and exists, leave it alone.
