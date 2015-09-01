@@ -24,4 +24,4 @@ uninstall:
 	rm -f $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
 	rm -f $(DESTDIR)/$(PREFIX)/share/desktop-directories/xdgmenumaker*
 
-.PHONY: man clean install
+.PHONY: man clean install uninstall
