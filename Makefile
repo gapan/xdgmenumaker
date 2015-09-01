@@ -20,8 +20,14 @@ install:
 clean:
 	rm -f man/xdgmenumaker.1
 
+test:
+	$(MAKE) -C tests/
+
+test-clean:
+	$(MAKE) clean -C tests/
+
 uninstall:
 	rm -f $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
 	rm -f $(DESTDIR)/$(PREFIX)/share/desktop-directories/xdgmenumaker*
 
-.PHONY: man clean install uninstall
+.PHONY: man clean install uninstall test test-clean
