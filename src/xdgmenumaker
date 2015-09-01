@@ -314,13 +314,20 @@ def sortedcategories(applist):
 
 
 def desktopfilelist():
-    dirs = []
-    # some directories are mentioned twice in bd.xdg_data_dirs, once
-    # with and once without a trailing /
-    for i in bd.xdg_data_dirs:
-        i = i.rstrip('/')
-        if i not in dirs:
-            dirs.append(i)
+    # if this env variable is set to 1, then only read .desktop files from the
+    # tests directory, not systemwide. This gives a standard set of .desktop
+    # files to compare against for testing.
+    testing = os.getenv('XDGMENUMAKER_TEST')
+    if testing == "1":
+        dirs = ['../tests']
+    else:
+        dirs = []
+        # some directories are mentioned twice in bd.xdg_data_dirs, once
+        # with and once without a trailing /
+        for i in bd.xdg_data_dirs:
+            i = i.rstrip('/')
+            if i not in dirs:
+                dirs.append(i)
     filelist = []
     df_temp = []
     for d in dirs:
