@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=ISO Master
+GenericName=ISO File Editor
+GenericName[ca]=Editor de fitxers ISO
+GenericName[es]=Editor de ficheros ISO
+Comment=Read, write and modify ISO images
+Comment[ca]=Llegiu, escriviu i modifiqueu imatges ISO
+Comment[es]=Leer, escribir i modificar imagenes ISO
+Exec=isomaster
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=AudioVideo;DiscBurning;
+MimeType=application/x-iso;
+Icon=isomaster

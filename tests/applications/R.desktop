@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=R
+Comment=Project for Statistical Computing
+Encoding=UTF-8
+Exec=R
+Terminal=true
+Icon=R
+Type=Application
+Categories=Science;Education;NumericalAnalysis;
+StartupNotify=true

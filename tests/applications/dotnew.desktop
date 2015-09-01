@@ -1,0 +1,25 @@
+[Desktop Entry]
+Name=Dotnew
+Comment=Manage .new system settings files
+Comment[da]=Håndtér .new-systemindstillingsfiler
+Comment[de]=Verwalte die .new Konfigurationsdateien
+Comment[el]=Διαχείριση νέων αρχείων ρυθμίσεων συστήματος .new
+Comment[es]=Administrar archivos .new de configuración del sistema
+Comment[es_AR]=Administrar archivos .new de configuración del sistema
+Comment[fi]=Hallitse .new järjestelmäasetus tiedostoja
+Comment[fr]=Gérer les fichiers configuration système '.new'
+Comment[hu]=Rendszer beállításokat  tartalmazó fájlok (.new) kezelése
+Comment[it]=Gestisci gli archivi di configurazione di sistema .new
+Comment[ja]=.new　システム設定ファイル管理する。
+Comment[nl]=Beheer .new systeeminstellingen bestanden
+Comment[pt_BR]=Administrar arquivos de configurações de sistema .new
+Comment[sv]=Hantera .new system inställnings filer
+Comment[uk]=Керування .new файлами налаштувань
+Exec=gksu dotnew-gtk
+Icon=dotnew
+Terminal=false
+Type=Application
+Categories=Application;System;;
+StartupNotify=true
+Encoding=UTF-8
+NotShowIn=KDE

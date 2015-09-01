@@ -1,0 +1,25 @@
+[Desktop Entry]
+Name=Asunder CD Ripper
+Name[de]=Asunder
+Name[fr]=Asunder
+Name[hu]=Asunder
+Name[sv]=Asunder
+Name[ru]=Asunder
+GenericName=Audio CD Ripper
+GenericName[de]=Ein graphischer CD-Ripper und Encoder
+GenericName[fr]=Extracteur de CD
+GenericName[hu]=Audió CD Ripper és Tömörítő
+GenericName[ru]=Копирование звуковых CD
+Comment=An application to save tracks from an Audio CD as WAV, MP3, OGG, FLAC, and/or Wavpack.
+Comment[de]=Oberfläche zur Erstellung von Audio-Dateien
+Comment[hu]=Egy alkalmazás ami az Audió CD-n lévő sávokat lementi, MP3, OGG, FLAC és/vagy Wavpack formátumba.
+Comment[ru]=Программа для сохранения звуковых дорожек CD в файлы форматов WAV, MP3, OGG, FLAC и/или Wavpack.
+Comment[sv]=Ett program för att spara spår från en ljudskiva som WAV, MP3, OGG och/eller FLAC.
+Exec=asunder
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=AudioVideo;Audio;
+Icon=asunder
+MimeType=x-content/audio-cdda;
+

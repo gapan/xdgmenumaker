@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Name=Grsync
+Terminal=false
+Type=Application
+MimeType=application/x-grsync-session;
+Categories=Application;System;
+Comment=Synchronize files with rsync
+Comment[fr]=Interface GTK pour rsync
+Comment[it]=Sincronizza file con rsync
+Comment[nb]=Et GTK-grensesnitt for rsync
+Comment[ru]=GTK интерфейс для rsync
+Comment[tr]=Rsync için bir GTK grafik arayüzü
+Comment[hr]=Sinkronizacija datoteka pomoću rsync-a
+Exec=/usr/bin/grsync -i %f
+Icon=grsync

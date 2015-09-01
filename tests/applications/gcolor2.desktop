@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Gcolor2
+Name[fr]=Gcolor2
+GenericName=Gcolor2
+Comment=Identification colors tool
+Comment[fr]=Utilitaire d'identification des couleurs
+Exec=gcolor2
+Icon=gcolor2
+Categories=Application;Graphics;Utility;
+Terminal=false
+StartupNotify=true
+Type=Application
+Encoding=UTF-8
