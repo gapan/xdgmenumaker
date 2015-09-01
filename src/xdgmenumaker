@@ -403,8 +403,8 @@ def fluxboxmenu():
             print('[submenu] (' + applications + ')')
     else:
         spacing = ''
-    for i in menu():
-        category = i.category
+    for menu_category in menu():
+        category = menu_category.category
         if seticon:
             cat_icon = category_icon(category)
             cat_icon = icon_full_path(cat_icon)
@@ -415,13 +415,13 @@ def fluxboxmenu():
                 print(spacing + '[submenu] (' + category + ')')
         else:
             print(spacing + '[submenu] (' + category + ')')
-        for j in i.applist:
+        for app in menu_category.applist:
             # closing parentheses need to be escaped, otherwise they are
             # cropped out, along with everything that comes after them
-            name = j.name.replace(')', '\)')
-            icon = j.icon
-            command = j.command
-            path = j.path
+            name = app.name.replace(')', '\)')
+            icon = app.icon
+            command = app.command
+            path = app.path
             if path is not None:
                 command = 'cd ' + path + ' ; ' + command
             if icon is None:
@@ -436,12 +436,12 @@ def fluxboxmenu():
 
 def windowmakermenu():
     print('"' + applications + '" MENU')
-    for i in menu():
-        category = i.category
+    for menu_category in menu():
+        category = menu_category.category
         print(' "' + category + '" MENU')
-        for j in i.applist:
-            name = j.name
-            command = j.command
+        for app in menu_category.applist:
+            name = app.name
+            command = app.command
             print('  "' + name + '" EXEC ' + command)
         print(' "' + category + '" END')
     print('"' + applications + '" END')
@@ -459,18 +459,18 @@ def icewmmenu():
             print('menu "' + applications + '" _none_ {')
     else:
         spacing = ''
-    for i in menu():
-        category = i.category
+    for menu_category in menu():
+        category = menu_category.category
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
         if seticon and cat_icon is not None:
             print(spacing + 'menu "' + category + '" ' + cat_icon + ' {')
         else:
             print(spacing + 'menu "' + category + '" _none_ {')
-        for j in i.applist:
-            name = j.name
-            icon = j.icon
-            command = j.command
+        for app in menu_category.applist:
+            name = app.name
+            icon = app.icon
+            command = app.command
             if seticon and icon is not None:
                 print(spacing + '  prog "' + name +
                       '" ' + icon + ' ' + command)
@@ -497,8 +497,8 @@ def pekwmmenu():
             print(dspacing + 'Submenu = "' + applications + '" {')
     else:
         spacing = ''
-    for i in menu():
-        category = i.category
+    for menu_category in menu():
+        category = menu_category.category
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
         if seticon and cat_icon is not None:
@@ -506,15 +506,15 @@ def pekwmmenu():
                   category + '" { Icon = "' + cat_icon + '"')
         else:
             print(dspacing + spacing + 'Submenu = "' + category + '" {')
-        for j in i.applist:
-            name = j.name
-            icon = j.icon
+        for app in menu_category.applist:
+            name = app.name
+            icon = app.icon
             # for some apps (like netbeans) the command is launched with
             # /bin/sh "command"
             # and the quotes get mixed up with the quotes pekwm puts
             # around Actions, so we're just stripping the quotes
-            command = j.command.replace('"', '')
-            path = j.path
+            command = app.command.replace('"', '')
+            path = app.path
             if path is not None:
                 # pekwm doesn't like "cd path ; command", but it works
                 # with "&&" and "||", so we'll launch the command even if the
@@ -550,8 +550,8 @@ def jwmmenu():
             print('<Menu label="' + applications + '">')
     else:
         spacing = ''
-    for i in menu():
-        category = i.category
+    for menu_category in menu():
+        category = menu_category.category
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
         if seticon and cat_icon is not None:
@@ -559,11 +559,11 @@ def jwmmenu():
                   '" label="' + category + '">')
         else:
             print(spacing + '<Menu label="' + category + '">')
-        for j in i.applist:
-            name = j.name
-            icon = j.icon
-            command = j.command
-            path = j.path
+        for app in menu_category.applist:
+            name = app.name
+            icon = app.icon
+            command = app.command
+            path = app.path
             if path is not None:
                 command = 'cd ' + path + ' ; ' + command
             if seticon and icon is not None:
