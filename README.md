@@ -157,8 +157,8 @@ xdgmenumaker uses utf8 encoding and localised strings by default and has
 been tested only with wmaker-crm>=0.95.1. No idea if utf8 works properly
 with older Window Maker versions.
 
-Method 1
---------
+Dynamic Menus
+-------------
 
 Open the WindowMaker preferences tool. In the Application Menu
 Definition section, add a Generated Submenu in your menu, by dragging it
@@ -175,8 +175,8 @@ that it will be run every time you access that submenu, so especially if
 you are on a very old PC, it might slow things down a bit, although
 probably not anything considerable.
 
-Method 2
---------
+Static Menus
+------------
 
 Run:
 
