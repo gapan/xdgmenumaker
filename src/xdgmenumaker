@@ -232,6 +232,21 @@ def icon_full_path(icon):
 def get_entry_info(desktopfile):
     show = True
     de = dentry.DesktopEntry(filename=desktopfile)
+
+    # skip processing the rest of the desktop entry if the item is to not be
+    # displayed anyway 
+    onlyshowin = de.getOnlyShowIn()
+    notshowin = de.getNotShowIn()
+    hidden = de.getHidden()
+    nodisplay = de.getNoDisplay()
+    # none of the freedesktop registered environments are supported by
+    # OnlyShowIn anyway:
+    # http://standards.freedesktop.org/menu-spec/latest/apb.html
+    # So if OnlyShowIn is set, it certainly isn't for any of the WMs
+    # xdgmenumaker supports.
+    if (onlyshowin != []) or (desktop in notshowin) or hidden or nodisplay:
+        return None
+
     name = de.getName().encode('utf-8')
 
     if seticon:
@@ -241,12 +256,6 @@ def get_entry_info(desktopfile):
     else:
         icon = None
 
-    hidden = de.getHidden()
-    if hidden:
-        show = False
-    nodisplay = de.getNoDisplay()
-    if nodisplay:
-        show = False
 
     # removing any %U or %F from the exec line
     command = de.getExec().partition('%')[0]
@@ -289,20 +298,9 @@ def get_entry_info(desktopfile):
     else:
         category = other
 
-    onlyshowin = de.getOnlyShowIn()
-    notshowin = de.getNotShowIn()
-    # none of the freedesktop registered environments are supported by this anyway
-    # http://standards.freedesktop.org/menu-spec/latest/apb.html
-    if onlyshowin != []:
-        show = False
-    if desktop in notshowin:
-        show = False
-    if show:
-        app = App(name, icon, command, path)
-        mentry = MenuEntry(category, app)
-        return mentry
-    else:
-        return None
+    app = App(name, icon, command, path)
+    mentry = MenuEntry(category, app)
+    return mentry
 
 
 def sortedcategories(applist):
