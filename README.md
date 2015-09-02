@@ -31,7 +31,7 @@ submenu. For example, add this somewhere in your `~/.blackbox/menu` file:
 You can add the xdgmenumaker command as another item in your menu, if
 you want to update it, without having to run the command manually again:
 
-    [exec] (Update Blackbox Menu) (xdgmenumaker -f blackbox > ~/.blackbox/xdg_menu)
+    [exec] (Update Blackbox Menu) {xdgmenumaker -f blackbox > ~/.blackbox/xdg_menu}
 
 
 Fluxbox
@@ -49,7 +49,7 @@ submenu. For example, add this somewhere in your `~/.fluxbox/menu` file:
 You can add the xdgmenumaker command as another item in your menu, if
 you want to update it, without having to run the command manually again:
 
-    [exec] (Update Fluxbox Menu) (xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu)
+    [exec] (Update Fluxbox Menu) {xdgmenumaker -f fluxbox > ~/.fluxbox/xdg_menu}
 
 
 IceWM
