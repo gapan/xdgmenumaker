@@ -171,6 +171,8 @@ def main(argv):
     if not desktop:
         usage()
         sys.exit('ERROR: You must specify the output format with -f')
+    elif desktop == "blackbox":
+        blackboxmenu()
     elif desktop == "fluxbox":
         fluxboxmenu()
     elif desktop == "windowmaker":
@@ -192,7 +194,7 @@ def usage():
     print()
     print('OPTIONS:')
     print('    -f, --format         the output format to use.')
-    print('                         Valid options are fluxbox, icewm,')
+    print('                         Valid options are blackbox, fluxbox, icewm,')
     print('                         jwm, windowmaker and pekwm')
     print('    -i, --icons          enable support for icons in the')
     print('                         menus. Does not work with windowmaker')
@@ -393,6 +395,12 @@ def category_icon(category):
         icon = None
     return icon
 
+def blackboxmenu():
+    # Blackbox menus are the same as Fluxbox menus. They just don't support
+    # icons.
+    global seticon
+    seticon = False
+    fluxboxmenu()
 
 def fluxboxmenu():
     if submenu:
