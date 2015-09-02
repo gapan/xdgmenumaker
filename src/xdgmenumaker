@@ -230,7 +230,6 @@ def icon_full_path(icon):
 
 
 def get_entry_info(desktopfile):
-    show = True
     de = dentry.DesktopEntry(filename=desktopfile)
 
     # skip processing the rest of the desktop entry if the item is to not be
