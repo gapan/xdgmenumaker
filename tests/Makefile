@@ -1,4 +1,4 @@
-MM = ../src/xdgmenumaker
+MM ?= ../src/xdgmenumaker
 
 test: clean generate
 	@for i in `ls menus_correct/`; do \
