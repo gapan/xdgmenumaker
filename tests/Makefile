@@ -12,6 +12,8 @@ test: clean generate
 generate:
 	mkdir -p menus_test
 	XDGMENUMAKER_TEST=1 LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f blackbox > menus_test/blackbox_en
+	XDGMENUMAKER_TEST=1 LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox > menus_test/fluxbox_en
 	XDGMENUMAKER_TEST=1 LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox -i > menus_test/fluxbox_icons_en

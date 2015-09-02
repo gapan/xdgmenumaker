@@ -1,0 +1,95 @@
+[submenu] (Applications)
+  [submenu] (Accessories)
+    [exec] (Engrampa Archive Manager) {engrampa }
+    [exec] (GTKMan Manual Page Viewer) {gtkman salix}
+    [exec] (Galculator) {galculator}
+    [exec] (KeePassX) {keepassx }
+    [exec] (Leafpad) {leafpad }
+    [exec] (Search for Files...) {mate-search-tool}
+    [exec] (Take Screenshot) {mate-screenshot --interactive}
+    [exec] (Xournal) {xournal }
+    [exec] (Zim Desktop Wiki) {zim}
+  [end] # (Accessories)
+  [submenu] (Development)
+    [exec] (CMake) {cmake-gui }
+    [exec] (Geany) {geany }
+    [exec] (Glade) {glade-3 }
+    [exec] (Meld) {meld }
+    [exec] (Poedit) {poedit }
+    [exec] (Qt4 Assistant) {assistant}
+    [exec] (Qt4 Designer) {designer}
+    [exec] (Qt4 Linguist) {linguist}
+    [exec] (RStudio) {/usr/lib64/rstudio/bin/rstudio }
+  [end] # (Development)
+  [submenu] (Education)
+    [exec] (LibreOffice 4.4 Math) {libreoffice4.4 --math }
+    [exec] (R) {xterm -e R}
+  [end] # (Education)
+  [submenu] (Games)
+    [exec] (KEGS) {xterm -e aoss xkegs}
+  [end] # (Games)
+  [submenu] (Graphics)
+    [exec] (Dia Diagram Editor) {dia }
+    [exec] (E-book Viewer) {ebook-viewer }
+    [exec] (GNU Image Manipulation Program) {gimp-2.8 }
+    [exec] (Gcolor2) {gcolor2}
+    [exec] (LRF Viewer) {lrfviewer }
+    [exec] (LibreOffice 4.4 Draw) {libreoffice4.4 --draw }
+    [exec] (Simple Scan) {simple-scan}
+    [exec] (Viewnior) {viewnior }
+  [end] # (Graphics)
+  [submenu] (Multimedia)
+    [exec] (Asunder CD Ripper) {asunder}
+    [exec] (Audacity) {audacity }
+    [exec] (Ex Falso) {exfalso}
+    [exec] (Exaile) {exaile }
+    [exec] (GNOME MPlayer) {gnome-mplayer }
+    [exec] (Gaupol) {gaupol }
+    [exec] (ISO Master) {isomaster}
+    [exec] (Quod Libet) {quodlibet}
+  [end] # (Multimedia)
+  [submenu] (Network)
+    [exec] (Claws Mail) {claws-mail }
+    [exec] (Firefox) {firefox }
+    [exec] (Pidgin Internet Messenger) {pidgin}
+    [exec] (Transmission) {transmission-gtk }
+    [exec] (gFTP) {gftp }
+    [exec] (ownCloud desktop sync client) {/usr/bin/owncloud}
+  [end] # (Network)
+  [submenu] (Office)
+    [exec] (Atril Document Viewer) {atril }
+    [exec] (Dictionary) {mate-dictionary}
+    [exec] (HTMLDOC) {htmldoc }
+    [exec] (LibreOffice 4.4 Base) {libreoffice4.4 --base }
+    [exec] (LibreOffice 4.4 Calc) {libreoffice4.4 --calc }
+    [exec] (LibreOffice 4.4 Impress) {libreoffice4.4 --impress }
+    [exec] (LibreOffice 4.4 Writer) {libreoffice4.4 --writer }
+    [exec] (calibre) {calibre }
+  [end] # (Office)
+  [submenu] (Settings)
+    [exec] (Bluetooth Manager) {blueman-manager}
+    [exec] (Power Management) {mate-power-preferences}
+    [exec] (Qt4 Config) {qtconfig}
+    [exec] (Screensaver) {xscreensaver-demo}
+  [end] # (Settings)
+  [submenu] (System)
+    [exec] (ALSA sound card) {gksu gtkalsasetup}
+    [exec] (Disk Usage Analyzer) {mate-disk-usage-analyzer}
+    [exec] (Dotnew) {gksu dotnew-gtk}
+    [exec] (Grsync) {/usr/bin/grsync -i }
+    [exec] (Gslapt Package Manager) {gksu /usr/sbin/gslapt}
+    [exec] (Hostnames) {gksu gtkhostsetup}
+    [exec] (Htop) {xterm -e htop}
+    [exec] (Keyboard) {gksu gtkkeyboardsetup}
+    [exec] (Log File Viewer) {mate-system-log}
+    [exec] (MATE Terminal) {mate-terminal}
+    [exec] (Manage Printing) {/usr/bin/xdg-open http://localhost:631/}
+    [exec] (Power Statistics) {mate-power-statistics}
+    [exec] (Sourcery SlackBuild Manager) {gksu sourcery}
+    [exec] (System clock) {gksu gtkclocksetup}
+    [exec] (System language) {gksu gtklocalesetup}
+    [exec] (System services) {gksu gtkservicesetup}
+    [exec] (Users and groups) {gksu gtkusersetup}
+    [exec] (dconf Editor) {dconf-editor}
+  [end] # (System)
+[end] # (Applications)
