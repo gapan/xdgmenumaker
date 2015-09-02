@@ -17,7 +17,7 @@ install:
 	fi
 	sed -i "s|^prefix = 'not_set'|prefix = '$(PREFIX)'|" $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
 
-clean:
+clean: test-clean
 	rm -f man/xdgmenumaker.1
 
 test:
