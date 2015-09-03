@@ -119,20 +119,24 @@ other = de.getName().encode('utf-8')
 other_icon = de.getIcon()
 # Find out which terminal emulator to use for apps that need to be
 # launched in a terminal.
-# First see if there is a user specified terminal emulator in the
+# First check if the XDGMENUMAKERTERM environment variable is set and use it if
+# it is.
+# Then see if there is a user specified terminal emulator in the
 # xdgmenumaker.cfg file.
-try:
-    config = ConfigParser.SafeConfigParser()
-    config.read(os.path.expanduser('~/.config/xdgmenumaker.cfg'))
-    terminal_app = config.get('Terminal', 'terminal')
-# if there isn't, on debian and debian-likes, use the alternatives
-# system, otherwise default to xterm
-except (ConfigParser.NoSectionError, ConfigParser.NoOptionError) as e:
-    if (os.path.exists('/etc/alternatives/x-terminal-emulator')
-            and os.path.exists('/usr/bin/x-terminal-emulator')):
-        terminal_app = '/usr/bin/x-terminal-emulator'
-    else:
-        terminal_app = 'xterm'
+terminal_app = os.getenv("XDGMENUMAKERTERM")
+if not terminal_app:
+    try:
+        config = ConfigParser.SafeConfigParser()
+        config.read(os.path.expanduser('~/.config/xdgmenumaker.cfg'))
+        terminal_app = config.get('Terminal', 'terminal')
+    # if there isn't, on debian and debian-likes, use the alternatives
+    # system, otherwise default to xterm
+    except (ConfigParser.NoSectionError, ConfigParser.NoOptionError) as e:
+        if (os.path.exists('/etc/alternatives/x-terminal-emulator')
+                and os.path.exists('/usr/bin/x-terminal-emulator')):
+            terminal_app = '/usr/bin/x-terminal-emulator'
+        else:
+            terminal_app = 'xterm'
 
 
 def main(argv):
