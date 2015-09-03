@@ -1,0 +1,9 @@
+When running:
+
+    make test
+
+it's normal that you'll get the tests that produce menus with icons to
+report FAIL. You really shouldn't worry about those, as the only way to
+make them report PASS would be for you to use the exact same icon theme
+I'm using and have the same applications installed in your system, which
+you most probably don't. These tests are meant mostly for my own testing.
