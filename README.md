@@ -116,7 +116,7 @@ Dynamic Menus
 -------------
 
 Edit your `~/.pekwm/menu` file with your favourite text editor and add
-a like like the following one in the location that you want the
+a line like the following one in the location that you want the
 dynamically generated menu to appear:
 
     Entry = "" { Actions = "Dynamic /usr/bin/xdgmenumaker -n -i -f pekwm --pekwm-dynamic" }
