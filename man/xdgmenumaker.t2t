@@ -85,6 +85,9 @@ xdgmenumaker will default to the one specified in the debian
 alternatives system on debian and debian-like systems and to xterm in
 any other case.
 
+Setting the path to a terminal emulator in an //XDGMENUMAKERTERM//
+environment variable will override any other setting.
+
 
 = USAGE =
 
