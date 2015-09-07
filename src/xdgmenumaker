@@ -26,7 +26,7 @@ pekwmdynamic = False
 # for them, where they should be if this was installed properly
 prefix = 'not_set'
 if prefix == 'not_set':
-    desktop_dir = '../desktop-directories/'
+    desktop_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'desktop-directories/')
 else:
     desktop_dir = prefix + '/share/desktop-directories/'
 
@@ -619,7 +619,7 @@ def compizboxmenu():
         else:
             print(spacing + '<menu name="' + category + '">')
         for app in menu_category.applist:
-            name = app.name
+            name = app.name.replace('&', '&amp;')
             icon = app.icon
             command = app.command
             path = app.path
@@ -629,11 +629,11 @@ def compizboxmenu():
                 print(('{}<item type="launcher"><name>{}</name>'
                             '<icon>{}</icon>'
                             '<command>{}</command></item>').format(spacing,
-                            name, icon, command))
+                            name, icon, command.replace('&', '&amp;')))
             else:
                 print(('{}<item type="launcher"><name>{}</name>'
                             '<command>{}</command></item>').format(spacing,
-                            name, command))
+                            name, command.replace('&', '&amp;')))
         print(spacing + '</menu>')
     if submenu:
         print('</menu>')
