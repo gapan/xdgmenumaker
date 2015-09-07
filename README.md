@@ -206,4 +206,44 @@ updated. The upside is that the menu will not be generated every time
 you access the menu. This might be a better choice for (really) older
 hardware.
 
+Compiz Boxmenu
+==============
+There are two ways to have an xdg menu in compiz-boxmenu. The first one,
+auto-updates the menu, every time the menu is called. The second one,
+updates the menu only when the user wants to.
+
+Also, keep in mind that Compiz Boxmenu supports multiple formats. Thus
+
+Dynamic Menus
+-------------
+Edit your `~/.config/compiz/boxmenu/menu.xml` file with your favorite text 
+editor and add a block of code like this inside the root `<menu>` element:
+
+~~~
+<item type="launcher">
+	<command mode2="pipe">xdgmenumaker -nif compizboxmenu</command>
+	<icon>applications</icon>
+	<name>Applications</name>
+</item>
+~~~
+
+Alternatively, you can also run `compiz-boxmenu-editor` and click the 
+dropdown for new menu files or menu items. Select launcher to create a 
+new launcher. Set the name of the launcher to whatever you want. This will
+be the display name for the pipe menu. Then enter in
+`xdgmenumaker -nif compizboxmenu` for the command entry. Click the combobox
+next to the command text box and switch that to "Pipe".
+
+
+Static Menus
+------------
+Edit your `~/.config/compiz/boxmenu/menu.xml` file with your favorite text 
+editor and paste the output of `xdgmenumaker -if compizboxmenu` into
+`~/.config/compiz/boxmenu/menu.xml`.
+
+Alternatively, you can also run `compiz-boxmenu-editor` and click the
+button that says `Generate menu entries from a pipemenu script`. In the dialog
+box that pops up, type in `xdgmenumaker -if compizboxmenu` or 
+`xdgmenumaker -nif compizboxmenu` to append the statically generated
+menu to any menu file you want.
 
