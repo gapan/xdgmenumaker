@@ -216,6 +216,18 @@ def usage():
     print('    xdgmenumaker -i -f fluxbox')
 
 
+def icon_strip(icon):
+    # strip the directory and extension from the icon name
+    icon = os.path.basename(icon)
+    if icon.endswith('.png'):
+        icon = icon.replace('.png', '')
+    elif icon.endswith('.svg'):
+        icon = icon.replace('.svg', '')
+    elif icon.endswith('.xpm'):
+        icon = icon.replace('.xpm', '')
+    return icon
+
+
 def icon_full_path(icon):
     # If the icon path is absolute and exists, leave it alone.
     # This takes care of software that has its own icons stored
@@ -223,13 +235,7 @@ def icon_full_path(icon):
     if os.path.exists(icon):
         return icon
     else:
-        icon = os.path.basename(icon)
-        if icon.endswith('.png'):
-            icon = icon.replace('.png', '')
-        elif icon.endswith('.svg'):
-            icon = icon.replace('.svg', '')
-        elif icon.endswith('.xpm'):
-            icon = icon.replace('.xpm', '')
+        icon = icon_strip(icon)
         icon_theme = gtk.icon_theme_get_default()
         icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
         if icon:
@@ -257,7 +263,6 @@ def get_entry_info(desktopfile, ico_paths=True):
     name = de.getName().encode('utf-8')
 
     if seticon:
-        # strip the directory and extension from the icon name
         icon = de.getIcon()
         if ico_paths:
             icon = icon_full_path(icon)
