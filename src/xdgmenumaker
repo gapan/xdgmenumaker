@@ -266,6 +266,8 @@ def get_entry_info(desktopfile, ico_paths=True):
         icon = de.getIcon()
         if ico_paths:
             icon = icon_full_path(icon)
+        else:
+            icon = icon_strip(icon)
     else:
         icon = None
 
