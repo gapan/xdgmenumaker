@@ -70,7 +70,7 @@ Static Menus
 Edit your `~/.config/compiz/boxmenu/menu.xml` file with your favorite text 
 editor and paste the output of:
 
-    xdgmenumaker -if compizboxmenu
+    $ xdgmenumaker -if compizboxmenu
 
 into `~/.config/compiz/boxmenu/menu.xml`.
 
