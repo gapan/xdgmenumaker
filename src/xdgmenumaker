@@ -206,7 +206,7 @@ def usage():
     print('                         menus. Does not work with windowmaker')
     print('    -s, --size           preferred icon size in pixels (default: 16)')
     print('    -n, --no-submenu     do not create a submenu. Does not work with')
-    print('                         compizboxmenu and windowmaker')
+    print('                         windowmaker')
     print('        --pekwm-dynamic  generate dynamic menus for pekwm')
     print('    -h, --help           show this help message')
     print('  You have to specify the output format using the -f switch.')
