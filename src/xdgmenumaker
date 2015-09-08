@@ -189,6 +189,7 @@ def main(argv):
     elif desktop == "jwm":
         jwmmenu()
     elif desktop == "compizboxmenu":
+        submenu = False
         compizboxmenu()
     else:
         usage()
