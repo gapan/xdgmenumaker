@@ -118,8 +118,6 @@ There are two ways to have an xdg menu in compiz-boxmenu. The first one,
 auto-updates the menu, every time the menu is called. The second one,
 updates the menu only when the user wants to.
 
-Also, keep in mind that Compiz Boxmenu supports multiple formats. Thus
-
 **Dynamic Menus**
 
 Edit your //~/.config/compiz/boxmenu/menu.xml// file with your favorite text
@@ -138,7 +136,7 @@ dropdown for new menu files or menu items. Select launcher to create a
 new launcher. Set the name of the launcher to whatever you want. This will
 be the display name for the pipe menu. Then enter in:
 
-``xdgmenumaker -if compizboxmenu``
+``xdgmenumaker -nif compizboxmenu``
 
 for the command entry. Click the combobox
 next to the command text box and switch that to "Pipe".
