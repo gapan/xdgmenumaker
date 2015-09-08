@@ -607,11 +607,8 @@ def compizboxmenu():
     if submenu:
         spacing = '  '
         if seticon:
-            app_icon = icon_full_path(applications_icon)
-            if app_icon is None:
-                print('<menu name="' + applications + '">')
-            else:
-                print('<menu icon="' + app_icon +
+            app_icon = icon_strip(applications_icon)
+            print('<menu icon="' + app_icon +
                       '" name="' + applications + '">')
         else:
             print('<menu name="' + applications + '">')
