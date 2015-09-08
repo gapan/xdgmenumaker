@@ -1,0 +1,95 @@
+<menu name="Applications">
+  <menu name="Accessories">
+    <item type="launcher"><name>Engrampa Archive Manager</name><command>engrampa </command></item>
+    <item type="launcher"><name>GTKMan Manual Page Viewer</name><command>gtkman salix</command></item>
+    <item type="launcher"><name>Galculator</name><command>galculator</command></item>
+    <item type="launcher"><name>KeePassX</name><command>keepassx </command></item>
+    <item type="launcher"><name>Leafpad</name><command>leafpad </command></item>
+    <item type="launcher"><name>Search for Files...</name><command>mate-search-tool</command></item>
+    <item type="launcher"><name>Take Screenshot</name><command>mate-screenshot --interactive</command></item>
+    <item type="launcher"><name>Xournal</name><command>xournal </command></item>
+    <item type="launcher"><name>Zim Desktop Wiki</name><command>zim</command></item>
+  </menu>
+  <menu name="Development">
+    <item type="launcher"><name>CMake</name><command>cmake-gui </command></item>
+    <item type="launcher"><name>Geany</name><command>geany </command></item>
+    <item type="launcher"><name>Glade</name><command>glade-3 </command></item>
+    <item type="launcher"><name>Meld</name><command>meld </command></item>
+    <item type="launcher"><name>Poedit</name><command>poedit </command></item>
+    <item type="launcher"><name>Qt4 Assistant</name><command>assistant</command></item>
+    <item type="launcher"><name>Qt4 Designer</name><command>designer</command></item>
+    <item type="launcher"><name>Qt4 Linguist</name><command>linguist</command></item>
+    <item type="launcher"><name>RStudio</name><command>/usr/lib64/rstudio/bin/rstudio </command></item>
+  </menu>
+  <menu name="Education">
+    <item type="launcher"><name>LibreOffice 4.4 Math</name><command>libreoffice4.4 --math </command></item>
+    <item type="launcher"><name>R</name><command>xterm -e R</command></item>
+  </menu>
+  <menu name="Games">
+    <item type="launcher"><name>KEGS</name><command>xterm -e aoss xkegs</command></item>
+  </menu>
+  <menu name="Graphics">
+    <item type="launcher"><name>Dia Diagram Editor</name><command>dia </command></item>
+    <item type="launcher"><name>E-book Viewer</name><command>ebook-viewer </command></item>
+    <item type="launcher"><name>GNU Image Manipulation Program</name><command>gimp-2.8 </command></item>
+    <item type="launcher"><name>Gcolor2</name><command>gcolor2</command></item>
+    <item type="launcher"><name>LRF Viewer</name><command>lrfviewer </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Draw</name><command>libreoffice4.4 --draw </command></item>
+    <item type="launcher"><name>Simple Scan</name><command>simple-scan</command></item>
+    <item type="launcher"><name>Viewnior</name><command>viewnior </command></item>
+  </menu>
+  <menu name="Multimedia">
+    <item type="launcher"><name>Asunder CD Ripper</name><command>asunder</command></item>
+    <item type="launcher"><name>Audacity</name><command>audacity </command></item>
+    <item type="launcher"><name>Ex Falso</name><command>exfalso</command></item>
+    <item type="launcher"><name>Exaile</name><command>exaile </command></item>
+    <item type="launcher"><name>GNOME MPlayer</name><command>gnome-mplayer </command></item>
+    <item type="launcher"><name>Gaupol</name><command>gaupol </command></item>
+    <item type="launcher"><name>ISO Master</name><command>isomaster</command></item>
+    <item type="launcher"><name>Quod Libet</name><command>quodlibet</command></item>
+  </menu>
+  <menu name="Network">
+    <item type="launcher"><name>Claws Mail</name><command>claws-mail </command></item>
+    <item type="launcher"><name>Firefox</name><command>firefox </command></item>
+    <item type="launcher"><name>Pidgin Internet Messenger</name><command>pidgin</command></item>
+    <item type="launcher"><name>Transmission</name><command>transmission-gtk </command></item>
+    <item type="launcher"><name>gFTP</name><command>gftp </command></item>
+    <item type="launcher"><name>ownCloud desktop sync client</name><command>/usr/bin/owncloud</command></item>
+  </menu>
+  <menu name="Office">
+    <item type="launcher"><name>Atril Document Viewer</name><command>atril </command></item>
+    <item type="launcher"><name>Dictionary</name><command>mate-dictionary</command></item>
+    <item type="launcher"><name>HTMLDOC</name><command>htmldoc </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Base</name><command>libreoffice4.4 --base </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Calc</name><command>libreoffice4.4 --calc </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Impress</name><command>libreoffice4.4 --impress </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Writer</name><command>libreoffice4.4 --writer </command></item>
+    <item type="launcher"><name>calibre</name><command>calibre </command></item>
+  </menu>
+  <menu name="Settings">
+    <item type="launcher"><name>Bluetooth Manager</name><command>blueman-manager</command></item>
+    <item type="launcher"><name>Power Management</name><command>mate-power-preferences</command></item>
+    <item type="launcher"><name>Qt4 Config</name><command>qtconfig</command></item>
+    <item type="launcher"><name>Screensaver</name><command>xscreensaver-demo</command></item>
+  </menu>
+  <menu name="System">
+    <item type="launcher"><name>ALSA sound card</name><command>gksu gtkalsasetup</command></item>
+    <item type="launcher"><name>Disk Usage Analyzer</name><command>mate-disk-usage-analyzer</command></item>
+    <item type="launcher"><name>Dotnew</name><command>gksu dotnew-gtk</command></item>
+    <item type="launcher"><name>Grsync</name><command>/usr/bin/grsync -i </command></item>
+    <item type="launcher"><name>Gslapt Package Manager</name><command>gksu /usr/sbin/gslapt</command></item>
+    <item type="launcher"><name>Hostnames</name><command>gksu gtkhostsetup</command></item>
+    <item type="launcher"><name>Htop</name><command>xterm -e htop</command></item>
+    <item type="launcher"><name>Keyboard</name><command>gksu gtkkeyboardsetup</command></item>
+    <item type="launcher"><name>Log File Viewer</name><command>mate-system-log</command></item>
+    <item type="launcher"><name>MATE Terminal</name><command>mate-terminal</command></item>
+    <item type="launcher"><name>Manage Printing</name><command>/usr/bin/xdg-open http://localhost:631/</command></item>
+    <item type="launcher"><name>Power Statistics</name><command>mate-power-statistics</command></item>
+    <item type="launcher"><name>Sourcery SlackBuild Manager</name><command>gksu sourcery</command></item>
+    <item type="launcher"><name>System clock</name><command>gksu gtkclocksetup</command></item>
+    <item type="launcher"><name>System language</name><command>gksu gtklocalesetup</command></item>
+    <item type="launcher"><name>System services</name><command>gksu gtkservicesetup</command></item>
+    <item type="launcher"><name>Users and groups</name><command>gksu gtkusersetup</command></item>
+    <item type="launcher"><name>dconf Editor</name><command>dconf-editor</command></item>
+  </menu>
+</menu>

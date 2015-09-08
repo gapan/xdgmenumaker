@@ -14,6 +14,10 @@ generate:
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f blackbox > menus_test/blackbox_en
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f compizboxmenu > menus_test/compizboxmenu_en
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -if compizboxmenu > menus_test/compizboxmenu_icons_en
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox > menus_test/fluxbox_en
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox -i > menus_test/fluxbox_icons_en
