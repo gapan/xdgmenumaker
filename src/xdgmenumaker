@@ -26,7 +26,7 @@ pekwmdynamic = False
 # for them, where they should be if this was installed properly
 prefix = 'not_set'
 if prefix == 'not_set':
-    desktop_dir = '../desktop-directories/'
+    desktop_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'desktop-directories/')
 else:
     desktop_dir = prefix + '/share/desktop-directories/'
 
@@ -188,6 +188,8 @@ def main(argv):
         pekwmmenu()
     elif desktop == "jwm":
         jwmmenu()
+    elif desktop == "compizboxmenu":
+        compizboxmenu()
     else:
         usage()
         sys.exit(2)
@@ -235,7 +237,7 @@ def icon_full_path(icon):
         return icon
 
 
-def get_entry_info(desktopfile):
+def get_entry_info(desktopfile, ico_paths=True):
     de = dentry.DesktopEntry(filename=desktopfile)
 
     # skip processing the rest of the desktop entry if the item is to not be
@@ -257,7 +259,8 @@ def get_entry_info(desktopfile):
     if seticon:
         # strip the directory and extension from the icon name
         icon = de.getIcon()
-        icon = icon_full_path(icon)
+        if ico_paths:
+            icon = icon_full_path(icon)
     else:
         icon = None
 
@@ -349,11 +352,11 @@ def desktopfilelist():
     return filelist
 
 
-def menu():
+def menu(ico_paths=True):
     applist = []
     for desktopfile in desktopfilelist():
         try:
-            entry = get_entry_info(desktopfile)
+            entry = get_entry_info(desktopfile, ico_paths=ico_paths)
             if entry is not None:
                 applist.append(entry)
         except exc.ParsingError:
@@ -592,6 +595,48 @@ def jwmmenu():
     if submenu:
         print('</Menu>')
     print('</JWM>')
+
+def compizboxmenu():
+    if submenu:
+        spacing = '\t'
+        if seticon:
+            app_icon = icon_full_path(applications_icon)
+            if app_icon is None:
+                print('<menu name="' + applications + '">')
+            else:
+                print('<menu icon="' + app_icon +
+                      '" name="' + applications + '">')
+        else:
+            print('<menu name="' + applications + '">')
+    else:
+        spacing = ''
+    for menu_category in menu(ico_paths=False):
+        category = menu_category.category
+        cat_icon = category_icon(category)
+        if seticon and cat_icon is not None:
+            print(spacing + '<menu icon="' + cat_icon +
+                  '" name="' + category + '">')
+        else:
+            print(spacing + '<menu name="' + category + '">')
+        for app in menu_category.applist:
+            name = app.name.replace('&', '&amp;')
+            icon = app.icon
+            command = app.command
+            path = app.path
+            if path is not None:
+                command = 'sh -c \'cd "' + path.replace("'", "'\\''") + '" ; ' + command.replace("'", "'\\''") + '\''
+            if seticon and icon is not None:
+                print(('{}<item type="launcher"><name>{}</name>'
+                            '<icon>{}</icon>'
+                            '<command>{}</command></item>').format(spacing,
+                            name, icon, command.replace('&', '&amp;')))
+            else:
+                print(('{}<item type="launcher"><name>{}</name>'
+                            '<command>{}</command></item>').format(spacing,
+                            name, command.replace('&', '&amp;')))
+        print(spacing + '</menu>')
+    if submenu:
+        print('</menu>')
 
 if __name__ == "__main__":
     main(sys.argv[1:])
