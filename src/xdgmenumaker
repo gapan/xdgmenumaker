@@ -26,7 +26,7 @@ pekwmdynamic = False
 # for them, where they should be if this was installed properly
 prefix = 'not_set'
 if prefix == 'not_set':
-    desktop_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'desktop-directories/')
+    desktop_dir = '../desktop-directories/'
 else:
     desktop_dir = prefix + '/share/desktop-directories/'
 
