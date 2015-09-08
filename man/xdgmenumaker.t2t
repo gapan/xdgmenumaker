@@ -126,7 +126,7 @@ editor and add a block of code like this inside the root //<menu>// element:
 ```
 <item type="launcher">
   <command mode2="pipe">xdgmenumaker -nif compizboxmenu</command>
-  <icon>applications</icon>
+  <icon>applications-other</icon>
   <name>Applications</name>
 </item>
 ```
