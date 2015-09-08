@@ -141,7 +141,6 @@ be the display name for the pipe menu. Then enter in:
 for the command entry. Click the combobox
 next to the command text box and switch that to "Pipe".
 
-
 **Static Menus**
 
 Edit your //~/.config/compiz/boxmenu/menu.xml// file with your favorite text
