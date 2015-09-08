@@ -635,7 +635,7 @@ def compizboxmenu():
                             '<command>{}</command></item>').format(spacing,
                             name, icon, command.replace('&', '&amp;')))
             else:
-                print(('{}<item type="launcher"><name>{}</name>'
+                print(('{}  <item type="launcher"><name>{}</name>'
                             '<command>{}</command></item>').format(spacing,
                             name, command.replace('&', '&amp;')))
         print(spacing + '</menu>')
