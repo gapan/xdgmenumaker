@@ -12,35 +12,35 @@ test: clean generate
 generate:
 	mkdir -p menus_test
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f blackbox > menus_test/blackbox_en
+		$(PYTHON) $(MM) -f blackbox > menus_test/blackbox
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f compizboxmenu > menus_test/compizboxmenu_en
+		$(PYTHON) $(MM) -f compizboxmenu > menus_test/compizboxmenu
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -if compizboxmenu > menus_test/compizboxmenu_icons_en
+		$(PYTHON) $(MM) -if compizboxmenu > menus_test/compizboxmenu_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f fluxbox > menus_test/fluxbox_en
+		$(PYTHON) $(MM) -f fluxbox > menus_test/fluxbox
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f fluxbox -i > menus_test/fluxbox_icons_en
+		$(PYTHON) $(MM) -f fluxbox -i > menus_test/fluxbox_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f fluxbox -i -s 48 > menus_test/fluxbox_icons48_en
+		$(PYTHON) $(MM) -f fluxbox -i -s 48 > menus_test/fluxbox_icons48
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=el_GR.utf8 \
 		$(PYTHON) $(MM) -f fluxbox > menus_test/fluxbox_el
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f fluxbox -n > menus_test/fluxbox_nosubmenu_en
+		$(PYTHON) $(MM) -f fluxbox -n > menus_test/fluxbox_nosubmenu
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f icewm > menus_test/icewm_en
+		$(PYTHON) $(MM) -f icewm > menus_test/icewm
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=de_DE.utf8 \
 		$(PYTHON) $(MM) -f icewm > menus_test/icewm_de
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f jwm > menus_test/jwm_en
+		$(PYTHON) $(MM) -f jwm > menus_test/jwm
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=fr_FR.utf8 \
 		$(PYTHON) $(MM) -f jwm > menus_test/jwm_fr
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f pekwm > menus_test/pekwm_en
+		$(PYTHON) $(MM) -f pekwm > menus_test/pekwm
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f pekwm --pekwm-dynamic > menus_test/pekwm_dynamic_en
+		$(PYTHON) $(MM) -f pekwm --pekwm-dynamic > menus_test/pekwm_dynamic
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
-		$(PYTHON) $(MM) -f windowmaker > menus_test/windowmaker_en
+		$(PYTHON) $(MM) -f windowmaker > menus_test/windowmaker
 
 clean:
 	rm -rf menus_test
