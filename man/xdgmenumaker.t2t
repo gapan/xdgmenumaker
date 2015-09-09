@@ -301,8 +301,9 @@ Run:
 
 ``$ xdgmenumaker -f windowmaker > ~/GNUstep/Defaults/xdg_menu``
 
-Then open the WindowMaker preferences tool and in the //Application Menu
-Definition// section, add an //External Submenu// by dragging it in your menu.
+Then open the WindowMaker preferences tool and in the
+//Application Menu Definition// section, add an
+//External Submenu// by dragging it in your menu.
 Click on the menu item you just dragged in and in the preferences
 window, in //Path for Menu//, add the location of the menu file you just
 created:
