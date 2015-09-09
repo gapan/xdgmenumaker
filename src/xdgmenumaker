@@ -176,18 +176,18 @@ def main(argv):
         usage()
         sys.exit('ERROR: You must specify the output format with -f')
     elif desktop == "blackbox":
-        blackboxmenu()
+        blackbox()
     elif desktop == "fluxbox":
-        fluxboxmenu()
+        fluxbox()
     elif desktop == "windowmaker":
         seticon = False
-        windowmakermenu()
+        windowmaker()
     elif desktop == "icewm":
-        icewmmenu()
+        icewm()
     elif desktop == "pekwm":
         pekwmmenu()
     elif desktop == "jwm":
-        jwmmenu()
+        jwm()
     elif desktop == "compizboxmenu":
         compizboxmenu()
     else:
@@ -409,14 +409,14 @@ def category_icon(category):
         icon = None
     return icon
 
-def blackboxmenu():
+def blackbox():
     # Blackbox menus are the same as Fluxbox menus. They just don't support
     # icons.
     global seticon
     seticon = False
-    fluxboxmenu()
+    fluxbox()
 
-def fluxboxmenu():
+def fluxbox():
     if submenu:
         spacing = '  '
         if seticon:
@@ -460,7 +460,7 @@ def fluxboxmenu():
         print('[end] # (' + applications + ')')
 
 
-def windowmakermenu():
+def windowmaker():
     print('"' + applications + '" MENU')
     for menu_category in menu():
         category = menu_category.category
@@ -473,7 +473,7 @@ def windowmakermenu():
     print('"' + applications + '" END')
 
 
-def icewmmenu():
+def icewm():
     if submenu:
         spacing = '  '
         if seticon:
@@ -560,7 +560,7 @@ def pekwmmenu():
         print("}")
 
 
-def jwmmenu():
+def jwm():
     print('<?xml version="1.0"?>')
     print('<JWM>')
     if submenu:
