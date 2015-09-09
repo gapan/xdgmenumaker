@@ -280,8 +280,8 @@ properly with older WindowMaker versions.
 
 **Dynamic Menus**
 
-Open the WindowMaker preferences tool. In the //Application Menu
-Definition// section, add a //Generated Submenu// in your menu, by dragging it
+Open the WindowMaker preferences tool. In the //Application Menu Definition//
+section, add a //Generated Submenu// in your menu, by dragging it
 in. Click on the menu item you just dragged in and in the preferences
 window, in //Command//, add:
 
