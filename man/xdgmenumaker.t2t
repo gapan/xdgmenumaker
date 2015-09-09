@@ -131,7 +131,7 @@ editor and add a block of code like this inside the root //<menu>// element:
 </item>
 ```
 
-Alternatively, you can also run //compiz-boxmenu-editor// and click the
+Alternatively, you can also run **compiz-boxmenu-editor** and click the
 dropdown for new menu files or menu items. Select launcher to create a
 new launcher. Set the name of the launcher to whatever you want. This will
 be the display name for the pipe menu. Then enter in:
@@ -150,7 +150,7 @@ editor and paste the output of:
 
 into //~/.config/compiz/boxmenu/menu.xml//.
 
-Alternatively, you can also run //compiz-boxmenu-editor// and click the
+Alternatively, you can also run **compiz-boxmenu-editor** and click the
 button that says //Generate menu entries from a pipemenu script//. In the dialog
 box that pops up, type in:
 
