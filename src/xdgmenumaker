@@ -38,6 +38,7 @@ class App:
     '''
     A class to keep individual app details in.
     '''
+
     def __init__(self, name, icon, command, path):
         self.name = name
         self.icon = icon
@@ -46,26 +47,30 @@ class App:
 
     def __repr__(self):
         return repr((self.name, self.icon, self.command,
-            self.path))
+                     self.path))
+
 
 class MenuEntry:
     '''
     A class for each menu entry. Includes the class category and app details
     from the App class.
     '''
+
     def __init__(self, category, app):
         self.category = category
         self.app = app
 
     def __repr__(self):
         return repr((self.category, self.app.name, self.app.icon,
-            self.app.command, self.app.path))
+                     self.app.command, self.app.path))
+
 
 class MenuCategory:
     '''
     A class for each menu category. Keeps the category name and the list of
     apps that go in that category.
     '''
+
     def __init__(self, category, applist):
         self.category = category
         self.applist = applist
@@ -247,7 +252,7 @@ def get_entry_info(desktopfile, ico_paths=True):
     de = dentry.DesktopEntry(filename=desktopfile)
 
     # skip processing the rest of the desktop entry if the item is to not be
-    # displayed anyway 
+    # displayed anyway
     onlyshowin = de.getOnlyShowIn()
     notshowin = de.getNotShowIn()
     hidden = de.getHidden()
@@ -270,7 +275,6 @@ def get_entry_info(desktopfile, ico_paths=True):
             icon = icon_strip(icon)
     else:
         icon = None
-
 
     # removing any %U or %F from the exec line
     command = de.getExec().partition('%')[0]
@@ -409,12 +413,14 @@ def category_icon(category):
         icon = None
     return icon
 
+
 def blackbox():
     # Blackbox menus are the same as Fluxbox menus. They just don't support
     # icons.
     global seticon
     seticon = False
     fluxbox()
+
 
 def fluxbox():
     if submenu:
@@ -603,13 +609,14 @@ def jwm():
         print('</Menu>')
     print('</JWM>')
 
+
 def compizboxmenu():
     if submenu:
         spacing = '  '
         if seticon:
             app_icon = icon_strip(applications_icon)
             print('<menu icon="' + app_icon +
-                      '" name="' + applications + '">')
+                  '" name="' + applications + '">')
         else:
             print('<menu name="' + applications + '">')
     else:
@@ -628,16 +635,18 @@ def compizboxmenu():
             command = app.command
             path = app.path
             if path is not None:
-                command = 'sh -c \'cd "' + path.replace("'", "'\\''") + '" ; ' + command.replace("'", "'\\''") + '\''
+                command = 'sh -c \'cd "' + \
+                    path.replace("'", "'\\''") + '" ; ' + \
+                    command.replace("'", "'\\''") + '\''
             if seticon and icon is not None:
                 print(('{}  <item type="launcher"><name>{}</name>'
-                            '<icon>{}</icon>'
-                            '<command>{}</command></item>').format(spacing,
-                            name, icon, command.replace('&', '&amp;')))
+                       '<icon>{}</icon>'
+                       '<command>{}</command></item>').format(spacing,
+                                                              name, icon, command.replace('&', '&amp;')))
             else:
                 print(('{}  <item type="launcher"><name>{}</name>'
-                            '<command>{}</command></item>').format(spacing,
-                            name, command.replace('&', '&amp;')))
+                       '<command>{}</command></item>').format(spacing,
+                                                              name, command.replace('&', '&amp;')))
         print(spacing + '</menu>')
     if submenu:
         print('</menu>')
