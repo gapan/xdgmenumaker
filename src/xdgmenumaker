@@ -28,10 +28,10 @@ prefix = 'not_set'
 if prefix == 'not_set':
     desktop_dir = '../desktop-directories/'
 else:
-    desktop_dir = prefix + '/share/desktop-directories/'
+    desktop_dir = '{}/share/desktop-directories/'.format(prefix)
 
 if not os.path.isdir(desktop_dir):
-    sys.exit('ERROR: Could not find ' + desktop_dir)
+    sys.exit('ERROR: Could not find {}'.format(desktop_dir))
 
 
 class App:
@@ -277,7 +277,7 @@ def get_entry_info(desktopfile, ico_paths=True):
 
     terminal = de.getTerminal()
     if terminal:
-        command = terminal_app + ' -e ' + command
+        command = '{term} -e {cmd}'.format(term=terminal_app, cmd=command)
 
     path = de.getPath()
     if not path:
@@ -344,7 +344,7 @@ def desktopfilelist():
     filelist = []
     df_temp = []
     for d in dirs:
-        xdgdir = d + '/applications'
+        xdgdir = '{}/applications'.format(d)
         if os.path.isdir(xdgdir):
             for i in os.listdir(xdgdir):
                 if i.endswith('.desktop'):
@@ -355,7 +355,7 @@ def desktopfilelist():
                     # /usr/share/applications
                     if i not in df_temp:
                         df_temp.append(i)
-                        filelist.append(xdgdir + '/' + i)
+                        filelist.append('{}/{}'.format(xdgdir, i))
     return filelist
 
 
@@ -422,11 +422,11 @@ def fluxbox():
         if seticon:
             app_icon = icon_full_path(applications_icon)
             if app_icon is None:
-                print('[submenu] (' + applications + ')')
+                print('[submenu] ({})'.format(applications))
             else:
-                print('[submenu] (' + applications + ') <' + app_icon + '>')
+                print('[submenu] ({}) <{}>'.format(applications, app_icon))
         else:
-            print('[submenu] (' + applications + ')')
+            print('[submenu] ({})'.format(applications))
     else:
         spacing = ''
     for menu_category in menu():
@@ -435,12 +435,12 @@ def fluxbox():
             cat_icon = category_icon(category)
             cat_icon = icon_full_path(cat_icon)
             if cat_icon:
-                print(spacing + '[submenu] (' +
-                      category + ') <' + cat_icon + '>')
+                print('{s}[submenu] ({c}) <{i}>'.format(s=spacing, c=category,
+                                                        i=cat_icon))
             else:
-                print(spacing + '[submenu] (' + category + ')')
+                print('{s}[submenu] ({c})'.format(s=spacing, c=category))
         else:
-            print(spacing + '[submenu] (' + category + ')')
+            print('{s}[submenu] ({c})'.format(s=spacing, c=category))
         for app in menu_category.applist:
             # closing parentheses need to be escaped, otherwise they are
             # cropped out, along with everything that comes after them
@@ -449,28 +449,31 @@ def fluxbox():
             command = app.command
             path = app.path
             if path is not None:
-                command = 'cd ' + path + ' ; ' + command
+                command = 'cd {p} ; {c}'.format(p=path, c=command)
             if icon is None:
-                print(spacing + '  [exec] (' + name + ') {' + command + '}')
+                print('{s}  [exec] ({n}) {{{c}}}'.format(s=spacing, n=name,
+                                                         c=command))
             else:
-                print(spacing + '  [exec] (' + name +
-                      ') {' + command + '} <' + icon + '>')
-        print(spacing + '[end] # (' + category + ')')
+                print('{s}  [exec] ({n}) {{{c}}} <{i}>'.format(s=spacing,
+                                                               n=name,
+                                                               c=command,
+                                                               i=icon))
+        print('{s}[end] # ({c})'.format(s=spacing, c=category))
     if submenu:
-        print('[end] # (' + applications + ')')
+        print('[end] # ({})'.format(applications))
 
 
 def windowmaker():
-    print('"' + applications + '" MENU')
+    print('"{}" MENU'.format(applications))
     for menu_category in menu():
         category = menu_category.category
-        print(' "' + category + '" MENU')
+        print(' "{}" MENU'.format(category))
         for app in menu_category.applist:
             name = app.name
             command = app.command
-            print('  "' + name + '" EXEC ' + command)
-        print(' "' + category + '" END')
-    print('"' + applications + '" END')
+            print('  "{n}" EXEC {c}'.format(n=name, c=command))
+        print(' "{}" END'.format(category))
+    print('"{}" END'.format(applications))
 
 
 def icewm():
@@ -480,9 +483,9 @@ def icewm():
             app_icon = icon_full_path(applications_icon)
             if app_icon is None:
                 app_icon = "_none_"
-            print('menu "' + applications + '" ' + app_icon + ' {')
+            print('menu "{a}" {i} {{'.format(a=applications, i=app_icon))
         else:
-            print('menu "' + applications + '" _none_ {')
+            print('menu "{}" _none_ {{'.format(applications))
     else:
         spacing = ''
     for menu_category in menu():
@@ -490,19 +493,21 @@ def icewm():
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
         if seticon and cat_icon is not None:
-            print(spacing + 'menu "' + category + '" ' + cat_icon + ' {')
+            print('{s}menu "{c}" {i} {{'.format(s=spacing, c=category,
+                                                i=cat_icon))
         else:
-            print(spacing + 'menu "' + category + '" _none_ {')
+            print('{s}menu "{c}" _none_ {{'.format(s=spacing, c=category))
         for app in menu_category.applist:
             name = app.name
             icon = app.icon
             command = app.command
             if seticon and icon is not None:
-                print(spacing + '  prog "' + name +
-                      '" ' + icon + ' ' + command)
+                print('{s}  prog "{n}" {i} {c}'.format(s=spacing, n=name,
+                                                        i=icon, c=command))
             else:
-                print(spacing + '  prog "' + name + '" _none_ ' + command)
-        print(spacing + '}')
+                print('{s}  prog "{n}" _none_ {c}'.format(s=spacing, n=name,
+                                                          c=command))
+        print('{}}}'.format(spacing))
     if submenu:
         print('}')
 
@@ -517,10 +522,11 @@ def pekwmmenu():
         spacing = '  '
         if seticon:
             app_icon = icon_full_path(applications_icon)
-            print(dspacing + 'Submenu = "' + applications +
-                  '" { Icon = "' + app_icon + '"')
+            print('{s}Submenu = "{a}" {{ Icon = "{i}"'.format(s=dspacing,
+                                                              a=applications,
+                                                              i=app_icon))
         else:
-            print(dspacing + 'Submenu = "' + applications + '" {')
+            print('{s}Submenu = "{a}" {{'.format(s=dspacing, a=applications))
     else:
         spacing = ''
     for menu_category in menu():
@@ -528,10 +534,13 @@ def pekwmmenu():
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
         if seticon and cat_icon is not None:
-            print(dspacing + spacing + 'Submenu = "' +
-                  category + '" { Icon = "' + cat_icon + '"')
+            print('{d}{s}Submenu = "{c}" {{ Icon = "{i}"'.format(d=dspacing,
+                                                                 s=spacing,
+                                                                 c=category,
+                                                                 i=cat_icon))
         else:
-            print(dspacing + spacing + 'Submenu = "' + category + '" {')
+            print('{d}{s}Submenu = "{c}" {{'.format(d=dspacing, s=spacing,
+                                                   c=category))
         for app in menu_category.applist:
             name = app.name
             icon = app.icon
@@ -545,17 +554,17 @@ def pekwmmenu():
                 # pekwm doesn't like "cd path ; command", but it works
                 # with "&&" and "||", so we'll launch the command even if the
                 # path does not exist
-                command = 'cd ' + path + ' && ' + command + ' || ' + command
+                command = 'cd {p} && {c} || {c}'.format(p=path, c=command)
             if seticon and icon is not None:
-                print(dspacing + spacing + '  Entry = "' + name +
-                      '" { Icon = "' + icon + '"; Actions = "Exec ' +
-                      command + ' &" }')
+                print('{d}{s}  Entry = "{n}" {{ Icon = "{i}"; Actions = "Exec {c} &" }}'
+                        .format(d=dspacing, s=spacing, n=name, i=icon,
+                                c=command))
             else:
-                print(dspacing + spacing + '  Entry = "' + name +
-                      '" { Actions = "Exec ' + command + ' &" }')
-        print(dspacing + spacing + '}')
+                print('{d}{s}  Entry = "{n}" {{ Actions = "Exec {c} &" }}'
+                        .format(d=dspacing, s=spacing, n=name, c=command))
+        print('{d}{s}}}'.format(d=dspacing, s=spacing))
     if submenu:
-        print(dspacing + '}')
+        print('{}}}'.format(dspacing))
     if pekwmdynamic:
         print("}")
 
@@ -568,12 +577,12 @@ def jwm():
         if seticon:
             app_icon = icon_full_path(applications_icon)
             if app_icon is None:
-                print('<Menu label="' + applications + '">')
+                print('<Menu label="{}">'.format(applications))
             else:
-                print('<Menu icon="' + app_icon +
-                      '" label="' + applications + '">')
+                print('<Menu icon="{i}" label="{a}">'.format(i=app_icon,
+                                                             a=applications))
         else:
-            print('<Menu label="' + applications + '">')
+            print('<Menu label="{}">'.format(applications))
     else:
         spacing = ''
     for menu_category in menu():
@@ -581,24 +590,25 @@ def jwm():
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
         if seticon and cat_icon is not None:
-            print(spacing + '<Menu icon="' + cat_icon +
-                  '" label="' + category + '">')
+            print('{s}<Menu icon="{i}" label="{c}">'.format(s=spacing,
+                                                            i=cat_icon,
+                                                            c=category))
         else:
-            print(spacing + '<Menu label="' + category + '">')
+            print('{s}<Menu label="{c}">'.format(s=spacing, c=category))
         for app in menu_category.applist:
             name = app.name
             icon = app.icon
             command = app.command
             path = app.path
             if path is not None:
-                command = 'cd ' + path + ' ; ' + command
+                command = 'cd {p} ; {c}'.format(p=path, c=command)
             if seticon and icon is not None:
-                print(spacing + '  <Program icon="' + icon +
-                      '" label="' + name + '">' + command + '</Program>')
+                print('{s}  <Program icon="{i}" label="{n}">{c}</Program>'
+                        .format(s=spacing, i=icon, n=name, c=command))
             else:
-                print(spacing + '  <Program label="' +
-                      name + '">' + command + '</Program>')
-        print(spacing + '</Menu>')
+                print('{s}  <Program label="{n}">{c}</Program>'
+                        .format(s=spacing, n=name, c=command))
+        print('{}</Menu>'.format(spacing))
     if submenu:
         print('</Menu>')
     print('</JWM>')
@@ -608,37 +618,37 @@ def compizboxmenu():
         spacing = '  '
         if seticon:
             app_icon = icon_strip(applications_icon)
-            print('<menu icon="' + app_icon +
-                      '" name="' + applications + '">')
+            print('<menu icon="{i}" name="{a}">'.format(i=app_icon,
+                                                        a=applications))
         else:
-            print('<menu name="' + applications + '">')
+            print('<menu name="{}">'.format(applications))
     else:
         spacing = ''
     for menu_category in menu(ico_paths=False):
         category = menu_category.category
         cat_icon = category_icon(category)
         if seticon and cat_icon is not None:
-            print(spacing + '<menu icon="' + cat_icon +
-                  '" name="' + category + '">')
+            print('{s}<menu icon="{i}" name="{c}">'.format(s=spacing, i=cat_icon, c=category))
         else:
-            print(spacing + '<menu name="' + category + '">')
+            print('{s}<menu name="{c}">'.format(s=spacing, c=category))
         for app in menu_category.applist:
             name = app.name.replace('&', '&amp;')
             icon = app.icon
-            command = app.command
+            command = app.command.replace("'", "'\\''").replace('&', '&amp;')
             path = app.path
             if path is not None:
-                command = 'sh -c \'cd "' + path.replace("'", "'\\''") + '" ; ' + command.replace("'", "'\\''") + '\''
+                path = path.replace("'", "'\\''")
+                command = 'sh -c \'cd "{p}" ;{c}\''.format(p=path, c=command)
             if seticon and icon is not None:
-                print(('{}  <item type="launcher"><name>{}</name>'
-                            '<icon>{}</icon>'
-                            '<command>{}</command></item>').format(spacing,
-                            name, icon, command.replace('&', '&amp;')))
+                print(('{s}  <item type="launcher"><name>{n}</name>'
+                            '<icon>{i}</icon>'
+                            '<command>{c}</command></item>').format(s=spacing,
+                            n=name, i=icon, c=command))
             else:
-                print(('{}  <item type="launcher"><name>{}</name>'
-                            '<command>{}</command></item>').format(spacing,
-                            name, command.replace('&', '&amp;')))
-        print(spacing + '</menu>')
+                print(('{s}  <item type="launcher"><name>{n}</name>'
+                            '<command>{c}</command></item>').format(s=spacing,
+                            n=name, c=command))
+        print('{}</menu>'.format(spacing))
     if submenu:
         print('</menu>')
 
