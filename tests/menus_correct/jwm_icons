@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<JWM>
+<Menu icon="/usr/share/icons/mate/16x16/categories/applications-other.png" label="Applications">
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/applications-accessories.png" label="Accessories">
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/engrampa.png" label="Engrampa Archive Manager">engrampa </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtkman.png" label="GTKMan Manual Page Viewer">gtkman salix</Program>
+    <Program icon="/usr/share/icons/hicolor/48x48/apps/galculator.png" label="Galculator">galculator</Program>
+    <Program icon="/usr/share/pixmaps/keepassx.xpm" label="KeePassX">keepassx </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/leafpad.png" label="Leafpad">leafpad </Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/actions/system-search.png" label="Search for Files...">mate-search-tool</Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/devices/applets-screenshooter.png" label="Take Screenshot">mate-screenshot --interactive</Program>
+    <Program label="Xournal">xournal </Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/zim.png" label="Zim Desktop Wiki">zim</Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/applications-development.png" label="Development">
+    <Program icon="/usr/share/pixmaps/CMakeSetup32.png" label="CMake">cmake-gui </Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/geany.png" label="Geany">geany </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/glade-3.png" label="Glade">glade-3 </Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/meld.png" label="Meld">meld </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/poedit.png" label="Poedit">poedit </Program>
+    <Program icon="/usr/share/icons/hicolor/32x32/apps/assistant.png" label="Qt4 Assistant">assistant</Program>
+    <Program icon="/usr/share/icons/hicolor/128x128/apps/designer.png" label="Qt4 Designer">designer</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/linguist.png" label="Qt4 Linguist">linguist</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/rstudio.png" label="RStudio">/usr/lib64/rstudio/bin/rstudio </Program>
+  </Menu>
+  <Menu label="Education">
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-math.png" label="LibreOffice 4.4 Math">libreoffice4.4 --math </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/R.png" label="R">xterm -e R</Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/applications-games.png" label="Games">
+    <Program icon="/usr/share/pixmaps/kegs.png" label="KEGS">xterm -e aoss xkegs</Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate/16x16/categories/applications-graphics.png" label="Graphics">
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/dia.png" label="Dia Diagram Editor">dia </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/calibre-viewer.png" label="E-book Viewer">ebook-viewer </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gimp.png" label="GNU Image Manipulation Program">gimp-2.8 </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gcolor2.png" label="Gcolor2">gcolor2</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/calibre-viewer.png" label="LRF Viewer">lrfviewer </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-draw.png" label="LibreOffice 4.4 Draw">libreoffice4.4 --draw </Program>
+    <Program icon="/usr/share/icons/mate/16x16/devices/scanner.png" label="Simple Scan">simple-scan</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/viewnior.png" label="Viewnior">viewnior </Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/applications-multimedia.png" label="Multimedia">
+    <Program icon="/usr/share/icons/hicolor/48x48/apps/asunder.png" label="Asunder CD Ripper">asunder</Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/audacity.png" label="Audacity">audacity </Program>
+    <Program icon="/usr/share/icons/hicolor/64x64/apps/exfalso.png" label="Ex Falso">exfalso</Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/exaile.png" label="Exaile">exaile </Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/gnome-mplayer.png" label="GNOME MPlayer">gnome-mplayer </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gaupol.png" label="Gaupol">gaupol </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/isomaster.png" label="ISO Master">isomaster</Program>
+    <Program icon="/usr/share/icons/hicolor/64x64/apps/quodlibet.png" label="Quod Libet">quodlibet</Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/applications-internet.png" label="Network">
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/claws-mail.png" label="Claws Mail">claws-mail </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/firefox.png" label="Firefox">firefox </Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/pidgin.png" label="Pidgin Internet Messenger">pidgin</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/transmission.png" label="Transmission">transmission-gtk </Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/gftp.png" label="gFTP">gftp </Program>
+    <Program icon="/usr/share/icons/hicolor/22x22/apps/owncloud.png" label="ownCloud desktop sync client">/usr/bin/owncloud</Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/applications-office.png" label="Office">
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/atril.png" label="Atril Document Viewer">atril </Program>
+    <Program icon="/usr/share/icons/mate/16x16/apps/accessories-dictionary.png" label="Dictionary">mate-dictionary</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/htmldoc.png" label="HTMLDOC">htmldoc </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-base.png" label="LibreOffice 4.4 Base">libreoffice4.4 --base </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-calc.png" label="LibreOffice 4.4 Calc">libreoffice4.4 --calc </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-impress.png" label="LibreOffice 4.4 Impress">libreoffice4.4 --impress </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-writer.png" label="LibreOffice 4.4 Writer">libreoffice4.4 --writer </Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/calibre-gui.png" label="calibre">calibre </Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/preferences-desktop.png" label="Settings">
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/blueman.png" label="Bluetooth Manager">blueman-manager</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/mate-power-manager.png" label="Power Management">mate-power-preferences</Program>
+    <Program label="Qt4 Config">qtconfig</Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/xscreensaver.png" label="Screensaver">xscreensaver-demo</Program>
+  </Menu>
+  <Menu icon="/usr/share/icons/mate-colors-common/16x16/categories/applications-system.png" label="System">
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtkalsasetup.png" label="ALSA sound card">gksu gtkalsasetup</Program>
+    <Program icon="/usr/share/icons/hicolor/24x24/apps/mate-disk-usage-analyzer.png" label="Disk Usage Analyzer">mate-disk-usage-analyzer</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/dotnew.png" label="Dotnew">gksu dotnew-gtk</Program>
+    <Program icon="/usr/share/icons/hicolor/48x48/apps/grsync.png" label="Grsync">/usr/bin/grsync -i </Program>
+    <Program icon="/usr/share/icons/hicolor/48x48/apps/gslapt.png" label="Gslapt Package Manager">gksu /usr/sbin/gslapt</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtkhostsetup.png" label="Hostnames">gksu gtkhostsetup</Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/htop.png" label="Htop">xterm -e htop</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtkkeyboardsetup.png" label="Keyboard">gksu gtkkeyboardsetup</Program>
+    <Program icon="/usr/share/icons/mate/16x16/apps/logviewer.png" label="Log File Viewer">mate-system-log</Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/apps/utilities-terminal.png" label="MATE Terminal">mate-terminal</Program>
+    <Program icon="/usr/share/icons/mate-colors-common/16x16/devices/cups.png" label="Manage Printing">/usr/bin/xdg-open http://localhost:631/</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/mate-power-statistics.png" label="Power Statistics">mate-power-statistics</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/sourcery.png" label="Sourcery SlackBuild Manager">gksu sourcery</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtkclocksetup.png" label="System clock">gksu gtkclocksetup</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtklocalesetup.png" label="System language">gksu gtklocalesetup</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtkservicesetup.png" label="System services">gksu gtkservicesetup</Program>
+    <Program icon="/usr/share/icons/hicolor/16x16/apps/gtkusersetup.png" label="Users and groups">gksu gtkusersetup</Program>
+    <Program icon="/usr/share/icons/mate/16x16/apps/dconf-editor.png" label="dconf Editor">dconf-editor</Program>
+  </Menu>
+</Menu>
+</JWM>

@@ -1,0 +1,95 @@
+menu "Applications" /usr/share/icons/mate/16x16/categories/applications-other.png {
+  menu "Accessories" /usr/share/icons/mate-colors-common/16x16/categories/applications-accessories.png {
+    prog "Engrampa Archive Manager" /usr/share/icons/hicolor/16x16/apps/engrampa.png engrampa 
+    prog "GTKMan Manual Page Viewer" /usr/share/icons/hicolor/16x16/apps/gtkman.png gtkman salix
+    prog "Galculator" /usr/share/icons/hicolor/48x48/apps/galculator.png galculator
+    prog "KeePassX" /usr/share/pixmaps/keepassx.xpm keepassx 
+    prog "Leafpad" /usr/share/icons/hicolor/16x16/apps/leafpad.png leafpad 
+    prog "Search for Files..." /usr/share/icons/mate-colors-common/16x16/actions/system-search.png mate-search-tool
+    prog "Take Screenshot" /usr/share/icons/mate-colors-common/16x16/devices/applets-screenshooter.png mate-screenshot --interactive
+    prog "Xournal" _none_ xournal 
+    prog "Zim Desktop Wiki" /usr/share/icons/mate-colors-common/16x16/apps/zim.png zim
+  }
+  menu "Development" /usr/share/icons/mate-colors-common/16x16/categories/applications-development.png {
+    prog "CMake" /usr/share/pixmaps/CMakeSetup32.png cmake-gui 
+    prog "Geany" /usr/share/icons/mate-colors-common/16x16/apps/geany.png geany 
+    prog "Glade" /usr/share/icons/hicolor/16x16/apps/glade-3.png glade-3 
+    prog "Meld" /usr/share/icons/mate-colors-common/16x16/apps/meld.png meld 
+    prog "Poedit" /usr/share/icons/hicolor/16x16/apps/poedit.png poedit 
+    prog "Qt4 Assistant" /usr/share/icons/hicolor/32x32/apps/assistant.png assistant
+    prog "Qt4 Designer" /usr/share/icons/hicolor/128x128/apps/designer.png designer
+    prog "Qt4 Linguist" /usr/share/icons/hicolor/16x16/apps/linguist.png linguist
+    prog "RStudio" /usr/share/icons/hicolor/16x16/apps/rstudio.png /usr/lib64/rstudio/bin/rstudio 
+  }
+  menu "Education" _none_ {
+    prog "LibreOffice 4.4 Math" /usr/share/icons/hicolor/16x16/apps/libreoffice4.4-math.png libreoffice4.4 --math 
+    prog "R" /usr/share/icons/hicolor/16x16/apps/R.png xterm -e R
+  }
+  menu "Games" /usr/share/icons/mate-colors-common/16x16/categories/applications-games.png {
+    prog "KEGS" /usr/share/pixmaps/kegs.png xterm -e aoss xkegs
+  }
+  menu "Graphics" /usr/share/icons/mate/16x16/categories/applications-graphics.png {
+    prog "Dia Diagram Editor" /usr/share/icons/mate-colors-common/16x16/apps/dia.png dia 
+    prog "E-book Viewer" /usr/share/icons/hicolor/16x16/apps/calibre-viewer.png ebook-viewer 
+    prog "GNU Image Manipulation Program" /usr/share/icons/hicolor/16x16/apps/gimp.png gimp-2.8 
+    prog "Gcolor2" /usr/share/icons/hicolor/16x16/apps/gcolor2.png gcolor2
+    prog "LRF Viewer" /usr/share/icons/hicolor/16x16/apps/calibre-viewer.png lrfviewer 
+    prog "LibreOffice 4.4 Draw" /usr/share/icons/hicolor/16x16/apps/libreoffice4.4-draw.png libreoffice4.4 --draw 
+    prog "Simple Scan" /usr/share/icons/mate/16x16/devices/scanner.png simple-scan
+    prog "Viewnior" /usr/share/icons/hicolor/16x16/apps/viewnior.png viewnior 
+  }
+  menu "Multimedia" /usr/share/icons/mate-colors-common/16x16/categories/applications-multimedia.png {
+    prog "Asunder CD Ripper" /usr/share/icons/hicolor/48x48/apps/asunder.png asunder
+    prog "Audacity" /usr/share/icons/mate-colors-common/16x16/apps/audacity.png audacity 
+    prog "Ex Falso" /usr/share/icons/hicolor/64x64/apps/exfalso.png exfalso
+    prog "Exaile" /usr/share/icons/mate-colors-common/16x16/apps/exaile.png exaile 
+    prog "GNOME MPlayer" /usr/share/icons/mate-colors-common/16x16/apps/gnome-mplayer.png gnome-mplayer 
+    prog "Gaupol" /usr/share/icons/hicolor/16x16/apps/gaupol.png gaupol 
+    prog "ISO Master" /usr/share/icons/hicolor/16x16/apps/isomaster.png isomaster
+    prog "Quod Libet" /usr/share/icons/hicolor/64x64/apps/quodlibet.png quodlibet
+  }
+  menu "Network" /usr/share/icons/mate-colors-common/16x16/categories/applications-internet.png {
+    prog "Claws Mail" /usr/share/icons/mate-colors-common/16x16/apps/claws-mail.png claws-mail 
+    prog "Firefox" /usr/share/icons/hicolor/16x16/apps/firefox.png firefox 
+    prog "Pidgin Internet Messenger" /usr/share/icons/mate-colors-common/16x16/apps/pidgin.png pidgin
+    prog "Transmission" /usr/share/icons/hicolor/16x16/apps/transmission.png transmission-gtk 
+    prog "gFTP" /usr/share/icons/mate-colors-common/16x16/apps/gftp.png gftp 
+    prog "ownCloud desktop sync client" /usr/share/icons/hicolor/22x22/apps/owncloud.png /usr/bin/owncloud
+  }
+  menu "Office" /usr/share/icons/mate-colors-common/16x16/categories/applications-office.png {
+    prog "Atril Document Viewer" /usr/share/icons/hicolor/16x16/apps/atril.png atril 
+    prog "Dictionary" /usr/share/icons/mate/16x16/apps/accessories-dictionary.png mate-dictionary
+    prog "HTMLDOC" /usr/share/icons/hicolor/16x16/apps/htmldoc.png htmldoc 
+    prog "LibreOffice 4.4 Base" /usr/share/icons/hicolor/16x16/apps/libreoffice4.4-base.png libreoffice4.4 --base 
+    prog "LibreOffice 4.4 Calc" /usr/share/icons/hicolor/16x16/apps/libreoffice4.4-calc.png libreoffice4.4 --calc 
+    prog "LibreOffice 4.4 Impress" /usr/share/icons/hicolor/16x16/apps/libreoffice4.4-impress.png libreoffice4.4 --impress 
+    prog "LibreOffice 4.4 Writer" /usr/share/icons/hicolor/16x16/apps/libreoffice4.4-writer.png libreoffice4.4 --writer 
+    prog "calibre" /usr/share/icons/hicolor/16x16/apps/calibre-gui.png calibre 
+  }
+  menu "Settings" /usr/share/icons/mate-colors-common/16x16/categories/preferences-desktop.png {
+    prog "Bluetooth Manager" /usr/share/icons/hicolor/16x16/apps/blueman.png blueman-manager
+    prog "Power Management" /usr/share/icons/hicolor/16x16/apps/mate-power-manager.png mate-power-preferences
+    prog "Qt4 Config" _none_ qtconfig
+    prog "Screensaver" /usr/share/icons/mate-colors-common/16x16/apps/xscreensaver.png xscreensaver-demo
+  }
+  menu "System" /usr/share/icons/mate-colors-common/16x16/categories/applications-system.png {
+    prog "ALSA sound card" /usr/share/icons/hicolor/16x16/apps/gtkalsasetup.png gksu gtkalsasetup
+    prog "Disk Usage Analyzer" /usr/share/icons/hicolor/24x24/apps/mate-disk-usage-analyzer.png mate-disk-usage-analyzer
+    prog "Dotnew" /usr/share/icons/hicolor/16x16/apps/dotnew.png gksu dotnew-gtk
+    prog "Grsync" /usr/share/icons/hicolor/48x48/apps/grsync.png /usr/bin/grsync -i 
+    prog "Gslapt Package Manager" /usr/share/icons/hicolor/48x48/apps/gslapt.png gksu /usr/sbin/gslapt
+    prog "Hostnames" /usr/share/icons/hicolor/16x16/apps/gtkhostsetup.png gksu gtkhostsetup
+    prog "Htop" /usr/share/icons/mate-colors-common/16x16/apps/htop.png xterm -e htop
+    prog "Keyboard" /usr/share/icons/hicolor/16x16/apps/gtkkeyboardsetup.png gksu gtkkeyboardsetup
+    prog "Log File Viewer" /usr/share/icons/mate/16x16/apps/logviewer.png mate-system-log
+    prog "MATE Terminal" /usr/share/icons/mate-colors-common/16x16/apps/utilities-terminal.png mate-terminal
+    prog "Manage Printing" /usr/share/icons/mate-colors-common/16x16/devices/cups.png /usr/bin/xdg-open http://localhost:631/
+    prog "Power Statistics" /usr/share/icons/hicolor/16x16/apps/mate-power-statistics.png mate-power-statistics
+    prog "Sourcery SlackBuild Manager" /usr/share/icons/hicolor/16x16/apps/sourcery.png gksu sourcery
+    prog "System clock" /usr/share/icons/hicolor/16x16/apps/gtkclocksetup.png gksu gtkclocksetup
+    prog "System language" /usr/share/icons/hicolor/16x16/apps/gtklocalesetup.png gksu gtklocalesetup
+    prog "System services" /usr/share/icons/hicolor/16x16/apps/gtkservicesetup.png gksu gtkservicesetup
+    prog "Users and groups" /usr/share/icons/hicolor/16x16/apps/gtkusersetup.png gksu gtkusersetup
+    prog "dconf Editor" /usr/share/icons/mate/16x16/apps/dconf-editor.png dconf-editor
+  }
+}

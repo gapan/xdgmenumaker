@@ -29,14 +29,20 @@ generate:
 		$(PYTHON) $(MM) -f fluxbox -n > menus_test/fluxbox_nosubmenu
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f icewm > menus_test/icewm
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f icewm -i > menus_test/icewm_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=de_DE.utf8 \
 		$(PYTHON) $(MM) -f icewm > menus_test/icewm_de
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f jwm > menus_test/jwm
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f jwm -i > menus_test/jwm_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=fr_FR.utf8 \
 		$(PYTHON) $(MM) -f jwm > menus_test/jwm_fr
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f pekwm > menus_test/pekwm
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f pekwm -i > menus_test/pekwm_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f pekwm --pekwm-dynamic > menus_test/pekwm_dynamic
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \

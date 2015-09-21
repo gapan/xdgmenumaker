@@ -1,0 +1,95 @@
+Submenu = "Applications" { Icon = "/usr/share/icons/mate/16x16/categories/applications-other.png"
+  Submenu = "Accessories" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/applications-accessories.png"
+    Entry = "Engrampa Archive Manager" { Icon = "/usr/share/icons/hicolor/16x16/apps/engrampa.png"; Actions = "Exec engrampa  &" }
+    Entry = "GTKMan Manual Page Viewer" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtkman.png"; Actions = "Exec gtkman salix &" }
+    Entry = "Galculator" { Icon = "/usr/share/icons/hicolor/48x48/apps/galculator.png"; Actions = "Exec galculator &" }
+    Entry = "KeePassX" { Icon = "/usr/share/pixmaps/keepassx.xpm"; Actions = "Exec keepassx  &" }
+    Entry = "Leafpad" { Icon = "/usr/share/icons/hicolor/16x16/apps/leafpad.png"; Actions = "Exec leafpad  &" }
+    Entry = "Search for Files..." { Icon = "/usr/share/icons/mate-colors-common/16x16/actions/system-search.png"; Actions = "Exec mate-search-tool &" }
+    Entry = "Take Screenshot" { Icon = "/usr/share/icons/mate-colors-common/16x16/devices/applets-screenshooter.png"; Actions = "Exec mate-screenshot --interactive &" }
+    Entry = "Xournal" { Actions = "Exec xournal  &" }
+    Entry = "Zim Desktop Wiki" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/zim.png"; Actions = "Exec zim &" }
+  }
+  Submenu = "Development" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/applications-development.png"
+    Entry = "CMake" { Icon = "/usr/share/pixmaps/CMakeSetup32.png"; Actions = "Exec cmake-gui  &" }
+    Entry = "Geany" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/geany.png"; Actions = "Exec geany  &" }
+    Entry = "Glade" { Icon = "/usr/share/icons/hicolor/16x16/apps/glade-3.png"; Actions = "Exec glade-3  &" }
+    Entry = "Meld" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/meld.png"; Actions = "Exec meld  &" }
+    Entry = "Poedit" { Icon = "/usr/share/icons/hicolor/16x16/apps/poedit.png"; Actions = "Exec poedit  &" }
+    Entry = "Qt4 Assistant" { Icon = "/usr/share/icons/hicolor/32x32/apps/assistant.png"; Actions = "Exec assistant &" }
+    Entry = "Qt4 Designer" { Icon = "/usr/share/icons/hicolor/128x128/apps/designer.png"; Actions = "Exec designer &" }
+    Entry = "Qt4 Linguist" { Icon = "/usr/share/icons/hicolor/16x16/apps/linguist.png"; Actions = "Exec linguist &" }
+    Entry = "RStudio" { Icon = "/usr/share/icons/hicolor/16x16/apps/rstudio.png"; Actions = "Exec /usr/lib64/rstudio/bin/rstudio  &" }
+  }
+  Submenu = "Education" {
+    Entry = "LibreOffice 4.4 Math" { Icon = "/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-math.png"; Actions = "Exec libreoffice4.4 --math  &" }
+    Entry = "R" { Icon = "/usr/share/icons/hicolor/16x16/apps/R.png"; Actions = "Exec xterm -e R &" }
+  }
+  Submenu = "Games" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/applications-games.png"
+    Entry = "KEGS" { Icon = "/usr/share/pixmaps/kegs.png"; Actions = "Exec xterm -e aoss xkegs &" }
+  }
+  Submenu = "Graphics" { Icon = "/usr/share/icons/mate/16x16/categories/applications-graphics.png"
+    Entry = "Dia Diagram Editor" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/dia.png"; Actions = "Exec dia  &" }
+    Entry = "E-book Viewer" { Icon = "/usr/share/icons/hicolor/16x16/apps/calibre-viewer.png"; Actions = "Exec ebook-viewer  &" }
+    Entry = "GNU Image Manipulation Program" { Icon = "/usr/share/icons/hicolor/16x16/apps/gimp.png"; Actions = "Exec gimp-2.8  &" }
+    Entry = "Gcolor2" { Icon = "/usr/share/icons/hicolor/16x16/apps/gcolor2.png"; Actions = "Exec gcolor2 &" }
+    Entry = "LRF Viewer" { Icon = "/usr/share/icons/hicolor/16x16/apps/calibre-viewer.png"; Actions = "Exec lrfviewer  &" }
+    Entry = "LibreOffice 4.4 Draw" { Icon = "/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-draw.png"; Actions = "Exec libreoffice4.4 --draw  &" }
+    Entry = "Simple Scan" { Icon = "/usr/share/icons/mate/16x16/devices/scanner.png"; Actions = "Exec simple-scan &" }
+    Entry = "Viewnior" { Icon = "/usr/share/icons/hicolor/16x16/apps/viewnior.png"; Actions = "Exec viewnior  &" }
+  }
+  Submenu = "Multimedia" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/applications-multimedia.png"
+    Entry = "Asunder CD Ripper" { Icon = "/usr/share/icons/hicolor/48x48/apps/asunder.png"; Actions = "Exec asunder &" }
+    Entry = "Audacity" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/audacity.png"; Actions = "Exec audacity  &" }
+    Entry = "Ex Falso" { Icon = "/usr/share/icons/hicolor/64x64/apps/exfalso.png"; Actions = "Exec exfalso &" }
+    Entry = "Exaile" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/exaile.png"; Actions = "Exec exaile  &" }
+    Entry = "GNOME MPlayer" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/gnome-mplayer.png"; Actions = "Exec gnome-mplayer  &" }
+    Entry = "Gaupol" { Icon = "/usr/share/icons/hicolor/16x16/apps/gaupol.png"; Actions = "Exec gaupol  &" }
+    Entry = "ISO Master" { Icon = "/usr/share/icons/hicolor/16x16/apps/isomaster.png"; Actions = "Exec isomaster &" }
+    Entry = "Quod Libet" { Icon = "/usr/share/icons/hicolor/64x64/apps/quodlibet.png"; Actions = "Exec quodlibet &" }
+  }
+  Submenu = "Network" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/applications-internet.png"
+    Entry = "Claws Mail" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/claws-mail.png"; Actions = "Exec claws-mail  &" }
+    Entry = "Firefox" { Icon = "/usr/share/icons/hicolor/16x16/apps/firefox.png"; Actions = "Exec firefox  &" }
+    Entry = "Pidgin Internet Messenger" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/pidgin.png"; Actions = "Exec pidgin &" }
+    Entry = "Transmission" { Icon = "/usr/share/icons/hicolor/16x16/apps/transmission.png"; Actions = "Exec transmission-gtk  &" }
+    Entry = "gFTP" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/gftp.png"; Actions = "Exec gftp  &" }
+    Entry = "ownCloud desktop sync client" { Icon = "/usr/share/icons/hicolor/22x22/apps/owncloud.png"; Actions = "Exec /usr/bin/owncloud &" }
+  }
+  Submenu = "Office" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/applications-office.png"
+    Entry = "Atril Document Viewer" { Icon = "/usr/share/icons/hicolor/16x16/apps/atril.png"; Actions = "Exec atril  &" }
+    Entry = "Dictionary" { Icon = "/usr/share/icons/mate/16x16/apps/accessories-dictionary.png"; Actions = "Exec mate-dictionary &" }
+    Entry = "HTMLDOC" { Icon = "/usr/share/icons/hicolor/16x16/apps/htmldoc.png"; Actions = "Exec htmldoc  &" }
+    Entry = "LibreOffice 4.4 Base" { Icon = "/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-base.png"; Actions = "Exec libreoffice4.4 --base  &" }
+    Entry = "LibreOffice 4.4 Calc" { Icon = "/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-calc.png"; Actions = "Exec libreoffice4.4 --calc  &" }
+    Entry = "LibreOffice 4.4 Impress" { Icon = "/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-impress.png"; Actions = "Exec libreoffice4.4 --impress  &" }
+    Entry = "LibreOffice 4.4 Writer" { Icon = "/usr/share/icons/hicolor/16x16/apps/libreoffice4.4-writer.png"; Actions = "Exec libreoffice4.4 --writer  &" }
+    Entry = "calibre" { Icon = "/usr/share/icons/hicolor/16x16/apps/calibre-gui.png"; Actions = "Exec calibre  &" }
+  }
+  Submenu = "Settings" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/preferences-desktop.png"
+    Entry = "Bluetooth Manager" { Icon = "/usr/share/icons/hicolor/16x16/apps/blueman.png"; Actions = "Exec blueman-manager &" }
+    Entry = "Power Management" { Icon = "/usr/share/icons/hicolor/16x16/apps/mate-power-manager.png"; Actions = "Exec mate-power-preferences &" }
+    Entry = "Qt4 Config" { Actions = "Exec qtconfig &" }
+    Entry = "Screensaver" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/xscreensaver.png"; Actions = "Exec xscreensaver-demo &" }
+  }
+  Submenu = "System" { Icon = "/usr/share/icons/mate-colors-common/16x16/categories/applications-system.png"
+    Entry = "ALSA sound card" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtkalsasetup.png"; Actions = "Exec gksu gtkalsasetup &" }
+    Entry = "Disk Usage Analyzer" { Icon = "/usr/share/icons/hicolor/24x24/apps/mate-disk-usage-analyzer.png"; Actions = "Exec mate-disk-usage-analyzer &" }
+    Entry = "Dotnew" { Icon = "/usr/share/icons/hicolor/16x16/apps/dotnew.png"; Actions = "Exec gksu dotnew-gtk &" }
+    Entry = "Grsync" { Icon = "/usr/share/icons/hicolor/48x48/apps/grsync.png"; Actions = "Exec /usr/bin/grsync -i  &" }
+    Entry = "Gslapt Package Manager" { Icon = "/usr/share/icons/hicolor/48x48/apps/gslapt.png"; Actions = "Exec gksu /usr/sbin/gslapt &" }
+    Entry = "Hostnames" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtkhostsetup.png"; Actions = "Exec gksu gtkhostsetup &" }
+    Entry = "Htop" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/htop.png"; Actions = "Exec xterm -e htop &" }
+    Entry = "Keyboard" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtkkeyboardsetup.png"; Actions = "Exec gksu gtkkeyboardsetup &" }
+    Entry = "Log File Viewer" { Icon = "/usr/share/icons/mate/16x16/apps/logviewer.png"; Actions = "Exec mate-system-log &" }
+    Entry = "MATE Terminal" { Icon = "/usr/share/icons/mate-colors-common/16x16/apps/utilities-terminal.png"; Actions = "Exec mate-terminal &" }
+    Entry = "Manage Printing" { Icon = "/usr/share/icons/mate-colors-common/16x16/devices/cups.png"; Actions = "Exec /usr/bin/xdg-open http://localhost:631/ &" }
+    Entry = "Power Statistics" { Icon = "/usr/share/icons/hicolor/16x16/apps/mate-power-statistics.png"; Actions = "Exec mate-power-statistics &" }
+    Entry = "Sourcery SlackBuild Manager" { Icon = "/usr/share/icons/hicolor/16x16/apps/sourcery.png"; Actions = "Exec gksu sourcery &" }
+    Entry = "System clock" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtkclocksetup.png"; Actions = "Exec gksu gtkclocksetup &" }
+    Entry = "System language" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtklocalesetup.png"; Actions = "Exec gksu gtklocalesetup &" }
+    Entry = "System services" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtkservicesetup.png"; Actions = "Exec gksu gtkservicesetup &" }
+    Entry = "Users and groups" { Icon = "/usr/share/icons/hicolor/16x16/apps/gtkusersetup.png"; Actions = "Exec gksu gtkusersetup &" }
+    Entry = "dconf Editor" { Icon = "/usr/share/icons/mate/16x16/apps/dconf-editor.png"; Actions = "Exec dconf-editor &" }
+  }
+}
