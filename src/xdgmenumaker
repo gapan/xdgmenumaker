@@ -674,11 +674,13 @@ def compizboxmenu():
                 print(('{s}  <item type="launcher"><name>{n}</name>'
                        '<icon>{i}</icon>'
                        '<command>{c}</command></item>').format(s=spacing,
-                                                               n=name, i=icon, c=command))
+                                                               n=name, i=icon,
+                                                               c=command))
             else:
                 print(('{s}  <item type="launcher"><name>{n}</name>'
                        '<command>{c}</command></item>').format(s=spacing,
-                                                               n=name, c=command))
+                                                               n=name,
+                                                               c=command))
         print('{}</menu>'.format(spacing))
     if submenu:
         print('</menu>')
