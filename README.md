@@ -21,8 +21,11 @@ xdgmenumaker currently supports generating menus for **blackbox**,
 * pygobject and gobject-instrospection (for Python 3)
 
 
+USAGE
+=====
+
 Blackbox
-=======
+--------
 
 To generate an application menu for blackbox, run xdgmenumaker like this:
 
@@ -40,14 +43,13 @@ you want to update it, without having to run the command manually again:
 
 
 Compiz Boxmenu
-==============
+--------------
 
 There are two ways to have an xdg menu in compiz-boxmenu. The first one,
 auto-updates the menu, every time the menu is called. The second one,
 updates the menu only when the user wants to.
 
-Dynamic Menus
--------------
+### Dynamic Menus
 
 Edit your `~/.config/compiz/boxmenu/menu.xml` file with your favorite text 
 editor and add a block of code like this inside the root `<menu>` element:
@@ -68,8 +70,7 @@ be the display name for the pipe menu. Then enter in:
 for the command entry. Click the combobox next to the command text box
 and switch that to "Pipe".
 
-Static Menus
-------------
+### Static Menus
 
 Edit your `~/.config/compiz/boxmenu/menu.xml` file with your favorite text 
 editor and paste the output of:
@@ -88,7 +89,7 @@ to append the statically generated menu to any menu file you want.
 
 
 Fluxbox
-=======
+-------
 
 To generate an application menu for fluxbox, run xdgmenumaker like this:
 
@@ -106,7 +107,7 @@ you want to update it, without having to run the command manually again:
 
 
 IceWM
-=====
+-----
 
 To generate an application menu for icewm, run xdgmenumaker like this:
 
@@ -136,7 +137,7 @@ instead.
 
 
 JWM
-===
+---
 
 You can edit your `~/.jwmrc` file and add a line that generates the
 applications menu, like this:
@@ -159,14 +160,13 @@ refresh the menu, like this:
 
 
 pekwm
-=====
+-----
 
 There are two ways to have an XDG menu in pekwm. The first one,
 auto-updates the menu, every time the menu is called. The second one,
 updates the menu only when the user wants to.
 
-Dynamic Menus
--------------
+### Dynamic Menus
 
 Edit your `~/.pekwm/menu` file with your favourite text editor and add
 a line like the following one in the location that you want the
@@ -180,8 +180,7 @@ up to date. But since xdgmenumaker will run every time you access the
 menu, the menu might not appear instantly, especially if you are using
 an older PC.
 
-Static Menus
-------------
+### Static Menus
 
 Run:
 
@@ -200,7 +199,7 @@ advantage is that there will be no delay in displaying the menu.
 
 
 Window Maker
-============
+------------
 
 There are two ways to have an xdg menu in windowmaker. The first one,
 auto-updates the menu, every time the menu is called. The second one,
@@ -210,8 +209,7 @@ xdgmenumaker uses utf8 encoding and localised strings by default and has
 been tested only with wmaker-crm>=0.95.1. No idea if utf8 works properly
 with older Window Maker versions.
 
-Dynamic Menus
--------------
+### Dynamic Menus
 
 Open the WindowMaker preferences tool. In the Application Menu
 Definition section, add a Generated Submenu in your menu, by dragging it
@@ -228,8 +226,7 @@ that it will be run every time you access that submenu, so especially if
 you are on a very old PC, it might slow things down a bit, although
 probably not anything considerable.
 
-Static Menus
-------------
+### Static Menus
 
 Run:
 
