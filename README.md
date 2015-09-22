@@ -14,7 +14,11 @@ xdgmenumaker currently supports generating menus for **blackbox**,
 **compizboxmenu**, **fluxbox**, **icewm**, **jwm**, **pekwm** and
 **windowmaker**.
 
-pyxdg and pygtk are required by xdgmenumaker, in addition to python 2.
+**xdgmenumaker** requires:
+* Python 2.7 or 3.x
+* pyxdg
+* pygtk (for Python 2)
+* pygobject and gobject-instrospection (for Python 3)
 
 
 Blackbox
