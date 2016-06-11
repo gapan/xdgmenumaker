@@ -11,6 +11,7 @@ import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
 from operator import attrgetter
+from xml.sax.saxutils import escape
 
 # ConfigParser in Python2 has been renamed to configparser (all lower case)
 # in Python3. So, it's a good way to find out which Python version is being
@@ -211,6 +212,8 @@ def main(argv):
         jwm()
     elif desktop == "compizboxmenu":
         compizboxmenu()
+    elif desktop == "openbox":
+        openbox()
     else:
         usage()
         sys.exit(2)
@@ -640,6 +643,42 @@ def jwm():
     if submenu:
         print('</Menu>')
     print('</JWM>')
+
+
+def openbox():
+    print('<?xml version="1.0" encoding="UTF-8"?>')
+    print('<openbox_pipe_menu>')
+    spacing = '  '
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        cat_id = 'apps-{}-menu'.format(cat_name.lower())
+        cat_icon = category_icon(category)
+        cat_icon = icon_full_path(cat_icon)
+        if seticon and cat_icon is not None:
+            print('{s}<menu id="{d}" label="{c}" icon="{i}">'
+                  .format(s=spacing, d=cat_id, c=cat_name, i=cat_icon))
+        else:
+            print('{s}<menu id="{d}" label="{c}">'
+                  .format(s=spacing, d=cat_id, c=cat_name))
+
+        for app in menu_category.applist:
+            name = app.name.decode()
+            command = app.command
+            icon = app.icon
+            if seticon and icon is not None:
+                print('{s}  <item label="{n}" icon="{i}">'
+                      .format(s=spacing, n=escape(name), i=icon))
+            else:
+                print('{s}  <item label="{n}">'
+                      .format(s=spacing, n=escape(name)))
+            print('{}    <action name="Execute">'.format(spacing))
+            print('{s}      <command>{c}</command>'.format(s=spacing,
+                                                           c=command))
+            print('{}    </action>'.format(spacing))
+            print('{}  </item>'.format(spacing))
+        print('{}</menu>'.format(spacing))
+    print('</openbox_pipe_menu>')
 
 
 def compizboxmenu():
