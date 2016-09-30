@@ -7,6 +7,7 @@ from __future__ import print_function
 import os
 import sys
 import getopt
+import fnmatch
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
@@ -366,16 +367,16 @@ def desktopfilelist():
     for d in dirs:
         xdgdir = '{}/applications'.format(d)
         if os.path.isdir(xdgdir):
-            for i in os.listdir(xdgdir):
-                if i.endswith('.desktop'):
-                    # for duplicate .desktop files that exist in more
-                    # than one locations, only keep the first occurence.
-                    # That one should have precedence anyway (e.g.
-                    # ~/.local/share/applications has precedence over
-                    # /usr/share/applications
-                    if i not in df_temp:
-                        df_temp.append(i)
-                        filelist.append('{}/{}'.format(xdgdir, i))
+            for root, dirnames, filenames in os.walk(xdgdir):
+                    for i in fnmatch.filter(filenames, '*.desktop'):
+                        # for duplicate .desktop files that exist in more
+                        # than one locations, only keep the first occurence.
+                        # That one should have precedence anyway (e.g.
+                        # ~/.local/share/applications has precedence over
+                        # /usr/share/applications
+                        if i not in df_temp:
+                            df_temp.append(i)
+                            filelist.append(os.path.join(root, i))
     return filelist
 
 
