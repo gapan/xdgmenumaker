@@ -35,6 +35,7 @@ iconsize = 16
 desktop = False
 submenu = True
 pekwmdynamic = False
+max_icon_size = False
 
 # the following line gets changed by the Makefile. If it is set to
 # 'not_set' it looks in the currect directory tree for the .directory
@@ -167,10 +168,12 @@ def main(argv):
     global iconsize
     global submenu
     global pekwmdynamic
+    global max_icon_size
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
                                                      "no-submenu",
                                                      "pekwm-dynamic",
+                                                     "max-icon-size",
                                                      "size=",
                                                      "format="])
     except getopt.GetoptError:
@@ -192,6 +195,20 @@ def main(argv):
             submenu = False
         elif opt in ("--pekwm-dynamic",):
             pekwmdynamic = True
+        elif opt in ("--max-icon-size",):
+            try:
+                # Pillow is optional and loaded only if we want to restrict the
+                # icon sizes (useful for Fvwm). Yeah, I know it's not a good
+                # idea to load a module in here, but I really don't want to
+                # load it by default at the top. It would make xdgmenumaker a
+                # bit slower to run even if it is not needed. This way it only
+                # slows down when it is actually needed.
+                global Image
+                from PIL import Image
+                max_icon_size = True
+            except ImportError:
+                usage()
+                sys.exit('ERROR: --max-icon-size requires Pillow')
         elif opt in ("-f", "--format"):
             desktop = arg
     if not desktop:
@@ -251,21 +268,38 @@ def icon_strip(icon):
         icon = icon.replace('.xpm', '')
     return icon
 
+def icon_max_size(icon):
+    # Checks if the icon size is bigger than the requested size and discards
+    # the icon if it is, only allowing sizes smaller or equal to the requested
+    # size
+    try:
+        img = Image.open(icon)
+    except:
+        # if there is any error reading the icon, just discard it
+        return None
+    if img.size[0] <= iconsize:
+        return icon
+    else:
+        return None
 
 def icon_full_path(icon):
     # If the icon path is absolute and exists, leave it alone.
     # This takes care of software that has its own icons stored
     # in non-standard directories
     if os.path.exists(icon):
-        return icon
+        if max_icon_size:
+            return icon_max_size(icon)
+        else:
+            return None
     else:
         icon = icon_strip(icon)
         icon_theme = gtk.icon_theme_get_default()
         icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
         if icon:
             icon = icon.get_filename()
+            if max_icon_size:
+                icon = icon_max_size(icon)
         return icon
-
 
 def get_entry_info(desktopfile, ico_paths=True):
     de = dentry.DesktopEntry(filename=desktopfile)
