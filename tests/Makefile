@@ -22,6 +22,8 @@ generate:
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox -i > menus_test/fluxbox_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f fvwm > menus_test/fvwm
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox -i -s 48 > menus_test/fluxbox_icons48
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=el_GR.utf8 \
 		$(PYTHON) $(MM) -f fluxbox > menus_test/fluxbox_el
