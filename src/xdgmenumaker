@@ -268,6 +268,7 @@ def icon_strip(icon):
         icon = icon.replace('.xpm', '')
     return icon
 
+
 def icon_max_size(icon):
     # Checks if the icon size is bigger than the requested size and discards
     # the icon if it is, only allowing sizes smaller or equal to the requested
@@ -281,6 +282,7 @@ def icon_max_size(icon):
         return icon
     else:
         return None
+
 
 def icon_full_path(icon):
     # If the icon path is absolute and exists, leave it alone.
@@ -300,6 +302,7 @@ def icon_full_path(icon):
             if max_icon_size:
                 icon = icon_max_size(icon)
         return icon
+
 
 def get_entry_info(desktopfile, ico_paths=True):
     de = dentry.DesktopEntry(filename=desktopfile)
@@ -523,6 +526,7 @@ def fluxbox():
     if submenu:
         print('[end] # ({})'.format(apps_name))
 
+
 def fvwm():
     if submenu:
         print('DestroyMenu "xdgmenu"')
@@ -578,6 +582,7 @@ def fvwm():
                                                             c=command,
                                                             i=icon))
         print()
+
 
 def windowmaker():
     print('"{}" MENU'.format(apps_name))
