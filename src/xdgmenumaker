@@ -201,6 +201,8 @@ def main(argv):
         blackbox()
     elif desktop == "fluxbox":
         fluxbox()
+    elif desktop == "fvwm":
+        fvwm()
     elif desktop == "windowmaker":
         seticon = False
         windowmaker()
@@ -223,7 +225,7 @@ def usage():
     print('OPTIONS:')
     print('    -f, --format         the output format to use.')
     print('                         Valid options are blackbox, compizboxmenu,')
-    print('                         fluxbox, icewm, jwm, windowmaker and pekwm')
+    print('                         fluxbox, fvwm, icewm, jwm, windowmaker and pekwm')
     print('    -i, --icons          enable support for icons in the')
     print('                         menus. Does not work with windowmaker')
     print('    -s, --size           preferred icon size in pixels (default: 16)')
@@ -487,6 +489,61 @@ def fluxbox():
     if submenu:
         print('[end] # ({})'.format(apps_name))
 
+def fvwm():
+    if submenu:
+        print('DestroyMenu "xdgmenu"')
+        print('AddToMenu "xdgmenu"')
+        if seticon:
+            app_icon = icon_full_path(applications_icon)
+            if app_icon:
+                print('+ "{a}%{i}% " Title'.format(a=apps_name, i=app_icon))
+            else:
+                print('+ "{a}" Title'.format(a=apps_name))
+            app_icon = icon_full_path(applications_icon)
+            for menu_category in menu():
+                category = menu_category.category
+                cat_name = category.decode()
+                cat_icon = category_icon(category)
+                cat_icon = icon_full_path(cat_icon)
+                if cat_icon:
+                    print('+ "{c}%{i}%" Popup "{c}"'.format(c=cat_name,
+                                                            i=cat_icon))
+                else:
+                    print('+ "{c}" Popup "{c}"'.format(c=cat_name))
+        else:
+            for menu_category in menu():
+                category = menu_category.category
+                cat_name = category.decode()
+                print('+ "{c}" Popup "{c}"'.format(c=cat_name))
+        print()
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        print('DestroyMenu "{}"'.format(cat_name))
+        print('AddToMenu "{c}"'.format(c=cat_name))
+        if seticon:
+            cat_icon = category_icon(category)
+            cat_icon = icon_full_path(cat_icon)
+            if cat_icon:
+                print('+ "{c}%{i}%" Title'.format(c=cat_name, i=cat_icon))
+            else:
+                print('+ "{c}" Title'.format(c=cat_name))
+        else:
+            print('+ "{c}" Title'.format(c=cat_name))
+        for app in menu_category.applist:
+            name = app.name.decode()
+            icon = app.icon
+            command = app.command
+            path = app.path
+            if path is not None:
+                command = 'cd {p} ; {c}'.format(p=path, c=command)
+            if icon is None:
+                print('+ "{n}" Exec {c}'.format(n=name, c=command))
+            else:
+                print('+ "{n}%{i}%" Exec {c}'.format(n=name,
+                                                            c=command,
+                                                            i=icon))
+        print()
 
 def windowmaker():
     print('"{}" MENU'.format(apps_name))
