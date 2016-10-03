@@ -248,6 +248,7 @@ def usage():
     print('    -s, --size           preferred icon size in pixels (default: 16)')
     print('    -n, --no-submenu     do not create a submenu. Does not work with')
     print('                         windowmaker')
+    print('        --max-icon-size  restrict the icon sizes to the specified size')
     print('        --pekwm-dynamic  generate dynamic menus for pekwm')
     print('    -h, --help           show this help message')
     print('  You have to specify the output format using the -f switch.')
