@@ -15,7 +15,7 @@ install:
 		install -d -m 755 $(DESTDIR)/$(PREFIX)/share/man/man1; \
 		install -m 644 man/xdgmenumaker.1 $(DESTDIR)/$(PREFIX)/share/man/man1/; \
 	fi
-	sed -i "s|^prefix = 'not_set'|prefix = '$(PREFIX)'|" $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
+	sed -i "" "s|^prefix = 'not_set'|prefix = '$(PREFIX)'|" $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
 
 clean: test-clean
 	rm -f man/xdgmenumaker.1
