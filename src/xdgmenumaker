@@ -291,8 +291,8 @@ def icon_full_path(icon):
     # in non-standard directories
     if os.path.exists(icon):
         if max_icon_size:
-			if os.path.splitext(icon)[1] == ".svg":
-                return icon
+	    if os.path.splitext(icon)[1] == ".svg":
+            	return icon
             return icon_max_size(icon)
         else:
             return icon
