@@ -231,6 +231,8 @@ def main(argv):
         jwm()
     elif desktop == "compizboxmenu":
         compizboxmenu()
+    elif desktop == "twm":
+        twm()
     else:
         usage()
         sys.exit(2)
@@ -241,8 +243,8 @@ def usage():
     print()
     print('OPTIONS:')
     print('    -f, --format         the output format to use.')
-    print('                         Valid options are blackbox, compizboxmenu,')
-    print('                         fluxbox, fvwm, icewm, jwm, windowmaker and pekwm')
+    print('                         Valid options are blackbox, compizboxmenu, fluxbox,')
+    print('                         fvwm, twm, icewm, jwm, windowmaker and pekwm')
     print('    -i, --icons          enable support for icons in the')
     print('                         menus. Does not work with windowmaker')
     print('    -s, --size           preferred icon size in pixels (default: 16)')
@@ -782,6 +784,35 @@ def compizboxmenu():
         print('{}</menu>'.format(spacing))
     if submenu:
         print('</menu>')
+
+def twm():
+    if submenu:
+        print('menu "xdgmenu"')
+        print("{")
+        for menu_category in menu():
+            category = menu_category.category
+            cat_name = category.decode()
+            print('    "{c}" f.menu "{c}"'.format(c=cat_name))
+        print("}")
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        print('menu "{}"'.format(cat_name))
+        print("{")
+        for app in menu_category.applist:
+            name = app.name.decode()
+            command = app.command
+            # for some apps (like netbeans) the command is launched with
+            # /bin/sh "command"
+            # and the quotes get mixed up with the quotes twm puts
+            # around the command, so we're just stripping the quotes
+            command = app.command.replace('"', '')
+            path = app.path
+            if path is not None:
+                print('    "{n}" f.exec "cd {p} ; {c} &"'.format(n=name, p=path, c=command))
+            else:
+                print('    "{n}" f.exec "{c} &"'.format(n=name, c=command))
+        print("}")
 
 if __name__ == "__main__":
     main(sys.argv[1:])
