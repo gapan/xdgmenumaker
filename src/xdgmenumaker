@@ -293,9 +293,11 @@ def icon_full_path(icon):
     # in non-standard directories
     if os.path.exists(icon):
         if max_icon_size:
+	    if os.path.splitext(icon)[1] == ".svg":
+            	return icon
             return icon_max_size(icon)
         else:
-            return None
+            return icon
     else:
         icon = icon_strip(icon)
         icon_theme = gtk.icon_theme_get_default()
