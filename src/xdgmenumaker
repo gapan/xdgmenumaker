@@ -290,8 +290,11 @@ def icon_max_size(icon):
 def icon_full_path(icon):
     # If the icon path is absolute and exists, leave it alone.
     # This takes care of software that has its own icons stored
-    # in non-standard directories
-    if os.path.exists(icon):
+    # in non-standard directories.
+    # But we don't want to do this for svg icons, since none of the WMs
+    # supports them. In that case, just fall back to looking for the icon
+    # elsewhere in the system.
+    if os.path.exists(icon) and os.path.splitext(icon)[1] != ".svg":
         if max_icon_size:
             return icon_max_size(icon)
         else:
