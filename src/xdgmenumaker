@@ -283,8 +283,7 @@ def icon_max_size(icon):
         return None
     if img.size[0] <= iconsize:
         return icon
-    else:
-        return None
+    return None
 
 
 def icon_full_path(icon):
@@ -299,15 +298,14 @@ def icon_full_path(icon):
             return icon_max_size(icon)
         else:
             return icon
-    else:
-        icon = icon_strip(icon)
-        icon_theme = gtk.icon_theme_get_default()
-        icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
-        if icon:
-            icon = icon.get_filename()
-            if max_icon_size:
-                icon = icon_max_size(icon)
-        return icon
+    icon = icon_strip(icon)
+    icon_theme = gtk.icon_theme_get_default()
+    icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+    if icon:
+        icon = icon.get_filename()
+        if max_icon_size:
+            icon = icon_max_size(icon)
+    return icon
 
 
 def get_entry_info(desktopfile, ico_paths=True):
