@@ -295,7 +295,7 @@ def icon_full_path(icon):
         if max_icon_size:
             return icon_max_size(icon)
         else:
-            return None
+            return icon
     else:
         icon = icon_strip(icon)
         icon_theme = gtk.icon_theme_get_default()
