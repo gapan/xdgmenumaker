@@ -802,7 +802,6 @@ def twm():
         print("{")
         for app in menu_category.applist:
             name = app.name.decode()
-            command = app.command
             # for some apps (like netbeans) the command is launched with
             # /bin/sh "command"
             # and the quotes get mixed up with the quotes twm puts
