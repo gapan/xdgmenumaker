@@ -1,0 +1,127 @@
+menu "xdgmenu"
+{
+    "Εφαρμογές" f.title
+    "Ανάπτυξη" f.menu "Ανάπτυξη"
+    "Βοηθήματα" f.menu "Βοηθήματα"
+    "Γραφείο" f.menu "Γραφείο"
+    "Γραφικά" f.menu "Γραφικά"
+    "Δίκτυο" f.menu "Δίκτυο"
+    "Εκπαίδευση" f.menu "Εκπαίδευση"
+    "Παιχνίδια" f.menu "Παιχνίδια"
+    "Πολυμέσα" f.menu "Πολυμέσα"
+    "Ρυθμίσεις" f.menu "Ρυθμίσεις"
+    "Σύστημα" f.menu "Σύστημα"
+}
+menu "Ανάπτυξη"
+{
+    "Ανάπτυξη" f.title
+    "CMake" f.exec "cmake-gui  &"
+    "Geany" f.exec "geany  &"
+    "Glade" f.exec "glade-3  &"
+    "Meld" f.exec "meld  &"
+    "Poedit" f.exec "poedit  &"
+    "Qt4 Assistant" f.exec "assistant &"
+    "Qt4 Designer" f.exec "designer &"
+    "Qt4 Linguist" f.exec "linguist &"
+    "RStudio" f.exec "/usr/lib64/rstudio/bin/rstudio  &"
+}
+menu "Βοηθήματα"
+{
+    "Βοηθήματα" f.title
+    "Galculator" f.exec "galculator &"
+    "KeePassX" f.exec "keepassx  &"
+    "Leafpad" f.exec "leafpad  &"
+    "Xournal" f.exec "xournal  &"
+    "Zim Desktop Wiki" f.exec "zim &"
+    "Αναζήτηση για αρχεία..." f.exec "mate-search-tool &"
+    "Διαχειριστής συμπιεσμένων αρχείων Engrampa" f.exec "engrampa  &"
+    "Εμφάνιση σελίδων εγχειριδίου" f.exec "gtkman salix &"
+    "Λήψη στιγμιότυπου οθόνης" f.exec "mate-screenshot --interactive &"
+}
+menu "Γραφείο"
+{
+    "Γραφείο" f.title
+    "HTMLDOC" f.exec "htmldoc  &"
+    "LibreOffice 4.4 Base" f.exec "libreoffice4.4 --base  &"
+    "LibreOffice 4.4 Calc" f.exec "libreoffice4.4 --calc  &"
+    "LibreOffice 4.4 Impress" f.exec "libreoffice4.4 --impress  &"
+    "LibreOffice 4.4 Writer" f.exec "libreoffice4.4 --writer  &"
+    "calibre" f.exec "calibre  &"
+    "Εφαρμογή προβολής εγγράφων Atril" f.exec "atril  &"
+    "Λεξικό" f.exec "mate-dictionary &"
+}
+menu "Γραφικά"
+{
+    "Γραφικά" f.title
+    "E-book Viewer" f.exec "ebook-viewer  &"
+    "Gcolor2" f.exec "gcolor2 &"
+    "LRF Viewer" f.exec "lrfviewer  &"
+    "LibreOffice 4.4 Draw" f.exec "libreoffice4.4 --draw  &"
+    "Viewnior" f.exec "viewnior  &"
+    "Επεξεργαστής διαγραμμάτων Dia" f.exec "dia  &"
+    "Πρόγραμμα επεξεργασίας εικόνων GNU" f.exec "gimp-2.8  &"
+    "Σάρωση" f.exec "simple-scan &"
+}
+menu "Δίκτυο"
+{
+    "Δίκτυο" f.title
+    "Claws Mail" f.exec "claws-mail  &"
+    "Firefox" f.exec "firefox  &"
+    "Transmission" f.exec "transmission-gtk  &"
+    "gFTP" f.exec "gftp  &"
+    "ownCloud desktop sync client" f.exec "/usr/bin/owncloud &"
+    "Αποστολέας μηνυμάτων διαδικτύου Pidgin" f.exec "pidgin &"
+}
+menu "Εκπαίδευση"
+{
+    "Εκπαίδευση" f.title
+    "LibreOffice 4.4 Math" f.exec "libreoffice4.4 --math  &"
+    "R" f.exec "xterm -e R &"
+}
+menu "Παιχνίδια"
+{
+    "Παιχνίδια" f.title
+    "KEGS" f.exec "xterm -e aoss xkegs &"
+}
+menu "Πολυμέσα"
+{
+    "Πολυμέσα" f.title
+    "Asunder CD Ripper" f.exec "asunder &"
+    "Audacity" f.exec "audacity  &"
+    "Ex Falso" f.exec "exfalso &"
+    "Exaile" f.exec "exaile  &"
+    "GNOME MPlayer" f.exec "gnome-mplayer  &"
+    "Gaupol" f.exec "gaupol  &"
+    "ISO Master" f.exec "isomaster &"
+    "Quod Libet" f.exec "quodlibet &"
+}
+menu "Ρυθμίσεις"
+{
+    "Ρυθμίσεις" f.title
+    "Qt4 Config" f.exec "qtconfig &"
+    "Screensaver" f.exec "xscreensaver-demo &"
+    "Διαχείριση ενέργειας" f.exec "mate-power-preferences &"
+    "Διαχειριστής Bluetooth" f.exec "blueman-manager &"
+}
+menu "Σύστημα"
+{
+    "Σύστημα" f.title
+    "Dotnew" f.exec "gksu dotnew-gtk &"
+    "Grsync" f.exec "/usr/bin/grsync -i  &"
+    "Htop" f.exec "xterm -e htop &"
+    "Manage Printing" f.exec "/usr/bin/xdg-open http://localhost:631/ &"
+    "Sourcery - Διαχειριστής SlackBuild" f.exec "gksu sourcery &"
+    "Ανάλυση χρήσης δίσκου" f.exec "mate-disk-usage-analyzer &"
+    "Γλώσσα συστήματος" f.exec "gksu gtklocalesetup &"
+    "Διαχειριστής Πακέτων Gslapt" f.exec "gksu /usr/sbin/gslapt &"
+    "Επεξεργαστής dconf" f.exec "dconf-editor &"
+    "Κάρτα ήχου ALSA" f.exec "gksu gtkalsasetup &"
+    "Ονόματα υπολογιστών" f.exec "gksu gtkhostsetup &"
+    "Παρακολούθηση αρχείων καταγραφών" f.exec "mate-system-log &"
+    "Πληκτρολόγιο" f.exec "gksu gtkkeyboardsetup &"
+    "Ρολόι συστήματος" f.exec "gksu gtkclocksetup &"
+    "Στατιστικά ενέργειας" f.exec "mate-power-statistics &"
+    "Τερματικό MATE" f.exec "mate-terminal &"
+    "Υπηρεσίες συστήματος" f.exec "gksu gtkservicesetup &"
+    "Χρήστες και ομάδες" f.exec "gksu gtkusersetup &"
+}
