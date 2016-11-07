@@ -49,8 +49,8 @@ dependency (used by the **--max-icon-size** option).
 
 : **-f, --format**
 specify the output format to use. Valid options are //blackbox//,
-//compizboxmenu//, //fluxbox//, //fvwm//, //icewm//, //jwm//, //pekwm//
-and //windowmaker//.
+//compizboxmenu//, //fluxbox//, //fvwm//, //icewm//, //jwm//, //pekwm//,
+//twm// and //windowmaker//.
 Specifying the output format is mandatory.
 
 : **-i, --icons**
