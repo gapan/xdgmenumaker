@@ -80,6 +80,10 @@ generated menus for pekwm you have to use this option. Do not use it if
 you want to generate static menus for pekwm. Only works with //pekwm//
 of course.
 
+: **--twm-titles**
+display menu titles in TWM menus. Naturally, only has an effect when
+used with //twm//.
+
 
 = GENERAL OPTIONS =
 

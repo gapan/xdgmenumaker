@@ -35,6 +35,7 @@ iconsize = 16
 desktop = False
 submenu = True
 pekwmdynamic = False
+twmtitles = False
 max_icon_size = False
 
 # the following line gets changed by the Makefile. If it is set to
@@ -168,11 +169,13 @@ def main(argv):
     global iconsize
     global submenu
     global pekwmdynamic
+    global twmtitles
     global max_icon_size
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
                                                      "no-submenu",
                                                      "pekwm-dynamic",
+                                                     "twm-titles",
                                                      "max-icon-size",
                                                      "size=",
                                                      "format="])
@@ -195,6 +198,8 @@ def main(argv):
             submenu = False
         elif opt in ("--pekwm-dynamic",):
             pekwmdynamic = True
+        elif opt in ("--twm-titles",):
+            twmtitles = True
         elif opt in ("--max-icon-size",):
             try:
                 # Pillow is optional and loaded only if we want to restrict the
@@ -252,6 +257,7 @@ def usage():
     print('                         windowmaker')
     print('        --max-icon-size  restrict the icon sizes to the specified size')
     print('        --pekwm-dynamic  generate dynamic menus for pekwm')
+    print('        --twm-titles     show menu titles in twm menus')
     print('    -h, --help           show this help message')
     print('  You have to specify the output format using the -f switch.')
     print()
@@ -790,6 +796,8 @@ def twm():
     if submenu:
         print('menu "xdgmenu"')
         print("{")
+        if twmtitles:
+            print('    "{a}" f.title'.format(a=apps_name))
         for menu_category in menu():
             category = menu_category.category
             cat_name = category.decode()
@@ -800,6 +808,8 @@ def twm():
         cat_name = category.decode()
         print('menu "{}"'.format(cat_name))
         print("{")
+        if twmtitles:
+            print('    "{c}" f.title'.format(c=cat_name))
         for app in menu_category.applist:
             name = app.name.decode()
             # for some apps (like netbeans) the command is launched with
