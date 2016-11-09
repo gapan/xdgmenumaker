@@ -50,6 +50,10 @@ generate:
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f twm > menus_test/twm
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f twm --twm-titles > menus_test/twm_titles
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=el_GR.utf8 \
+		$(PYTHON) $(MM) -f twm --twm-titles > menus_test/twm_titles_el
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f windowmaker > menus_test/windowmaker
 
 clean:
