@@ -269,12 +269,10 @@ def usage():
 def icon_strip(icon):
     # strip the directory and extension from the icon name
     icon = os.path.basename(icon)
-    if icon.endswith('.png'):
-        icon = icon.replace('.png', '')
-    elif icon.endswith('.svg'):
-        icon = icon.replace('.svg', '')
-    elif icon.endswith('.xpm'):
-        icon = icon.replace('.xpm', '')
+    main, ext = os.path.splitext(icon)
+    ext = ext.lower()
+    if ext == '.png' or ext == '.svg' or ext == '.svgz' or ext == '.xpm':
+        return main
     return icon
 
 
@@ -299,7 +297,8 @@ def icon_full_path(icon):
     # But we don't want to do this for svg icons, since none of the WMs
     # supports them. In that case, just fall back to looking for the icon
     # elsewhere in the system.
-    if os.path.exists(icon) and os.path.splitext(icon)[1] != ".svg":
+    ext = os.path.splitext(icon)[1].lower()
+    if os.path.exists(icon) and ext != ".svg" and ext != ".svgz":
         if max_icon_size:
             return icon_max_size(icon)
         else:
