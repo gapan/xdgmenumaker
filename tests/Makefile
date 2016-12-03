@@ -22,6 +22,8 @@ generate:
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox -i > menus_test/fluxbox_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f fvwm > menus_test/fvwm
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f fluxbox -i -s 48 > menus_test/fluxbox_icons48
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=el_GR.utf8 \
 		$(PYTHON) $(MM) -f fluxbox > menus_test/fluxbox_el
@@ -45,6 +47,12 @@ generate:
 		$(PYTHON) $(MM) -f pekwm -i > menus_test/pekwm_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f pekwm --pekwm-dynamic > menus_test/pekwm_dynamic
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f twm > menus_test/twm
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f twm --twm-titles > menus_test/twm_titles
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=el_GR.utf8 \
+		$(PYTHON) $(MM) -f twm --twm-titles > menus_test/twm_titles_el
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f windowmaker > menus_test/windowmaker
 

@@ -1,0 +1,126 @@
+DestroyMenu "xdgmenu"
+AddToMenu "xdgmenu"
++ "Accessories" Popup "Accessories"
++ "Development" Popup "Development"
++ "Education" Popup "Education"
++ "Games" Popup "Games"
++ "Graphics" Popup "Graphics"
++ "Multimedia" Popup "Multimedia"
++ "Network" Popup "Network"
++ "Office" Popup "Office"
++ "Settings" Popup "Settings"
++ "System" Popup "System"
+
+DestroyMenu "Accessories"
+AddToMenu "Accessories"
++ "Accessories" Title
++ "Engrampa Archive Manager" Exec engrampa 
++ "GTKMan Manual Page Viewer" Exec gtkman salix
++ "Galculator" Exec galculator
++ "KeePassX" Exec keepassx 
++ "Leafpad" Exec leafpad 
++ "Search for Files..." Exec mate-search-tool
++ "Take Screenshot" Exec mate-screenshot --interactive
++ "Xournal" Exec xournal 
++ "Zim Desktop Wiki" Exec zim
+
+DestroyMenu "Development"
+AddToMenu "Development"
++ "Development" Title
++ "CMake" Exec cmake-gui 
++ "Geany" Exec geany 
++ "Glade" Exec glade-3 
++ "Meld" Exec meld 
++ "Poedit" Exec poedit 
++ "Qt4 Assistant" Exec assistant
++ "Qt4 Designer" Exec designer
++ "Qt4 Linguist" Exec linguist
++ "RStudio" Exec /usr/lib64/rstudio/bin/rstudio 
+
+DestroyMenu "Education"
+AddToMenu "Education"
++ "Education" Title
++ "LibreOffice 4.4 Math" Exec libreoffice4.4 --math 
++ "R" Exec xterm -e R
+
+DestroyMenu "Games"
+AddToMenu "Games"
++ "Games" Title
++ "KEGS" Exec xterm -e aoss xkegs
+
+DestroyMenu "Graphics"
+AddToMenu "Graphics"
++ "Graphics" Title
++ "Dia Diagram Editor" Exec dia 
++ "E-book Viewer" Exec ebook-viewer 
++ "GNU Image Manipulation Program" Exec gimp-2.8 
++ "Gcolor2" Exec gcolor2
++ "LRF Viewer" Exec lrfviewer 
++ "LibreOffice 4.4 Draw" Exec libreoffice4.4 --draw 
++ "Simple Scan" Exec simple-scan
++ "Viewnior" Exec viewnior 
+
+DestroyMenu "Multimedia"
+AddToMenu "Multimedia"
++ "Multimedia" Title
++ "Asunder CD Ripper" Exec asunder
++ "Audacity" Exec audacity 
++ "Ex Falso" Exec exfalso
++ "Exaile" Exec exaile 
++ "GNOME MPlayer" Exec gnome-mplayer 
++ "Gaupol" Exec gaupol 
++ "ISO Master" Exec isomaster
++ "Quod Libet" Exec quodlibet
+
+DestroyMenu "Network"
+AddToMenu "Network"
++ "Network" Title
++ "Claws Mail" Exec claws-mail 
++ "Firefox" Exec firefox 
++ "Pidgin Internet Messenger" Exec pidgin
++ "Transmission" Exec transmission-gtk 
++ "gFTP" Exec gftp 
++ "ownCloud desktop sync client" Exec /usr/bin/owncloud
+
+DestroyMenu "Office"
+AddToMenu "Office"
++ "Office" Title
++ "Atril Document Viewer" Exec atril 
++ "Dictionary" Exec mate-dictionary
++ "HTMLDOC" Exec htmldoc 
++ "LibreOffice 4.4 Base" Exec libreoffice4.4 --base 
++ "LibreOffice 4.4 Calc" Exec libreoffice4.4 --calc 
++ "LibreOffice 4.4 Impress" Exec libreoffice4.4 --impress 
++ "LibreOffice 4.4 Writer" Exec libreoffice4.4 --writer 
++ "calibre" Exec calibre 
+
+DestroyMenu "Settings"
+AddToMenu "Settings"
++ "Settings" Title
++ "Bluetooth Manager" Exec blueman-manager
++ "Power Management" Exec mate-power-preferences
++ "Qt4 Config" Exec qtconfig
++ "Screensaver" Exec xscreensaver-demo
+
+DestroyMenu "System"
+AddToMenu "System"
++ "System" Title
++ "ALSA sound card" Exec gksu gtkalsasetup
++ "Disk Usage Analyzer" Exec mate-disk-usage-analyzer
++ "Dotnew" Exec gksu dotnew-gtk
++ "Grsync" Exec /usr/bin/grsync -i 
++ "Gslapt Package Manager" Exec gksu /usr/sbin/gslapt
++ "Hostnames" Exec gksu gtkhostsetup
++ "Htop" Exec xterm -e htop
++ "Keyboard" Exec gksu gtkkeyboardsetup
++ "Log File Viewer" Exec mate-system-log
++ "MATE Terminal" Exec mate-terminal
++ "Manage Printing" Exec /usr/bin/xdg-open http://localhost:631/
++ "Power Statistics" Exec mate-power-statistics
++ "Sourcery SlackBuild Manager" Exec gksu sourcery
++ "System clock" Exec gksu gtkclocksetup
++ "System language" Exec gksu gtklocalesetup
++ "System services" Exec gksu gtkservicesetup
++ "Users and groups" Exec gksu gtkusersetup
++ "dconf Editor" Exec dconf-editor
+

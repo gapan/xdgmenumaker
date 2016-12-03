@@ -7,6 +7,7 @@ from __future__ import print_function
 import os
 import sys
 import getopt
+import fnmatch
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
@@ -35,6 +36,8 @@ iconsize = 16
 desktop = False
 submenu = True
 pekwmdynamic = False
+twmtitles = False
+max_icon_size = False
 
 # the following line gets changed by the Makefile. If it is set to
 # 'not_set' it looks in the currect directory tree for the .directory
@@ -167,10 +170,14 @@ def main(argv):
     global iconsize
     global submenu
     global pekwmdynamic
+    global twmtitles
+    global max_icon_size
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
                                                      "no-submenu",
                                                      "pekwm-dynamic",
+                                                     "twm-titles",
+                                                     "max-icon-size",
                                                      "size=",
                                                      "format="])
     except getopt.GetoptError:
@@ -192,6 +199,22 @@ def main(argv):
             submenu = False
         elif opt in ("--pekwm-dynamic",):
             pekwmdynamic = True
+        elif opt in ("--twm-titles",):
+            twmtitles = True
+        elif opt in ("--max-icon-size",):
+            try:
+                # Pillow is optional and loaded only if we want to restrict the
+                # icon sizes (useful for Fvwm). Yeah, I know it's not a good
+                # idea to load a module in here, but I really don't want to
+                # load it by default at the top. It would make xdgmenumaker a
+                # bit slower to run even if it is not needed. This way it only
+                # slows down when it is actually needed.
+                global Image
+                from PIL import Image
+                max_icon_size = True
+            except ImportError:
+                usage()
+                sys.exit('ERROR: --max-icon-size requires Pillow')
         elif opt in ("-f", "--format"):
             desktop = arg
     if not desktop:
@@ -201,6 +224,8 @@ def main(argv):
         blackbox()
     elif desktop == "fluxbox":
         fluxbox()
+    elif desktop == "fvwm":
+        fvwm()
     elif desktop == "windowmaker":
         seticon = False
         windowmaker()
@@ -214,6 +239,8 @@ def main(argv):
         compizboxmenu()
     elif desktop == "openbox":
         openbox()
+    elif desktop == "twm":
+        twm()
     else:
         usage()
         sys.exit(2)
@@ -224,14 +251,16 @@ def usage():
     print()
     print('OPTIONS:')
     print('    -f, --format         the output format to use.')
-    print('                         Valid options are blackbox, compizboxmenu,')
-    print('                         fluxbox, icewm, jwm, windowmaker and pekwm')
+    print('                         Valid options are blackbox, compizboxmenu, fluxbox,')
+    print('                         fvwm, twm, icewm, jwm, windowmaker and pekwm')
     print('    -i, --icons          enable support for icons in the')
     print('                         menus. Does not work with windowmaker')
     print('    -s, --size           preferred icon size in pixels (default: 16)')
     print('    -n, --no-submenu     do not create a submenu. Does not work with')
     print('                         windowmaker')
+    print('        --max-icon-size  restrict the icon sizes to the specified size')
     print('        --pekwm-dynamic  generate dynamic menus for pekwm')
+    print('        --twm-titles     show menu titles in twm menus')
     print('    -h, --help           show this help message')
     print('  You have to specify the output format using the -f switch.')
     print()
@@ -243,28 +272,48 @@ def usage():
 def icon_strip(icon):
     # strip the directory and extension from the icon name
     icon = os.path.basename(icon)
-    if icon.endswith('.png'):
-        icon = icon.replace('.png', '')
-    elif icon.endswith('.svg'):
-        icon = icon.replace('.svg', '')
-    elif icon.endswith('.xpm'):
-        icon = icon.replace('.xpm', '')
+    main, ext = os.path.splitext(icon)
+    ext = ext.lower()
+    if ext == '.png' or ext == '.svg' or ext == '.svgz' or ext == '.xpm':
+        return main
     return icon
+
+
+def icon_max_size(icon):
+    # Checks if the icon size is bigger than the requested size and discards
+    # the icon if it is, only allowing sizes smaller or equal to the requested
+    # size
+    try:
+        img = Image.open(icon)
+    except:
+        # if there is any error reading the icon, just discard it
+        return None
+    if img.size[0] <= iconsize:
+        return icon
+    return None
 
 
 def icon_full_path(icon):
     # If the icon path is absolute and exists, leave it alone.
     # This takes care of software that has its own icons stored
-    # in non-standard directories
-    if os.path.exists(icon):
-        return icon
-    else:
-        icon = icon_strip(icon)
-        icon_theme = gtk.icon_theme_get_default()
-        icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
-        if icon:
-            icon = icon.get_filename()
-        return icon
+    # in non-standard directories.
+    # But we don't want to do this for svg icons, since none of the WMs
+    # supports them. In that case, just fall back to looking for the icon
+    # elsewhere in the system.
+    ext = os.path.splitext(icon)[1].lower()
+    if os.path.exists(icon) and ext != ".svg" and ext != ".svgz":
+        if max_icon_size:
+            return icon_max_size(icon)
+        else:
+            return icon
+    icon = icon_strip(icon)
+    icon_theme = gtk.icon_theme_get_default()
+    icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+    if icon:
+        icon = icon.get_filename()
+        if max_icon_size:
+            icon = icon_max_size(icon)
+    return icon
 
 
 def get_entry_info(desktopfile, ico_paths=True):
@@ -369,16 +418,16 @@ def desktopfilelist():
     for d in dirs:
         xdgdir = '{}/applications'.format(d)
         if os.path.isdir(xdgdir):
-            for i in os.listdir(xdgdir):
-                if i.endswith('.desktop'):
-                    # for duplicate .desktop files that exist in more
-                    # than one locations, only keep the first occurence.
-                    # That one should have precedence anyway (e.g.
-                    # ~/.local/share/applications has precedence over
-                    # /usr/share/applications
-                    if i not in df_temp:
-                        df_temp.append(i)
-                        filelist.append('{}/{}'.format(xdgdir, i))
+            for root, dirnames, filenames in os.walk(xdgdir):
+                    for i in fnmatch.filter(filenames, '*.desktop'):
+                        # for duplicate .desktop files that exist in more
+                        # than one locations, only keep the first occurence.
+                        # That one should have precedence anyway (e.g.
+                        # ~/.local/share/applications has precedence over
+                        # /usr/share/applications
+                        if i not in df_temp:
+                            df_temp.append(i)
+                            filelist.append(os.path.join(root, i))
     return filelist
 
 
@@ -488,6 +537,63 @@ def fluxbox():
         print('{s}[end] # ({c})'.format(s=spacing, c=cat_name))
     if submenu:
         print('[end] # ({})'.format(apps_name))
+
+
+def fvwm():
+    if submenu:
+        print('DestroyMenu "xdgmenu"')
+        print('AddToMenu "xdgmenu"')
+        if seticon:
+            app_icon = icon_full_path(applications_icon)
+            if app_icon:
+                print('+ "{a}%{i}% " Title'.format(a=apps_name, i=app_icon))
+            else:
+                print('+ "{a}" Title'.format(a=apps_name))
+            app_icon = icon_full_path(applications_icon)
+            for menu_category in menu():
+                category = menu_category.category
+                cat_name = category.decode()
+                cat_icon = category_icon(category)
+                cat_icon = icon_full_path(cat_icon)
+                if cat_icon:
+                    print('+ "{c}%{i}%" Popup "{c}"'.format(c=cat_name,
+                                                            i=cat_icon))
+                else:
+                    print('+ "{c}" Popup "{c}"'.format(c=cat_name))
+        else:
+            for menu_category in menu():
+                category = menu_category.category
+                cat_name = category.decode()
+                print('+ "{c}" Popup "{c}"'.format(c=cat_name))
+        print()
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        print('DestroyMenu "{}"'.format(cat_name))
+        print('AddToMenu "{c}"'.format(c=cat_name))
+        if seticon:
+            cat_icon = category_icon(category)
+            cat_icon = icon_full_path(cat_icon)
+            if cat_icon:
+                print('+ "{c}%{i}%" Title'.format(c=cat_name, i=cat_icon))
+            else:
+                print('+ "{c}" Title'.format(c=cat_name))
+        else:
+            print('+ "{c}" Title'.format(c=cat_name))
+        for app in menu_category.applist:
+            name = app.name.decode()
+            icon = app.icon
+            command = app.command
+            path = app.path
+            if path is not None:
+                command = 'cd {p} ; {c}'.format(p=path, c=command)
+            if icon is None:
+                print('+ "{n}" Exec {c}'.format(n=name, c=command))
+            else:
+                print('+ "{n}%{i}%" Exec {c}'.format(n=name,
+                                                            c=command,
+                                                            i=icon))
+        print()
 
 
 def windowmaker():
@@ -723,6 +829,38 @@ def compizboxmenu():
         print('{}</menu>'.format(spacing))
     if submenu:
         print('</menu>')
+
+def twm():
+    if submenu:
+        print('menu "xdgmenu"')
+        print("{")
+        if twmtitles:
+            print('    "{a}" f.title'.format(a=apps_name))
+        for menu_category in menu():
+            category = menu_category.category
+            cat_name = category.decode()
+            print('    "{c}" f.menu "{c}"'.format(c=cat_name))
+        print("}")
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        print('menu "{}"'.format(cat_name))
+        print("{")
+        if twmtitles:
+            print('    "{c}" f.title'.format(c=cat_name))
+        for app in menu_category.applist:
+            name = app.name.decode()
+            # for some apps (like netbeans) the command is launched with
+            # /bin/sh "command"
+            # and the quotes get mixed up with the quotes twm puts
+            # around the command, so we're just stripping the quotes
+            command = app.command.replace('"', '')
+            path = app.path
+            if path is not None:
+                print('    "{n}" f.exec "cd {p} ; {c} &"'.format(n=name, p=path, c=command))
+            else:
+                print('    "{n}" f.exec "{c} &"'.format(n=name, c=command))
+        print("}")
 
 if __name__ == "__main__":
     main(sys.argv[1:])

@@ -9,13 +9,13 @@ man:
 install:
 	install -d -m 755 $(DESTDIR)/$(PREFIX)/bin
 	install -d -m 755 $(DESTDIR)/$(PREFIX)/share/desktop-directories
-	install -m 755 src/xdgmenumaker $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 desktop-directories/* $(DESTDIR)/$(PREFIX)/share/desktop-directories
 	if [ -f man/xdgmenumaker.1 ]; then \
 		install -d -m 755 $(DESTDIR)/$(PREFIX)/share/man/man1; \
 		install -m 644 man/xdgmenumaker.1 $(DESTDIR)/$(PREFIX)/share/man/man1/; \
 	fi
-	sed -i "s|^prefix = 'not_set'|prefix = '$(PREFIX)'|" $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
+	sed "s|^prefix = 'not_set'|prefix = '$(PREFIX)'|" src/xdgmenumaker > $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
+	chmod 755 $(DESTDIR)/$(PREFIX)/bin/xdgmenumaker
 
 clean: test-clean
 	rm -f man/xdgmenumaker.1
