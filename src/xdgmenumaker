@@ -358,9 +358,9 @@ def get_entry_info(desktopfile, ico_paths=True):
     # each WM. This is not 100% failure-proof. There might be other variations
     # of this out there, but we can't account for every single one. If someone
     # finds one another one, I can always add it later.
-    command = command.replace('-caption %c', '')
     command = command.replace('-caption "%c"', '')
     command = command.replace("-caption '%c'", '')
+    command = command.replace('-caption %c', '')
     # replace the %k key. This is what freedesktop says about it: "The
     # location of the desktop file as either a URI (if for example gotten from
     # the vfolder system) or a local filename or empty if no location is
