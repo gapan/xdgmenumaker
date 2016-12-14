@@ -342,6 +342,14 @@ def get_entry_info(desktopfile, ico_paths=True):
         icon = None
 
     command = de.getExec()
+    # replace the %i (icon key) if it's there. This is what freedesktop has to
+    # say about it: "The Icon key of the desktop entry expanded as two
+    # arguments, first --icon and then the value of the Icon key. Should not
+    # expand to any arguments if the Icon key is empty or missing."
+    if icon:
+        command = command.replace('"%i"', '--icon {}'.format(icon))
+        command = command.replace("'%i'", '--icon {}'.format(icon))
+        command = command.replace('%i', '--icon {}'.format(icon))
     # some KDE apps have this "-caption %c" in a few variations. %c is "The
     # translated name of the application as listed in the appropriate Name key
     # in the desktop entry" according to freedesktop. All apps launch without a
