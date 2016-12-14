@@ -312,6 +312,37 @@ def icon_full_path(icon):
             icon = icon_max_size(icon)
     return icon
 
+def remove_command_keys(command, desktopfile, icon):
+    # replace the %i (icon key) if it's there. This is what freedesktop has to
+    # say about it: "The Icon key of the desktop entry expanded as two
+    # arguments, first --icon and then the value of the Icon key. Should not
+    # expand to any arguments if the Icon key is empty or missing."
+    if icon:
+        command = command.replace('"%i"', '--icon {}'.format(icon))
+        command = command.replace("'%i'", '--icon {}'.format(icon))
+        command = command.replace('%i', '--icon {}'.format(icon))
+    # some KDE apps have this "-caption %c" in a few variations. %c is "The
+    # translated name of the application as listed in the appropriate Name key
+    # in the desktop entry" according to freedesktop. All apps launch without a
+    # problem without it as far as I can tell, so it's better to remove it than
+    # have to deal with extra sets of nested quotes which behave differently in
+    # each WM. This is not 100% failure-proof. There might be other variations
+    # of this out there, but we can't account for every single one. If someone
+    # finds one another one, I can always add it later.
+    command = command.replace('-caption "%c"', '')
+    command = command.replace("-caption '%c'", '')
+    command = command.replace('-caption %c', '')
+    # replace the %k key. This is what freedesktop says about it: "The
+    # location of the desktop file as either a URI (if for example gotten from
+    # the vfolder system) or a local filename or empty if no location is
+    # known."
+    command = command.replace('"%k"', desktopfile)
+    command = command.replace("'%k'", desktopfile)
+    command = command.replace('%k', desktopfile)
+    # removing any remaining keys from the command. That can potentially remove
+    # any other trailing options after the keys,
+    command = command.partition('%')[0]
+    return command
 
 def get_entry_info(desktopfile, ico_paths=True):
     de = dentry.DesktopEntry(filename=desktopfile)
@@ -342,35 +373,7 @@ def get_entry_info(desktopfile, ico_paths=True):
         icon = None
 
     command = de.getExec()
-    # replace the %i (icon key) if it's there. This is what freedesktop has to
-    # say about it: "The Icon key of the desktop entry expanded as two
-    # arguments, first --icon and then the value of the Icon key. Should not
-    # expand to any arguments if the Icon key is empty or missing."
-    if icon:
-        command = command.replace('"%i"', '--icon {}'.format(icon))
-        command = command.replace("'%i'", '--icon {}'.format(icon))
-        command = command.replace('%i', '--icon {}'.format(icon))
-    # some KDE apps have this "-caption %c" in a few variations. %c is "The
-    # translated name of the application as listed in the appropriate Name key
-    # in the desktop entry" according to freedesktop. All apps launch without a
-    # problem without it as far as I can tell, so it's better to remove it than
-    # have to deal with extra sets of nested quotes which behave differently in
-    # each WM. This is not 100% failure-proof. There might be other variations
-    # of this out there, but we can't account for every single one. If someone
-    # finds one another one, I can always add it later.
-    command = command.replace('-caption "%c"', '')
-    command = command.replace("-caption '%c'", '')
-    command = command.replace('-caption %c', '')
-    # replace the %k key. This is what freedesktop says about it: "The
-    # location of the desktop file as either a URI (if for example gotten from
-    # the vfolder system) or a local filename or empty if no location is
-    # known."
-    command = command.replace('"%k"', desktopfile)
-    command = command.replace("'%k'", desktopfile)
-    command = command.replace('%k', desktopfile)
-    # removing any remaining keys from the command. That can potentially remove
-    # any other trailing options after the keys,
-    command = command.partition('%')[0]
+    command = remove_command_keys(command, desktopfile, icon)
 
     terminal = de.getTerminal()
     if terminal:
