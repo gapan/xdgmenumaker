@@ -344,6 +344,37 @@ def remove_command_keys(command, desktopfile, icon):
     command = command.partition('%')[0]
     return command
 
+def clean_up_categories(categories):
+    # cleaning up categories and keeping only registered freedesktop.org main
+    # categories
+    if 'AudioVideo' in categories:
+        category = multimedia
+    elif 'Audio' in categories:
+        category = multimedia
+    elif 'Video' in categories:
+        category = multimedia
+    elif 'Development' in categories:
+        category = development
+    elif 'Education' in categories:
+        category = education
+    elif 'Game' in categories:
+        category = games
+    elif 'Graphics' in categories:
+        category = graphics
+    elif 'Network' in categories:
+        category = network
+    elif 'Office' in categories:
+        category = office
+    elif 'System' in categories:
+        category = system
+    elif 'Settings' in categories:
+        category = settings
+    elif 'Utility' in categories:
+        category = accessories
+    else:
+        category = other
+    return category
+
 def get_entry_info(desktopfile, ico_paths=True):
     de = dentry.DesktopEntry(filename=desktopfile)
 
@@ -383,35 +414,8 @@ def get_entry_info(desktopfile, ico_paths=True):
     if not path:
         path = None
 
-    # cleaning up categories and keeping only registered freedesktop.org main
-    # categories
     categories = de.getCategories()
-    if 'AudioVideo' in categories:
-        category = multimedia
-    elif 'Audio' in categories:
-        category = multimedia
-    elif 'Video' in categories:
-        category = multimedia
-    elif 'Development' in categories:
-        category = development
-    elif 'Education' in categories:
-        category = education
-    elif 'Game' in categories:
-        category = games
-    elif 'Graphics' in categories:
-        category = graphics
-    elif 'Network' in categories:
-        category = network
-    elif 'Office' in categories:
-        category = office
-    elif 'System' in categories:
-        category = system
-    elif 'Settings' in categories:
-        category = settings
-    elif 'Utility' in categories:
-        category = accessories
-    else:
-        category = other
+    category = clean_up_categories(categories)
 
     app = App(name, icon, command, path)
     mentry = MenuEntry(category, app)
