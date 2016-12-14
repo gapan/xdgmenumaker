@@ -341,8 +341,20 @@ def get_entry_info(desktopfile, ico_paths=True):
     else:
         icon = None
 
+    command = de.getExec()
+    # some KDE apps have this "-caption %c" in a few variations. %c is "The
+    # translated name of the application as listed in the appropriate Name key
+    # in the desktop entry" according to freedesktop. All apps launch without a
+    # problem without it as far as I can tell, so it's better to remove it than
+    # have to deal with extra sets of nested quotes which behave differently in
+    # each WM. This is not 100% failure-proof. There might be other variations
+    # of this out there, but we can't account for every single one. If someone
+    # finds one another one, I can always add it later.
+    command = command.replace('-caption %c', '')
+    command = command.replace('-caption "%c"', '')
+    command = command.replace("-caption '%c'", '')
     # removing any %U or %F from the exec line
-    command = de.getExec().partition('%')[0]
+    command = command.partition('%')[0]
 
     terminal = de.getTerminal()
     if terminal:
