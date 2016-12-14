@@ -361,7 +361,15 @@ def get_entry_info(desktopfile, ico_paths=True):
     command = command.replace('-caption %c', '')
     command = command.replace('-caption "%c"', '')
     command = command.replace("-caption '%c'", '')
-    # removing any %U or %F from the exec line
+    # replace the %k key. This is what freedesktop says about it: "The
+    # location of the desktop file as either a URI (if for example gotten from
+    # the vfolder system) or a local filename or empty if no location is
+    # known."
+    command = command.replace('"%k"', desktopfile)
+    command = command.replace("'%k'", desktopfile)
+    command = command.replace('%k', desktopfile)
+    # removing any remaining keys from the command. That can potentially remove
+    # any other trailing options after the keys,
     command = command.partition('%')[0]
 
     terminal = de.getTerminal()
