@@ -37,6 +37,7 @@ desktop = False
 submenu = True
 pekwmdynamic = False
 twmtitles = False
+usesvg = False
 max_icon_size = False
 
 # the following line gets changed by the Makefile. If it is set to
@@ -171,12 +172,14 @@ def main(argv):
     global submenu
     global pekwmdynamic
     global twmtitles
+    global usesvg
     global max_icon_size
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
                                                      "no-submenu",
                                                      "pekwm-dynamic",
                                                      "twm-titles",
+                                                     "use-svg",
                                                      "max-icon-size",
                                                      "size=",
                                                      "format="])
@@ -201,6 +204,8 @@ def main(argv):
             pekwmdynamic = True
         elif opt in ("--twm-titles",):
             twmtitles = True
+        elif opt in ("--use-svg",):
+            usesvg = True
         elif opt in ("--max-icon-size",):
             try:
                 # Pillow is optional and loaded only if we want to restrict the
@@ -301,14 +306,18 @@ def icon_full_path(icon):
     # supports them. In that case, just fall back to looking for the icon
     # elsewhere in the system.
     ext = os.path.splitext(icon)[1].lower()
-    if os.path.exists(icon) and ext != ".svg" and ext != ".svgz":
-        if max_icon_size:
-            return icon_max_size(icon)
-        else:
-            return icon
+    if os.path.exists(icon):
+        if usesvg or (ext != ".svg" and ext != ".svgz"):
+            if max_icon_size:
+                return icon_max_size(icon)
+            else:
+                return icon
     icon = icon_strip(icon)
     icon_theme = gtk.icon_theme_get_default()
-    icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+    if usesvg:
+        icon = icon_theme.lookup_icon(icon, iconsize, 0)
+    else:
+        icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
     if icon:
         icon = icon.get_filename()
         if max_icon_size:
