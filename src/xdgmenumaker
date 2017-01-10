@@ -347,32 +347,25 @@ def remove_command_keys(command, desktopfile, icon):
 def clean_up_categories(categories):
     # cleaning up categories and keeping only registered freedesktop.org main
     # categories
-    if 'AudioVideo' in categories:
-        category = multimedia
-    elif 'Audio' in categories:
-        category = multimedia
-    elif 'Video' in categories:
-        category = multimedia
-    elif 'Development' in categories:
-        category = development
-    elif 'Education' in categories:
-        category = education
-    elif 'Game' in categories:
-        category = games
-    elif 'Graphics' in categories:
-        category = graphics
-    elif 'Network' in categories:
-        category = network
-    elif 'Office' in categories:
-        category = office
-    elif 'System' in categories:
-        category = system
-    elif 'Settings' in categories:
-        category = settings
-    elif 'Utility' in categories:
-        category = accessories
-    else:
-        category = other
+    category_menus = {
+        "AudioVideo":   multimedia,
+        "Audio":        multimedia,
+        "Video":        multimedia,
+        "Development":  development,
+        "Education":    education,
+        "Game":         games,
+        "Graphics":     graphics,
+        "Network":      network,
+        "Office":       office,
+        "System":       system,
+        "Settings":     settings,
+        "Utility":      accessories
+    }
+    category = other
+    for candidate in categories:
+        if category_menus.has_key(candidate):
+            category = category_menus.get(candidate)
+            break
     return category
 
 def get_entry_info(desktopfile, ico_paths=True):
