@@ -12,6 +12,7 @@ import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
 from operator import attrgetter
+from xml.sax.saxutils import escape
 
 # ConfigParser in Python2 has been renamed to configparser (all lower case)
 # in Python3. So, it's a good way to find out which Python version is being
@@ -36,6 +37,7 @@ desktop = False
 submenu = True
 pekwmdynamic = False
 twmtitles = False
+usesvg = False
 max_icon_size = False
 
 # the following line gets changed by the Makefile. If it is set to
@@ -170,12 +172,14 @@ def main(argv):
     global submenu
     global pekwmdynamic
     global twmtitles
+    global usesvg
     global max_icon_size
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
                                                      "no-submenu",
                                                      "pekwm-dynamic",
                                                      "twm-titles",
+                                                     "use-svg",
                                                      "max-icon-size",
                                                      "size=",
                                                      "format="])
@@ -200,6 +204,8 @@ def main(argv):
             pekwmdynamic = True
         elif opt in ("--twm-titles",):
             twmtitles = True
+        elif opt in ("--use-svg",):
+            usesvg = True
         elif opt in ("--max-icon-size",):
             try:
                 # Pillow is optional and loaded only if we want to restrict the
@@ -236,6 +242,8 @@ def main(argv):
         jwm()
     elif desktop == "compizboxmenu":
         compizboxmenu()
+    elif desktop == "openbox":
+        openbox()
     elif desktop == "twm":
         twm()
     else:
@@ -298,14 +306,18 @@ def icon_full_path(icon):
     # supports them. In that case, just fall back to looking for the icon
     # elsewhere in the system.
     ext = os.path.splitext(icon)[1].lower()
-    if os.path.exists(icon) and ext != ".svg" and ext != ".svgz":
-        if max_icon_size:
-            return icon_max_size(icon)
-        else:
-            return icon
+    if os.path.exists(icon):
+        if usesvg or (ext != ".svg" and ext != ".svgz"):
+            if max_icon_size:
+                return icon_max_size(icon)
+            else:
+                return icon
     icon = icon_strip(icon)
     icon_theme = gtk.icon_theme_get_default()
-    icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+    if usesvg:
+        icon = icon_theme.lookup_icon(icon, iconsize, 0)
+    else:
+        icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
     if icon:
         icon = icon.get_filename()
         if max_icon_size:
@@ -774,6 +786,42 @@ def jwm():
     if submenu:
         print('</Menu>')
     print('</JWM>')
+
+
+def openbox():
+    print('<?xml version="1.0" encoding="UTF-8"?>')
+    print('<openbox_pipe_menu>')
+    spacing = '  '
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        cat_id = 'apps-{}-menu'.format(cat_name.lower())
+        cat_icon = category_icon(category)
+        cat_icon = icon_full_path(cat_icon)
+        if seticon and cat_icon is not None:
+            print('{s}<menu id="{d}" label="{c}" icon="{i}">'
+                  .format(s=spacing, d=cat_id, c=cat_name, i=cat_icon))
+        else:
+            print('{s}<menu id="{d}" label="{c}">'
+                  .format(s=spacing, d=cat_id, c=cat_name))
+
+        for app in menu_category.applist:
+            name = app.name.decode()
+            command = app.command
+            icon = app.icon
+            if seticon and icon is not None:
+                print('{s}  <item label="{n}" icon="{i}">'
+                      .format(s=spacing, n=escape(name), i=icon))
+            else:
+                print('{s}  <item label="{n}">'
+                      .format(s=spacing, n=escape(name)))
+            print('{}    <action name="Execute">'.format(spacing))
+            print('{s}      <command>{c}</command>'.format(s=spacing,
+                                                           c=command))
+            print('{}    </action>'.format(spacing))
+            print('{}  </item>'.format(spacing))
+        print('{}</menu>'.format(spacing))
+    print('</openbox_pipe_menu>')
 
 
 def compizboxmenu():
