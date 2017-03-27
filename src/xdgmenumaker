@@ -305,7 +305,10 @@ def icon_full_path(icon):
             return icon
     icon = icon_strip(icon)
     icon_theme = gtk.icon_theme_get_default()
-    icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+    try:
+        icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+    except AttributeError:
+        sys.exit('ERROR: You need to run xdgmenumaker inside an X session.')
     if icon:
         icon = icon.get_filename()
         if max_icon_size:
