@@ -380,12 +380,11 @@ def get_entry_info(desktopfile, ico_paths=True):
     notshowin = de.getNotShowIn()
     hidden = de.getHidden()
     nodisplay = de.getNoDisplay()
-    # none of the freedesktop registered environments are supported by
-    # OnlyShowIn anyway:
-    # http://standards.freedesktop.org/menu-spec/latest/apb.html
-    # So if OnlyShowIn is set, it certainly isn't for any of the WMs
-    # xdgmenumaker supports.
-    if (onlyshowin != []) or (desktop in notshowin) or hidden or nodisplay:
+    if 'XDG_CURRENT_DESKTOP' in os.environ and len(onlyshowin) >0 and not os.environ['XDG_CURRENT_DESKTOP'] in onlyshowin:
+		return None
+    if 'XDG_CURRENT_DESKTOP' in os.environ and len(notshowin) >0 and os.environ['XDG_CURRENT_DESKTOP'] in notshowin:
+		return None
+    if hidden or nodisplay:
         return None
 
     name = de.getName().encode('utf-8')
