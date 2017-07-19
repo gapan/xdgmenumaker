@@ -366,7 +366,7 @@ def clean_up_categories(categories):
     }
     category = other
     for candidate in categories:
-        if category_menus.has_key(candidate):
+        if candidate in category_menus:
             category = category_menus.get(candidate)
             break
     return category
