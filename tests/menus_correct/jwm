@@ -24,7 +24,6 @@
     <Program label="RStudio">/usr/lib64/rstudio/bin/rstudio </Program>
   </Menu>
   <Menu label="Education">
-    <Program label="LibreOffice 4.4 Math">libreoffice4.4 --math </Program>
     <Program label="R">xterm -e R</Program>
   </Menu>
   <Menu label="Games">
@@ -36,7 +35,6 @@
     <Program label="GNU Image Manipulation Program">gimp-2.8 </Program>
     <Program label="Gcolor2">gcolor2</Program>
     <Program label="LRF Viewer">lrfviewer </Program>
-    <Program label="LibreOffice 4.4 Draw">libreoffice4.4 --draw </Program>
     <Program label="Simple Scan">simple-scan</Program>
     <Program label="Viewnior">viewnior </Program>
   </Menu>
@@ -64,7 +62,9 @@
     <Program label="HTMLDOC">htmldoc </Program>
     <Program label="LibreOffice 4.4 Base">libreoffice4.4 --base </Program>
     <Program label="LibreOffice 4.4 Calc">libreoffice4.4 --calc </Program>
+    <Program label="LibreOffice 4.4 Draw">libreoffice4.4 --draw </Program>
     <Program label="LibreOffice 4.4 Impress">libreoffice4.4 --impress </Program>
+    <Program label="LibreOffice 4.4 Math">libreoffice4.4 --math </Program>
     <Program label="LibreOffice 4.4 Writer">libreoffice4.4 --writer </Program>
     <Program label="calibre">calibre </Program>
   </Menu>

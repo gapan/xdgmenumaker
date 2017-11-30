@@ -22,7 +22,6 @@
   "RStudio" EXEC /usr/lib64/rstudio/bin/rstudio 
  "Development" END
  "Education" MENU
-  "LibreOffice 4.4 Math" EXEC libreoffice4.4 --math 
   "R" EXEC xterm -e R
  "Education" END
  "Games" MENU
@@ -34,7 +33,6 @@
   "GNU Image Manipulation Program" EXEC gimp-2.8 
   "Gcolor2" EXEC gcolor2
   "LRF Viewer" EXEC lrfviewer 
-  "LibreOffice 4.4 Draw" EXEC libreoffice4.4 --draw 
   "Simple Scan" EXEC simple-scan
   "Viewnior" EXEC viewnior 
  "Graphics" END
@@ -62,7 +60,9 @@
   "HTMLDOC" EXEC htmldoc 
   "LibreOffice 4.4 Base" EXEC libreoffice4.4 --base 
   "LibreOffice 4.4 Calc" EXEC libreoffice4.4 --calc 
+  "LibreOffice 4.4 Draw" EXEC libreoffice4.4 --draw 
   "LibreOffice 4.4 Impress" EXEC libreoffice4.4 --impress 
+  "LibreOffice 4.4 Math" EXEC libreoffice4.4 --math 
   "LibreOffice 4.4 Writer" EXEC libreoffice4.4 --writer 
   "calibre" EXEC calibre 
  "Office" END

@@ -17,7 +17,9 @@
     <Program label="HTMLDOC">htmldoc </Program>
     <Program label="LibreOffice 4.4 Base">libreoffice4.4 --base </Program>
     <Program label="LibreOffice 4.4 Calc">libreoffice4.4 --calc </Program>
+    <Program label="LibreOffice 4.4 Draw">libreoffice4.4 --draw </Program>
     <Program label="LibreOffice 4.4 Impress">libreoffice4.4 --impress </Program>
+    <Program label="LibreOffice 4.4 Math">libreoffice4.4 --math </Program>
     <Program label="LibreOffice 4.4 Writer">libreoffice4.4 --writer </Program>
     <Program label="Visionneuse de document Atril">atril </Program>
     <Program label="calibre">calibre </Program>
@@ -37,7 +39,6 @@
     <Program label="E-book Viewer">ebook-viewer </Program>
     <Program label="Gcolor2">gcolor2</Program>
     <Program label="LRF Viewer">lrfviewer </Program>
-    <Program label="LibreOffice 4.4 Draw">libreoffice4.4 --draw </Program>
     <Program label="Numérisation simple">simple-scan</Program>
     <Program label="Viewnior">viewnior </Program>
     <Program label="Éditeur d'image GIMP">gimp-2.8 </Program>
@@ -91,7 +92,6 @@
     <Program label="Éditeur dconf">dconf-editor</Program>
   </Menu>
   <Menu label="Éducation">
-    <Program label="LibreOffice 4.4 Math">libreoffice4.4 --math </Program>
     <Program label="R">xterm -e R</Program>
   </Menu>
 </Menu>

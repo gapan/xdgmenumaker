@@ -22,7 +22,6 @@ Submenu = "Applications" {
     Entry = "RStudio" { Actions = "Exec /usr/lib64/rstudio/bin/rstudio  &" }
   }
   Submenu = "Education" {
-    Entry = "LibreOffice 4.4 Math" { Actions = "Exec libreoffice4.4 --math  &" }
     Entry = "R" { Actions = "Exec xterm -e R &" }
   }
   Submenu = "Games" {
@@ -34,7 +33,6 @@ Submenu = "Applications" {
     Entry = "GNU Image Manipulation Program" { Actions = "Exec gimp-2.8  &" }
     Entry = "Gcolor2" { Actions = "Exec gcolor2 &" }
     Entry = "LRF Viewer" { Actions = "Exec lrfviewer  &" }
-    Entry = "LibreOffice 4.4 Draw" { Actions = "Exec libreoffice4.4 --draw  &" }
     Entry = "Simple Scan" { Actions = "Exec simple-scan &" }
     Entry = "Viewnior" { Actions = "Exec viewnior  &" }
   }
@@ -62,7 +60,9 @@ Submenu = "Applications" {
     Entry = "HTMLDOC" { Actions = "Exec htmldoc  &" }
     Entry = "LibreOffice 4.4 Base" { Actions = "Exec libreoffice4.4 --base  &" }
     Entry = "LibreOffice 4.4 Calc" { Actions = "Exec libreoffice4.4 --calc  &" }
+    Entry = "LibreOffice 4.4 Draw" { Actions = "Exec libreoffice4.4 --draw  &" }
     Entry = "LibreOffice 4.4 Impress" { Actions = "Exec libreoffice4.4 --impress  &" }
+    Entry = "LibreOffice 4.4 Math" { Actions = "Exec libreoffice4.4 --math  &" }
     Entry = "LibreOffice 4.4 Writer" { Actions = "Exec libreoffice4.4 --writer  &" }
     Entry = "calibre" { Actions = "Exec calibre  &" }
   }

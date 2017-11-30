@@ -22,7 +22,6 @@ menu "Applications" _none_ {
     prog "RStudio" _none_ /usr/lib64/rstudio/bin/rstudio 
   }
   menu "Education" _none_ {
-    prog "LibreOffice 4.4 Math" _none_ libreoffice4.4 --math 
     prog "R" _none_ xterm -e R
   }
   menu "Games" _none_ {
@@ -34,7 +33,6 @@ menu "Applications" _none_ {
     prog "GNU Image Manipulation Program" _none_ gimp-2.8 
     prog "Gcolor2" _none_ gcolor2
     prog "LRF Viewer" _none_ lrfviewer 
-    prog "LibreOffice 4.4 Draw" _none_ libreoffice4.4 --draw 
     prog "Simple Scan" _none_ simple-scan
     prog "Viewnior" _none_ viewnior 
   }
@@ -62,7 +60,9 @@ menu "Applications" _none_ {
     prog "HTMLDOC" _none_ htmldoc 
     prog "LibreOffice 4.4 Base" _none_ libreoffice4.4 --base 
     prog "LibreOffice 4.4 Calc" _none_ libreoffice4.4 --calc 
+    prog "LibreOffice 4.4 Draw" _none_ libreoffice4.4 --draw 
     prog "LibreOffice 4.4 Impress" _none_ libreoffice4.4 --impress 
+    prog "LibreOffice 4.4 Math" _none_ libreoffice4.4 --math 
     prog "LibreOffice 4.4 Writer" _none_ libreoffice4.4 --writer 
     prog "calibre" _none_ calibre 
   }

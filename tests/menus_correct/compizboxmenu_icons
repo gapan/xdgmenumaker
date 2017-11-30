@@ -22,7 +22,6 @@
     <item type="launcher"><name>RStudio</name><icon>rstudio</icon><command>/usr/lib64/rstudio/bin/rstudio </command></item>
   </menu>
   <menu icon="applications-education" name="Education">
-    <item type="launcher"><name>LibreOffice 4.4 Math</name><icon>libreoffice4.4-math</icon><command>libreoffice4.4 --math </command></item>
     <item type="launcher"><name>R</name><icon>R</icon><command>xterm -e R</command></item>
   </menu>
   <menu icon="applications-games" name="Games">
@@ -34,7 +33,6 @@
     <item type="launcher"><name>GNU Image Manipulation Program</name><icon>gimp</icon><command>gimp-2.8 </command></item>
     <item type="launcher"><name>Gcolor2</name><icon>gcolor2</icon><command>gcolor2</command></item>
     <item type="launcher"><name>LRF Viewer</name><icon>calibre-viewer</icon><command>lrfviewer </command></item>
-    <item type="launcher"><name>LibreOffice 4.4 Draw</name><icon>libreoffice4.4-draw</icon><command>libreoffice4.4 --draw </command></item>
     <item type="launcher"><name>Simple Scan</name><icon>scanner</icon><command>simple-scan</command></item>
     <item type="launcher"><name>Viewnior</name><icon>viewnior</icon><command>viewnior </command></item>
   </menu>
@@ -62,7 +60,9 @@
     <item type="launcher"><name>HTMLDOC</name><icon>htmldoc</icon><command>htmldoc </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Base</name><icon>libreoffice4.4-base</icon><command>libreoffice4.4 --base </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Calc</name><icon>libreoffice4.4-calc</icon><command>libreoffice4.4 --calc </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Draw</name><icon>libreoffice4.4-draw</icon><command>libreoffice4.4 --draw </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Impress</name><icon>libreoffice4.4-impress</icon><command>libreoffice4.4 --impress </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Math</name><icon>libreoffice4.4-math</icon><command>libreoffice4.4 --math </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Writer</name><icon>libreoffice4.4-writer</icon><command>libreoffice4.4 --writer </command></item>
     <item type="launcher"><name>calibre</name><icon>calibre-gui</icon><command>calibre </command></item>
   </menu>

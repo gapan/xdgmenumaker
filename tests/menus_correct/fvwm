@@ -40,7 +40,6 @@ AddToMenu "Development"
 DestroyMenu "Education"
 AddToMenu "Education"
 + "Education" Title
-+ "LibreOffice 4.4 Math" Exec libreoffice4.4 --math 
 + "R" Exec xterm -e R
 
 DestroyMenu "Games"
@@ -56,7 +55,6 @@ AddToMenu "Graphics"
 + "GNU Image Manipulation Program" Exec gimp-2.8 
 + "Gcolor2" Exec gcolor2
 + "LRF Viewer" Exec lrfviewer 
-+ "LibreOffice 4.4 Draw" Exec libreoffice4.4 --draw 
 + "Simple Scan" Exec simple-scan
 + "Viewnior" Exec viewnior 
 
@@ -90,7 +88,9 @@ AddToMenu "Office"
 + "HTMLDOC" Exec htmldoc 
 + "LibreOffice 4.4 Base" Exec libreoffice4.4 --base 
 + "LibreOffice 4.4 Calc" Exec libreoffice4.4 --calc 
++ "LibreOffice 4.4 Draw" Exec libreoffice4.4 --draw 
 + "LibreOffice 4.4 Impress" Exec libreoffice4.4 --impress 
++ "LibreOffice 4.4 Math" Exec libreoffice4.4 --math 
 + "LibreOffice 4.4 Writer" Exec libreoffice4.4 --writer 
 + "calibre" Exec calibre 
 

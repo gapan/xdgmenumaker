@@ -22,7 +22,6 @@
     <item type="launcher"><name>RStudio</name><command>/usr/lib64/rstudio/bin/rstudio </command></item>
   </menu>
   <menu name="Education">
-    <item type="launcher"><name>LibreOffice 4.4 Math</name><command>libreoffice4.4 --math </command></item>
     <item type="launcher"><name>R</name><command>xterm -e R</command></item>
   </menu>
   <menu name="Games">
@@ -34,7 +33,6 @@
     <item type="launcher"><name>GNU Image Manipulation Program</name><command>gimp-2.8 </command></item>
     <item type="launcher"><name>Gcolor2</name><command>gcolor2</command></item>
     <item type="launcher"><name>LRF Viewer</name><command>lrfviewer </command></item>
-    <item type="launcher"><name>LibreOffice 4.4 Draw</name><command>libreoffice4.4 --draw </command></item>
     <item type="launcher"><name>Simple Scan</name><command>simple-scan</command></item>
     <item type="launcher"><name>Viewnior</name><command>viewnior </command></item>
   </menu>
@@ -62,7 +60,9 @@
     <item type="launcher"><name>HTMLDOC</name><command>htmldoc </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Base</name><command>libreoffice4.4 --base </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Calc</name><command>libreoffice4.4 --calc </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Draw</name><command>libreoffice4.4 --draw </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Impress</name><command>libreoffice4.4 --impress </command></item>
+    <item type="launcher"><name>LibreOffice 4.4 Math</name><command>libreoffice4.4 --math </command></item>
     <item type="launcher"><name>LibreOffice 4.4 Writer</name><command>libreoffice4.4 --writer </command></item>
     <item type="launcher"><name>calibre</name><command>calibre </command></item>
   </menu>

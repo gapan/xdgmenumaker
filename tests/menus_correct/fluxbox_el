@@ -25,7 +25,9 @@
     [exec] (HTMLDOC) {htmldoc }
     [exec] (LibreOffice 4.4 Base) {libreoffice4.4 --base }
     [exec] (LibreOffice 4.4 Calc) {libreoffice4.4 --calc }
+    [exec] (LibreOffice 4.4 Draw) {libreoffice4.4 --draw }
     [exec] (LibreOffice 4.4 Impress) {libreoffice4.4 --impress }
+    [exec] (LibreOffice 4.4 Math) {libreoffice4.4 --math }
     [exec] (LibreOffice 4.4 Writer) {libreoffice4.4 --writer }
     [exec] (calibre) {calibre }
     [exec] (Εφαρμογή προβολής εγγράφων Atril) {atril }
@@ -35,7 +37,6 @@
     [exec] (E-book Viewer) {ebook-viewer }
     [exec] (Gcolor2) {gcolor2}
     [exec] (LRF Viewer) {lrfviewer }
-    [exec] (LibreOffice 4.4 Draw) {libreoffice4.4 --draw }
     [exec] (Viewnior) {viewnior }
     [exec] (Επεξεργαστής διαγραμμάτων Dia) {dia }
     [exec] (Πρόγραμμα επεξεργασίας εικόνων GNU) {gimp-2.8 }
@@ -50,7 +51,6 @@
     [exec] (Αποστολέας μηνυμάτων διαδικτύου Pidgin) {pidgin}
   [end] # (Δίκτυο)
   [submenu] (Εκπαίδευση)
-    [exec] (LibreOffice 4.4 Math) {libreoffice4.4 --math }
     [exec] (R) {xterm -e R}
   [end] # (Εκπαίδευση)
   [submenu] (Παιχνίδια)

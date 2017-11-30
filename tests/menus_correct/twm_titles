@@ -41,7 +41,6 @@ menu "Development"
 menu "Education"
 {
     "Education" f.title
-    "LibreOffice 4.4 Math" f.exec "libreoffice4.4 --math  &"
     "R" f.exec "xterm -e R &"
 }
 menu "Games"
@@ -57,7 +56,6 @@ menu "Graphics"
     "GNU Image Manipulation Program" f.exec "gimp-2.8  &"
     "Gcolor2" f.exec "gcolor2 &"
     "LRF Viewer" f.exec "lrfviewer  &"
-    "LibreOffice 4.4 Draw" f.exec "libreoffice4.4 --draw  &"
     "Simple Scan" f.exec "simple-scan &"
     "Viewnior" f.exec "viewnior  &"
 }
@@ -91,7 +89,9 @@ menu "Office"
     "HTMLDOC" f.exec "htmldoc  &"
     "LibreOffice 4.4 Base" f.exec "libreoffice4.4 --base  &"
     "LibreOffice 4.4 Calc" f.exec "libreoffice4.4 --calc  &"
+    "LibreOffice 4.4 Draw" f.exec "libreoffice4.4 --draw  &"
     "LibreOffice 4.4 Impress" f.exec "libreoffice4.4 --impress  &"
+    "LibreOffice 4.4 Math" f.exec "libreoffice4.4 --math  &"
     "LibreOffice 4.4 Writer" f.exec "libreoffice4.4 --writer  &"
     "calibre" f.exec "calibre  &"
 }

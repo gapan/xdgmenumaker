@@ -21,7 +21,6 @@
   [exec] (RStudio) {/usr/lib64/rstudio/bin/rstudio }
 [end] # (Development)
 [submenu] (Education)
-  [exec] (LibreOffice 4.4 Math) {libreoffice4.4 --math }
   [exec] (R) {xterm -e R}
 [end] # (Education)
 [submenu] (Games)
@@ -33,7 +32,6 @@
   [exec] (GNU Image Manipulation Program) {gimp-2.8 }
   [exec] (Gcolor2) {gcolor2}
   [exec] (LRF Viewer) {lrfviewer }
-  [exec] (LibreOffice 4.4 Draw) {libreoffice4.4 --draw }
   [exec] (Simple Scan) {simple-scan}
   [exec] (Viewnior) {viewnior }
 [end] # (Graphics)
@@ -61,7 +59,9 @@
   [exec] (HTMLDOC) {htmldoc }
   [exec] (LibreOffice 4.4 Base) {libreoffice4.4 --base }
   [exec] (LibreOffice 4.4 Calc) {libreoffice4.4 --calc }
+  [exec] (LibreOffice 4.4 Draw) {libreoffice4.4 --draw }
   [exec] (LibreOffice 4.4 Impress) {libreoffice4.4 --impress }
+  [exec] (LibreOffice 4.4 Math) {libreoffice4.4 --math }
   [exec] (LibreOffice 4.4 Writer) {libreoffice4.4 --writer }
   [exec] (calibre) {calibre }
 [end] # (Office)

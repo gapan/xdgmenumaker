@@ -1,6 +1,5 @@
 menu "Anwendungen" _none_ {
   menu "Bildung" _none_ {
-    prog "LibreOffice 4.4 Math" _none_ libreoffice4.4 --math 
     prog "R" _none_ xterm -e R
   }
   menu "Büro" _none_ {
@@ -8,7 +7,9 @@ menu "Anwendungen" _none_ {
     prog "HTMLDOC" _none_ htmldoc 
     prog "LibreOffice 4.4 Base" _none_ libreoffice4.4 --base 
     prog "LibreOffice 4.4 Calc" _none_ libreoffice4.4 --calc 
+    prog "LibreOffice 4.4 Draw" _none_ libreoffice4.4 --draw 
     prog "LibreOffice 4.4 Impress" _none_ libreoffice4.4 --impress 
+    prog "LibreOffice 4.4 Math" _none_ libreoffice4.4 --math 
     prog "LibreOffice 4.4 Writer" _none_ libreoffice4.4 --writer 
     prog "Wörterbuch" _none_ mate-dictionary
     prog "calibre" _none_ calibre 
@@ -36,7 +37,6 @@ menu "Anwendungen" _none_ {
     prog "GNU Image Manipulation Program" _none_ gimp-2.8 
     prog "Gcolor2" _none_ gcolor2
     prog "LRF Viewer" _none_ lrfviewer 
-    prog "LibreOffice 4.4 Draw" _none_ libreoffice4.4 --draw 
     prog "Simple Scan" _none_ simple-scan
     prog "Viewnior" _none_ viewnior 
   }
