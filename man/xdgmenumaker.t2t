@@ -74,6 +74,10 @@ restrict the maximum size for icons to the one specified with the
 //--size// option. Any icons that are larger than the specified size
 will get discarded and will not be used.
 
+: **--no-svg**
+do not use SVG icons even for the WMs that support it. Right now that
+is only JWM.
+
 : **--pekwm-dynamic**
 create dynamic menus for pekwm. If you want to have dynamically
 generated menus for pekwm you have to use this option. Do not use it if
