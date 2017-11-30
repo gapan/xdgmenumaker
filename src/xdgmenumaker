@@ -32,6 +32,7 @@ import gtk
 
 seticon = False
 iconsize = 16
+nosvg = False
 desktop = False
 submenu = True
 pekwmdynamic = False
@@ -167,6 +168,7 @@ def main(argv):
     global desktop
     global seticon
     global iconsize
+    global nosvg
     global submenu
     global pekwmdynamic
     global twmtitles
@@ -177,6 +179,7 @@ def main(argv):
                                                      "pekwm-dynamic",
                                                      "twm-titles",
                                                      "max-icon-size",
+                                                     "no-svg",
                                                      "size=",
                                                      "format="])
     except getopt.GetoptError:
@@ -214,6 +217,8 @@ def main(argv):
             except ImportError:
                 usage()
                 sys.exit('ERROR: --max-icon-size requires Pillow')
+        elif opt == "--no-svg":
+            nosvg = True
         elif opt in ("-f", "--format"):
             desktop = arg
     if not desktop:
@@ -252,6 +257,7 @@ def usage():
     print('                         fvwm, twm, icewm, jwm, windowmaker and pekwm')
     print('    -i, --icons          enable support for icons in the')
     print('                         menus. Does not work with windowmaker')
+    print('        --no-svg         Do not use SVG icons even for WMs that support it')
     print('    -s, --size           preferred icon size in pixels (default: 16)')
     print('    -n, --no-submenu     do not create a submenu. Does not work with')
     print('                         windowmaker')
@@ -294,24 +300,34 @@ def icon_full_path(icon):
     # If the icon path is absolute and exists, leave it alone.
     # This takes care of software that has its own icons stored
     # in non-standard directories.
-    # But we don't want to do this for svg icons, since none of the WMs
-    # supports them. In that case, just fall back to looking for the icon
-    # elsewhere in the system.
     ext = os.path.splitext(icon)[1].lower()
-    if os.path.exists(icon) and ext != ".svg" and ext != ".svgz":
-        if max_icon_size:
-            return icon_max_size(icon)
+    if os.path.exists(icon):
+        if ext == ".svg" or ext == ".svgz":
+            # only jwm supports svg icons
+            if desktop == "jwm" and not nosvg:
+                return icon
         else:
-            return icon
+            # icon is not svg
+            if max_icon_size:
+                return icon_max_size(icon)
+            else:
+                return icon
+    # fall back to looking for the icon elsewhere in the system
     icon = icon_strip(icon)
     icon_theme = gtk.icon_theme_get_default()
     try:
-        icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+        # JWM supports svg icons
+        if desktop == "jwm" and not nosvg:
+            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_FORCE_SVG)
+        # but none of the other WMs does
+        else:
+            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
     except AttributeError:
         sys.exit('ERROR: You need to run xdgmenumaker inside an X session.')
     if icon:
         icon = icon.get_filename()
-        if max_icon_size:
+        # icon size only matters for non-SVG icons
+        if icon and max_icon_size and (ext != ".svg" or ext != ".svgz"):
             icon = icon_max_size(icon)
     return icon
 
