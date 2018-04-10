@@ -12,7 +12,6 @@ import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
 from operator import attrgetter
-from xml.sax.saxutils import escape
 
 # ConfigParser in Python2 has been renamed to configparser (all lower case)
 # in Python3. So, it's a good way to find out which Python version is being
@@ -811,10 +810,10 @@ def openbox():
             icon = app.icon
             if seticon and icon is not None:
                 print('{s}  <item label="{n}" icon="{i}">'
-                      .format(s=spacing, n=escape(name), i=icon))
+                      .format(s=spacing, n=name, i=icon))
             else:
                 print('{s}  <item label="{n}">'
-                      .format(s=spacing, n=escape(name)))
+                      .format(s=spacing, n=name))
             print('{}    <action name="Execute">'.format(spacing))
             print('{s}      <command>{c}</command>'.format(s=spacing,
                                                            c=command))
