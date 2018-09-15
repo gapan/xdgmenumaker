@@ -243,6 +243,9 @@ def main(argv):
         compizboxmenu()
     elif desktop == "twm":
         twm()
+    elif desktop == "amiwm":
+        seticon = False
+        amiwm()
     else:
         usage()
         sys.exit(2)
@@ -256,7 +259,7 @@ def usage():
     print('                         Valid options are blackbox, compizboxmenu, fluxbox,')
     print('                         fvwm, twm, icewm, jwm, windowmaker and pekwm')
     print('    -i, --icons          enable support for icons in the')
-    print('                         menus. Does not work with windowmaker')
+    print('                         menus. Does not work with windowmaker or amiwm')
     print('        --no-svg         Do not use SVG icons even for WMs that support it')
     print('    -s, --size           preferred icon size in pixels (default: 16)')
     print('    -n, --no-submenu     do not create a submenu. Does not work with')
@@ -869,6 +872,26 @@ def twm():
             else:
                 print('    "{n}" f.exec "{c} &"'.format(n=name, c=command))
         print("}")
+
+def amiwm():
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        print('ToolItem "{}" {{'.format(cat_name))
+        for app in menu_category.applist:
+            name = app.name.decode()
+            # for some apps (like netbeans) the command is launched with
+            # /bin/sh "command"
+            # and the quotes get mixed up with the quotes amim needs
+            # around the command, so we're just stripping the quotes
+            command = app.command.replace('"', '')
+            path = app.path
+            if path is not None:
+                print('  ToolItem "{n}" "cd {p} ; {c}" ""'.format(n=name, p=path, c=command))
+            else:
+                print('  ToolItem "{n}" "{c}" ""'.format(n=name, c=command))
+        print("}")
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
