@@ -12,6 +12,8 @@ test: clean generate
 generate:
 	mkdir -p menus_test
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
+		$(PYTHON) $(MM) -f amiwm > menus_test/amiwm
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f blackbox > menus_test/blackbox
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f compizboxmenu > menus_test/compizboxmenu

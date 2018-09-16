@@ -1,0 +1,93 @@
+ToolItem "Accessories" {
+  ToolItem "Engrampa Archive Manager" "engrampa " ""
+  ToolItem "GTKMan Manual Page Viewer" "gtkman salix" ""
+  ToolItem "Galculator" "galculator" ""
+  ToolItem "KeePassX" "keepassx " ""
+  ToolItem "Leafpad" "leafpad " ""
+  ToolItem "Search for Files..." "mate-search-tool" ""
+  ToolItem "Take Screenshot" "mate-screenshot --interactive" ""
+  ToolItem "Xournal" "xournal " ""
+  ToolItem "Zim Desktop Wiki" "zim" ""
+}
+ToolItem "Development" {
+  ToolItem "CMake" "cmake-gui " ""
+  ToolItem "Geany" "geany " ""
+  ToolItem "Glade" "glade-3 " ""
+  ToolItem "Meld" "meld " ""
+  ToolItem "Poedit" "poedit " ""
+  ToolItem "Qt4 Assistant" "assistant" ""
+  ToolItem "Qt4 Designer" "designer" ""
+  ToolItem "Qt4 Linguist" "linguist" ""
+  ToolItem "RStudio" "/usr/lib64/rstudio/bin/rstudio " ""
+}
+ToolItem "Education" {
+  ToolItem "R" "xterm -e R" ""
+}
+ToolItem "Games" {
+  ToolItem "KEGS" "xterm -e aoss xkegs" ""
+}
+ToolItem "Graphics" {
+  ToolItem "Dia Diagram Editor" "dia " ""
+  ToolItem "E-book Viewer" "ebook-viewer " ""
+  ToolItem "GNU Image Manipulation Program" "gimp-2.8 " ""
+  ToolItem "Gcolor2" "gcolor2" ""
+  ToolItem "LRF Viewer" "lrfviewer " ""
+  ToolItem "Simple Scan" "simple-scan" ""
+  ToolItem "Viewnior" "viewnior " ""
+}
+ToolItem "Multimedia" {
+  ToolItem "Asunder CD Ripper" "asunder" ""
+  ToolItem "Audacity" "audacity " ""
+  ToolItem "Ex Falso" "exfalso" ""
+  ToolItem "Exaile" "exaile " ""
+  ToolItem "GNOME MPlayer" "gnome-mplayer " ""
+  ToolItem "Gaupol" "gaupol " ""
+  ToolItem "ISO Master" "isomaster" ""
+  ToolItem "Quod Libet" "quodlibet" ""
+}
+ToolItem "Network" {
+  ToolItem "Claws Mail" "claws-mail " ""
+  ToolItem "Firefox" "firefox " ""
+  ToolItem "Pidgin Internet Messenger" "pidgin" ""
+  ToolItem "Transmission" "transmission-gtk " ""
+  ToolItem "gFTP" "gftp " ""
+  ToolItem "ownCloud desktop sync client" "/usr/bin/owncloud" ""
+}
+ToolItem "Office" {
+  ToolItem "Atril Document Viewer" "atril " ""
+  ToolItem "Dictionary" "mate-dictionary" ""
+  ToolItem "HTMLDOC" "htmldoc " ""
+  ToolItem "LibreOffice 4.4 Base" "libreoffice4.4 --base " ""
+  ToolItem "LibreOffice 4.4 Calc" "libreoffice4.4 --calc " ""
+  ToolItem "LibreOffice 4.4 Draw" "libreoffice4.4 --draw " ""
+  ToolItem "LibreOffice 4.4 Impress" "libreoffice4.4 --impress " ""
+  ToolItem "LibreOffice 4.4 Math" "libreoffice4.4 --math " ""
+  ToolItem "LibreOffice 4.4 Writer" "libreoffice4.4 --writer " ""
+  ToolItem "calibre" "calibre " ""
+}
+ToolItem "Settings" {
+  ToolItem "Bluetooth Manager" "blueman-manager" ""
+  ToolItem "Power Management" "mate-power-preferences" ""
+  ToolItem "Qt4 Config" "qtconfig" ""
+  ToolItem "Screensaver" "xscreensaver-demo" ""
+}
+ToolItem "System" {
+  ToolItem "ALSA sound card" "gksu gtkalsasetup" ""
+  ToolItem "Disk Usage Analyzer" "mate-disk-usage-analyzer" ""
+  ToolItem "Dotnew" "gksu dotnew-gtk" ""
+  ToolItem "Grsync" "/usr/bin/grsync -i " ""
+  ToolItem "Gslapt Package Manager" "gksu /usr/sbin/gslapt" ""
+  ToolItem "Hostnames" "gksu gtkhostsetup" ""
+  ToolItem "Htop" "xterm -e htop" ""
+  ToolItem "Keyboard" "gksu gtkkeyboardsetup" ""
+  ToolItem "Log File Viewer" "mate-system-log" ""
+  ToolItem "MATE Terminal" "mate-terminal" ""
+  ToolItem "Manage Printing" "/usr/bin/xdg-open http://localhost:631/" ""
+  ToolItem "Power Statistics" "mate-power-statistics" ""
+  ToolItem "Sourcery SlackBuild Manager" "gksu sourcery" ""
+  ToolItem "System clock" "gksu gtkclocksetup" ""
+  ToolItem "System language" "gksu gtklocalesetup" ""
+  ToolItem "System services" "gksu gtkservicesetup" ""
+  ToolItem "Users and groups" "gksu gtkusersetup" ""
+  ToolItem "dconf Editor" "dconf-editor" ""
+}
