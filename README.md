@@ -257,7 +257,7 @@ You can create a menu for TWM running xdgmenumaker like this:
 
 If you're using the standard TWM, then unfortunately you'll have to
 manually copy/paste the contents of the generated `~/.twm-xdgmenu` file
-into your `~/.twmrc` manually. You could then add something like this
+into your `~/.twmrc`. You could then add something like this
 to your main menu definition:
 
     "Applications" f.menu "xdgmenu"
