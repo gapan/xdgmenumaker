@@ -151,7 +151,7 @@ other_icon = de.getIcon()
 terminal_app = os.getenv("XDGMENUMAKERTERM")
 if not terminal_app:
     try:
-        config = cp.SafeConfigParser()
+        config = cp.ConfigParser()
         config.read(os.path.expanduser('~/.config/xdgmenumaker.cfg'))
         terminal_app = config.get('Terminal', 'terminal')
     # if there isn't, on debian and debian-likes, use the alternatives
