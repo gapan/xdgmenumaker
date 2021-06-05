@@ -9,6 +9,7 @@ import fnmatch
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
+import xdg.IconTheme as it
 from operator import attrgetter
 
 import configparser as cp
@@ -289,37 +290,25 @@ def icon_max_size(icon):
 
 
 def icon_full_path(icon):
-    # If the icon path is absolute and exists, leave it alone.
-    # This takes care of software that has its own icons stored
-    # in non-standard directories.
-    ext = os.path.splitext(icon)[1].lower()
-    if os.path.exists(icon):
-        if ext == ".svg" or ext == ".svgz":
-            # only jwm supports svg icons
-            if desktop == "jwm" and not nosvg:
-                return icon
-        else:
-            # icon is not svg
-            if max_icon_size:
-                return icon_max_size(icon)
-            else:
-                return icon
-    # fall back to looking for the icon elsewhere in the system
-    icon = icon_strip(icon)
-    icon_theme = gtk.icon_theme_get_default()
-    try:
-        # JWM supports svg icons
-        if desktop == "jwm" and not nosvg:
-            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_FORCE_SVG)
-        # but none of the other WMs does
-        else:
-            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
-    except AttributeError:
-        sys.exit('ERROR: You need to run xdgmenumaker inside an X session.')
+    args = {
+        'size': iconsize,
+        'theme': 'hicolor'
+    }
+    lookup_svg = True
+    if not desktop == "jwm" or nosvg:
+        lookup_svg = False
+    if not lookup_svg:
+        args['extensions'] = ["png", "xpm"]
+    icon = it.getIconPath(icon, **args)
     if icon:
-        icon = icon.get_filename()
+        ext = os.path.splitext(icon)[1]
+        is_svg = ext == ".svg" or ext == ".svgz"
+        # SVG returned but not requested, most probably is an absolute path:
+        # ignore it, as it is not usable
+        if is_svg and not lookup_svg:
+            icon = None
         # icon size only matters for non-SVG icons
-        if icon and max_icon_size and (ext != ".svg" or ext != ".svgz"):
+        elif max_icon_size and not is_svg:
             icon = icon_max_size(icon)
     return icon
 
