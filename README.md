@@ -23,10 +23,9 @@ xdgmenumaker currently supports generating menus for:
 * windowmaker
 
 **xdgmenumaker** requires:
-* Python 2.7 or 3.x
+* Python 3.x
 * pyxdg
-* pygtk (for Python 2)
-* pygobject and gobject-instrospection (for Python 3)
+* pygobject and gobject-instrospection
 * Pillow (optional)
 
 

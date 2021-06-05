@@ -13,21 +13,12 @@ import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
 from operator import attrgetter
 
-# ConfigParser in Python2 has been renamed to configparser (all lower case)
-# in Python3. So, it's a good way to find out which Python version is being
-# used.
-python3 = False
-try:
-    import ConfigParser as cp
-except ImportError:
-    import configparser as cp
-    python3 = True
+import configparser as cp
 
-# Under Python3, load the gtk compatibility layer
-if python3:
-    from gi import pygtkcompat
-    pygtkcompat.enable()
-    pygtkcompat.enable_gtk(version='3.0')
+# Load the gtk compatibility layer
+from gi import pygtkcompat
+pygtkcompat.enable()
+pygtkcompat.enable_gtk(version='3.0')
 import gtk
 
 seticon = False
