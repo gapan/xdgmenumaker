@@ -1,5 +1,5 @@
 MM ?= ../src/xdgmenumaker
-PYTHON ?= python
+PYTHON ?= python3
 
 test: clean generate
 	@for i in `ls menus_correct/`; do \
