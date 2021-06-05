@@ -40,9 +40,8 @@ according to the running user locale settings.
 - windowmaker
 
 
-**xdgmenumaker** requires //Python 2.7// or //3.x//, //pygtk//
-(for Python 2.7) or //pygobject// and //gobject-instrospection//
-(for Python 3.x), as well as //pyxdg//. //Pillow// is an optional
+**xdgmenumaker** requires //Python 3.x//, //pygobject// and
+//gobject-instrospection//, as well as //pyxdg//. //Pillow// is an optional
 dependency (used by the **--max-icon-size** option).
 
 
