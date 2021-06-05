@@ -354,6 +354,10 @@ def remove_command_keys(command, desktopfile, icon):
     command = command.replace('-caption "%c"', '')
     command = command.replace("-caption '%c'", '')
     command = command.replace('-caption %c', '')
+    # same as before, although with -qwindowtitle (typical for Qt 5 apps).
+    command = command.replace('-qwindowtitle "%c"', '')
+    command = command.replace("-qwindowtitle '%c'", '')
+    command = command.replace('-qwindowtitle %c', '')
     # replace the %k key. This is what freedesktop says about it: "The
     # location of the desktop file as either a URI (if for example gotten from
     # the vfolder system) or a local filename or empty if no location is
