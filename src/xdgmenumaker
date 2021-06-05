@@ -2,8 +2,6 @@
 # coding: utf-8
 # vim:et:sta:sts=4:sw=4:ts=8:tw=79:
 
-from __future__ import print_function
-
 import os
 import sys
 import getopt
