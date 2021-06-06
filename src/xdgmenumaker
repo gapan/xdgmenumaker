@@ -2,9 +2,9 @@
 # coding: utf-8
 # vim:et:sta:sts=4:sw=4:ts=8:tw=79:
 
+import argparse
 import os
 import sys
-import getopt
 import fnmatch
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
@@ -153,7 +153,7 @@ if not terminal_app:
             terminal_app = 'xterm'
 
 
-def main(argv):
+def main():
     global desktop
     global seticon
     global iconsize
@@ -162,58 +162,61 @@ def main(argv):
     global pekwmdynamic
     global twmtitles
     global max_icon_size
-    try:
-        opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
-                                                     "no-submenu",
-                                                     "pekwm-dynamic",
-                                                     "twm-titles",
-                                                     "max-icon-size",
-                                                     "no-svg",
-                                                     "size=",
-                                                     "format="])
-    except getopt.GetoptError:
-        usage()
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt in ("-h", "--help"):
-            usage()
-            sys.exit(0)
-        elif opt in ("-i", "--icons"):
-            seticon = True
-        elif opt in ("-s", "--size"):
-            try:
-                iconsize = int(arg)
-            except ValueError:
-                usage()
-                sys.exit('ERROR: size must be a number')
-        elif opt in ("-n", "--no-submenu"):
-            submenu = False
-        elif opt in ("--pekwm-dynamic",):
-            pekwmdynamic = True
-        elif opt in ("--twm-titles",):
-            twmtitles = True
-        elif opt in ("--max-icon-size",):
-            try:
-                # Pillow is optional and loaded only if we want to restrict the
-                # icon sizes (useful for Fvwm). Yeah, I know it's not a good
-                # idea to load a module in here, but I really don't want to
-                # load it by default at the top. It would make xdgmenumaker a
-                # bit slower to run even if it is not needed. This way it only
-                # slows down when it is actually needed.
-                global Image
-                from PIL import Image
-                max_icon_size = True
-            except ImportError:
-                usage()
-                sys.exit('ERROR: --max-icon-size requires Pillow')
-        elif opt == "--no-svg":
-            nosvg = True
-        elif opt in ("-f", "--format"):
-            desktop = arg
-    if not desktop:
-        usage()
-        sys.exit('ERROR: You must specify the output format with -f')
-    elif desktop == "blackbox":
+    parser = argparse.ArgumentParser(usage='%(prog)s -f FORMAT [OPTIONS]',
+                                     formatter_class=argparse.RawDescriptionHelpFormatter,
+                                     epilog='''\
+
+examples:
+    xdgmenumaker -f windowmaker
+    xdgmenumaker -i -f fluxbox
+''')
+    parser.add_argument('-f', '--format', metavar='FORMAT', required=True,
+                        choices=['amiwm', 'blackbox', 'compizboxmenu',
+                                 'fluxbox', 'fvwm', 'icewm', 'jwm', 'pekwm',
+                                 'twm', 'windowmaker'],
+                        help='the output format to use. Valid options are '
+                             '%(choices)s')
+    parser.add_argument('-i', '--icons', action='store_true',
+                        help='enable support for icons in the menus. Does '
+                             'not work with windowmaker or amiwm')
+    parser.add_argument('--no-svg', action='store_false', dest='svg',
+                        help='Do not use SVG icons even for WMs that support '
+                             'it')
+    parser.add_argument('-s', '--size', type=int, default=16, dest='iconsize',
+                        help='preferred icon size in pixels (default: '
+                             '%(default)s)')
+    parser.add_argument('-n', '--no-submenu', action='store_false',
+                        dest='submenu',
+                        help='do not create a submenu. Does not work with '
+                             'windowmaker')
+    parser.add_argument('--max-icon-size', action='store_true',
+                        help='restrict the icon sizes to the specified size')
+    parser.add_argument('--pekwm-dynamic', action='store_true',
+                        help='generate dynamic menus for pekwm')
+    parser.add_argument('--twm-titles', action='store_true',
+                        help='show menu titles in twm menus')
+    args = parser.parse_args()
+    desktop = args.format
+    seticon = args.icons
+    iconsize = args.iconsize
+    nosvg = not args.svg
+    submenu = args.submenu
+    pekwmdynamic = args.pekwm_dynamic
+    twmtitles = args.twm_titles
+    if args.max_icon_size is True:
+        try:
+            # Pillow is optional and loaded only if we want to restrict the
+            # icon sizes (useful for Fvwm). Yeah, I know it's not a good
+            # idea to load a module in here, but I really don't want to
+            # load it by default at the top. It would make xdgmenumaker a
+            # bit slower to run even if it is not needed. This way it only
+            # slows down when it is actually needed.
+            global Image
+            from PIL import Image
+            max_icon_size = True
+        except ImportError:
+            parser.error('--max-icon-size requires Pillow')
+    if desktop == "blackbox":
         blackbox()
     elif desktop == "fluxbox":
         fluxbox()
@@ -236,32 +239,7 @@ def main(argv):
         seticon = False
         amiwm()
     else:
-        usage()
-        sys.exit(2)
-
-
-def usage():
-    print('USAGE:', os.path.basename(sys.argv[0]), '[OPTIONS]')
-    print()
-    print('OPTIONS:')
-    print('    -f, --format         the output format to use.')
-    print('                         Valid options are amiwm, blackbox, compizboxmenu,')
-    print('                         fluxbox, fvwm, twm, icewm, jwm, windowmaker and pekwm')
-    print('    -i, --icons          enable support for icons in the')
-    print('                         menus. Does not work with windowmaker or amiwm')
-    print('        --no-svg         Do not use SVG icons even for WMs that support it')
-    print('    -s, --size           preferred icon size in pixels (default: 16)')
-    print('    -n, --no-submenu     do not create a submenu. Does not work with')
-    print('                         windowmaker')
-    print('        --max-icon-size  restrict the icon sizes to the specified size')
-    print('        --pekwm-dynamic  generate dynamic menus for pekwm')
-    print('        --twm-titles     show menu titles in twm menus')
-    print('    -h, --help           show this help message')
-    print('  You have to specify the output format using the -f switch.')
-    print()
-    print('EXAMPLES:')
-    print('    xdgmenumaker -f windowmaker')
-    print('    xdgmenumaker -i -f fluxbox')
+        parser.error('INTERNAL ERROR: unhandled format %s' % desktop)
 
 
 def icon_strip(icon):
@@ -887,4 +865,4 @@ def amiwm():
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main()
