@@ -9,15 +9,11 @@ import fnmatch
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
+import xdg.IconTheme as it
 from operator import attrgetter
 
 import configparser as cp
 
-# Load the gtk compatibility layer
-from gi import pygtkcompat
-pygtkcompat.enable()
-pygtkcompat.enable_gtk(version='3.0')
-import gtk
 
 seticon = False
 iconsize = 16
@@ -27,6 +23,7 @@ submenu = True
 pekwmdynamic = False
 twmtitles = False
 max_icon_size = False
+icontheme = 'hicolor'
 
 # the following line gets changed by the Makefile. If it is set to
 # 'not_set' it looks in the currect directory tree for the .directory
@@ -162,6 +159,7 @@ def main(argv):
     global pekwmdynamic
     global twmtitles
     global max_icon_size
+    global icontheme
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
                                                      "no-submenu",
@@ -170,7 +168,8 @@ def main(argv):
                                                      "max-icon-size",
                                                      "no-svg",
                                                      "size=",
-                                                     "format="])
+                                                     "format=",
+                                                     "icon-theme="])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -210,6 +209,8 @@ def main(argv):
             nosvg = True
         elif opt in ("-f", "--format"):
             desktop = arg
+        elif opt == "--icon-theme":
+            icontheme = arg
     if not desktop:
         usage()
         sys.exit('ERROR: You must specify the output format with -f')
@@ -256,6 +257,7 @@ def usage():
     print('        --max-icon-size  restrict the icon sizes to the specified size')
     print('        --pekwm-dynamic  generate dynamic menus for pekwm')
     print('        --twm-titles     show menu titles in twm menus')
+    print('        --icon-theme     XDG icon theme to lookup icons in (default: hicolor)')
     print('    -h, --help           show this help message')
     print('  You have to specify the output format using the -f switch.')
     print()
@@ -289,37 +291,25 @@ def icon_max_size(icon):
 
 
 def icon_full_path(icon):
-    # If the icon path is absolute and exists, leave it alone.
-    # This takes care of software that has its own icons stored
-    # in non-standard directories.
-    ext = os.path.splitext(icon)[1].lower()
-    if os.path.exists(icon):
-        if ext == ".svg" or ext == ".svgz":
-            # only jwm supports svg icons
-            if desktop == "jwm" and not nosvg:
-                return icon
-        else:
-            # icon is not svg
-            if max_icon_size:
-                return icon_max_size(icon)
-            else:
-                return icon
-    # fall back to looking for the icon elsewhere in the system
-    icon = icon_strip(icon)
-    icon_theme = gtk.icon_theme_get_default()
-    try:
-        # JWM supports svg icons
-        if desktop == "jwm" and not nosvg:
-            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_FORCE_SVG)
-        # but none of the other WMs does
-        else:
-            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
-    except AttributeError:
-        sys.exit('ERROR: You need to run xdgmenumaker inside an X session.')
+    args = {
+        'size': iconsize,
+        'theme': icontheme
+    }
+    lookup_svg = True
+    if not desktop == "jwm" or nosvg:
+        lookup_svg = False
+    if not lookup_svg:
+        args['extensions'] = ["png", "xpm"]
+    icon = it.getIconPath(icon, **args)
     if icon:
-        icon = icon.get_filename()
+        ext = os.path.splitext(icon)[1]
+        is_svg = ext == ".svg" or ext == ".svgz"
+        # SVG returned but not requested, most probably is an absolute path:
+        # ignore it, as it is not usable
+        if is_svg and not lookup_svg:
+            icon = None
         # icon size only matters for non-SVG icons
-        if icon and max_icon_size and (ext != ".svg" or ext != ".svgz"):
+        elif max_icon_size and not is_svg:
             icon = icon_max_size(icon)
     return icon
 
