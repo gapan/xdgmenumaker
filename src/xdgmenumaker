@@ -560,7 +560,7 @@ def fluxbox():
         for app in menu_category.applist:
             # closing parentheses need to be escaped, otherwise they are
             # cropped out, along with everything that comes after them
-            name = app.name.decode().replace(')', '\)')
+            name = app.name.decode().replace(')', r'\)')
             icon = app.icon
             command = app.command
             path = app.path
