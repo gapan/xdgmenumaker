@@ -19,14 +19,16 @@ pygtkcompat.enable()
 pygtkcompat.enable_gtk(version='3.0')
 import gtk
 
-seticon = False
-iconsize = 16
-nosvg = False
-desktop = False
-submenu = True
-pekwmdynamic = False
-twmtitles = False
-max_icon_size = False
+xopts = {
+    'seticon': False,
+    'iconsize': 16,
+    'nosvg': False,
+    'desktop': False,
+    'submenu': True,
+    'pekwmdynamic': False,
+    'twmtitles': False,
+    'max_icon_size': False
+}
 
 # the following line gets changed by the Makefile. If it is set to
 # 'not_set' it looks in the currect directory tree for the .directory
@@ -154,14 +156,7 @@ if not terminal_app:
 
 
 def main(argv):
-    global desktop
-    global seticon
-    global iconsize
-    global nosvg
-    global submenu
-    global pekwmdynamic
-    global twmtitles
-    global max_icon_size
+    global xopts
     try:
         opts, args = getopt.getopt(argv, "hins:f:", ["help", "icons",
                                                      "no-submenu",
@@ -179,19 +174,19 @@ def main(argv):
             usage()
             sys.exit(0)
         elif opt in ("-i", "--icons"):
-            seticon = True
+            xopts['seticon'] = True
         elif opt in ("-s", "--size"):
             try:
-                iconsize = int(arg)
+                xopts['iconsize'] = int(arg)
             except ValueError:
                 usage()
                 sys.exit('ERROR: size must be a number')
         elif opt in ("-n", "--no-submenu"):
-            submenu = False
+            xopts['submenu'] = False
         elif opt in ("--pekwm-dynamic",):
-            pekwmdynamic = True
+            xopts['pekwmdynamic'] = True
         elif opt in ("--twm-titles",):
-            twmtitles = True
+            xopts['twmtitles'] = True
         elif opt in ("--max-icon-size",):
             try:
                 # Pillow is optional and loaded only if we want to restrict the
@@ -202,38 +197,38 @@ def main(argv):
                 # slows down when it is actually needed.
                 global Image
                 from PIL import Image
-                max_icon_size = True
+                xopts['max_icon_size'] = True
             except ImportError:
                 usage()
                 sys.exit('ERROR: --max-icon-size requires Pillow')
         elif opt == "--no-svg":
-            nosvg = True
+            xopts['nosvg'] = True
         elif opt in ("-f", "--format"):
-            desktop = arg
-    if not desktop:
+            xopts['desktop'] = arg
+    if not xopts['desktop']:
         usage()
         sys.exit('ERROR: You must specify the output format with -f')
-    elif desktop == "blackbox":
+    elif xopts['desktop'] == "blackbox":
         blackbox()
-    elif desktop == "fluxbox":
+    elif xopts['desktop'] == "fluxbox":
         fluxbox()
-    elif desktop == "fvwm":
+    elif xopts['desktop'] == "fvwm":
         fvwm()
-    elif desktop == "windowmaker":
-        seticon = False
+    elif xopts['desktop'] == "windowmaker":
+        xopts['seticon'] = False
         windowmaker()
-    elif desktop == "icewm":
+    elif xopts['desktop'] == "icewm":
         icewm()
-    elif desktop == "pekwm":
+    elif xopts['desktop'] == "pekwm":
         pekwmmenu()
-    elif desktop == "jwm":
+    elif xopts['desktop'] == "jwm":
         jwm()
-    elif desktop == "compizboxmenu":
+    elif xopts['desktop'] == "compizboxmenu":
         compizboxmenu()
-    elif desktop == "twm":
+    elif xopts['desktop'] == "twm":
         twm()
-    elif desktop == "amiwm":
-        seticon = False
+    elif xopts['desktop'] == "amiwm":
+        xopts['seticon'] = False
         amiwm()
     else:
         usage()
@@ -283,7 +278,7 @@ def icon_max_size(icon):
     except:
         # if there is any error reading the icon, just discard it
         return None
-    if img.size[0] <= iconsize:
+    if img.size[0] <= xopts['iconsize']:
         return icon
     return None
 
@@ -296,11 +291,11 @@ def icon_full_path(icon):
     if os.path.exists(icon):
         if ext == ".svg" or ext == ".svgz":
             # only jwm and icewm support svg icons
-            if (desktop == "jwm" or desktop == "icewm") and not nosvg:
+            if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm") and not xopts['nosvg']:
                 return icon
         else:
             # icon is not svg
-            if max_icon_size:
+            if xopts['max_icon_size']:
                 return icon_max_size(icon)
             else:
                 return icon
@@ -309,17 +304,17 @@ def icon_full_path(icon):
     icon_theme = gtk.icon_theme_get_default()
     try:
         # JWM and IceWM support svg icons
-        if (desktop == "jwm" or desktop == "icewm") and not nosvg:
-            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_FORCE_SVG)
+        if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm") and not xopts['nosvg']:
+            icon = icon_theme.lookup_icon(icon, xopts['iconsize'], gtk.ICON_LOOKUP_FORCE_SVG)
         # but none of the other WMs does
         else:
-            icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_NO_SVG)
+            icon = icon_theme.lookup_icon(icon, xopts['iconsize'], gtk.ICON_LOOKUP_NO_SVG)
     except AttributeError:
         sys.exit('ERROR: You need to run xdgmenumaker inside an X session.')
     if icon:
         icon = icon.get_filename()
         # icon size only matters for non-SVG icons
-        if icon and max_icon_size and (ext != ".svg" or ext != ".svgz"):
+        if icon and xopts['max_icon_size'] and (ext != ".svg" or ext != ".svgz"):
             icon = icon_max_size(icon)
     return icon
 
@@ -395,14 +390,14 @@ def get_entry_info(desktopfile, ico_paths=True):
     # none of the freedesktop registered environments are supported by
     # OnlyShowIn but it might be worth using some extra logic here.
     # http://standards.freedesktop.org/menu-spec/latest/apb.html
-    if (onlyshowin != [] and not (desktop.lower() in (name.lower() for name in onlyshowin))) \
-        or (desktop.lower() in (name.lower() for name in notshowin)) \
+    if (onlyshowin != [] and not (xopts['desktop'].lower() in (name.lower() for name in onlyshowin))) \
+        or (xopts['desktop'].lower() in (name.lower() for name in notshowin)) \
         or hidden or nodisplay:
         return None
 
     name = de.getName().encode('utf-8')
 
-    if seticon:
+    if xopts['seticon']:
         icon = de.getIcon()
         if ico_paths:
             icon = icon_full_path(icon)
@@ -525,15 +520,15 @@ def category_icon(category):
 def blackbox():
     # Blackbox menus are the same as Fluxbox menus. They just don't support
     # icons.
-    global seticon
-    seticon = False
+    global xopts
+    xopts['seticon'] = False
     fluxbox()
 
 
 def fluxbox():
-    if submenu:
+    if xopts['submenu']:
         spacing = '  '
-        if seticon:
+        if xopts['seticon']:
             app_icon = icon_full_path(applications_icon)
 
             if app_icon is None:
@@ -547,7 +542,7 @@ def fluxbox():
     for menu_category in menu():
         category = menu_category.category
         cat_name = category.decode()
-        if seticon:
+        if xopts['seticon']:
             cat_icon = category_icon(category)
             cat_icon = icon_full_path(cat_icon)
             if cat_icon:
@@ -575,15 +570,15 @@ def fluxbox():
                                                                c=command,
                                                                i=icon))
         print('{s}[end] # ({c})'.format(s=spacing, c=cat_name))
-    if submenu:
+    if xopts['submenu']:
         print('[end] # ({})'.format(apps_name))
 
 
 def fvwm():
-    if submenu:
+    if xopts['submenu']:
         print('DestroyMenu "xdgmenu"')
         print('AddToMenu "xdgmenu"')
-        if seticon:
+        if xopts['seticon']:
             app_icon = icon_full_path(applications_icon)
             if app_icon:
                 print('+ "{a}%{i}% " Title'.format(a=apps_name, i=app_icon))
@@ -611,7 +606,7 @@ def fvwm():
         cat_name = category.decode()
         print('DestroyMenu "{}"'.format(cat_name))
         print('AddToMenu "{c}"'.format(c=cat_name))
-        if seticon:
+        if xopts['seticon']:
             cat_icon = category_icon(category)
             cat_icon = icon_full_path(cat_icon)
             if cat_icon:
@@ -651,9 +646,9 @@ def windowmaker():
 
 
 def icewm():
-    if submenu:
+    if xopts['submenu']:
         spacing = '  '
-        if seticon:
+        if xopts['seticon']:
             app_icon = icon_full_path(applications_icon)
             if app_icon is None:
                 app_icon = "_none_"
@@ -667,7 +662,7 @@ def icewm():
         cat_name = category.decode()
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
-        if seticon and cat_icon is not None:
+        if xopts['seticon'] and cat_icon is not None:
             print('{s}menu "{c}" {i} {{'.format(s=spacing, c=cat_name,
                                                 i=cat_icon))
         else:
@@ -676,26 +671,26 @@ def icewm():
             name = app.name.decode()
             icon = app.icon
             command = app.command
-            if seticon and icon is not None:
+            if xopts['seticon'] and icon is not None:
                 print('{s}  prog "{n}" {i} {c}'.format(s=spacing, n=name,
                                                        i=icon, c=command))
             else:
                 print('{s}  prog "{n}" _none_ {c}'.format(s=spacing, n=name,
                                                           c=command))
         print('{}}}'.format(spacing))
-    if submenu:
+    if xopts['submenu']:
         print('}')
 
 
 def pekwmmenu():
-    if pekwmdynamic:
+    if xopts['pekwmdynamic']:
         print("Dynamic {")
         dspacing = '  '
     else:
         dspacing = ''
-    if submenu:
+    if xopts['submenu']:
         spacing = '  '
-        if seticon:
+        if xopts['seticon']:
             app_icon = icon_full_path(applications_icon)
             print('{s}Submenu = "{a}" {{ Icon = "{i}"'.format(s=dspacing,
                                                               a=apps_name,
@@ -709,7 +704,7 @@ def pekwmmenu():
         cat_name = category.decode()
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
-        if seticon and cat_icon is not None:
+        if xopts['seticon'] and cat_icon is not None:
             print('{d}{s}Submenu = "{c}" {{ Icon = "{i}"'.format(d=dspacing,
                                                                  s=spacing,
                                                                  c=cat_name,
@@ -731,7 +726,7 @@ def pekwmmenu():
                 # with "&&" and "||", so we'll launch the command even if the
                 # path does not exist
                 command = 'cd {p} && {c} || {c}'.format(p=path, c=command)
-            if seticon and icon is not None:
+            if xopts['seticon'] and icon is not None:
                 print('{d}{s}  Entry = "{n}" {{ Icon = "{i}"; Actions = "Exec {c} &" }}'
                       .format(d=dspacing, s=spacing, n=name, i=icon,
                               c=command))
@@ -739,18 +734,18 @@ def pekwmmenu():
                 print('{d}{s}  Entry = "{n}" {{ Actions = "Exec {c} &" }}'
                       .format(d=dspacing, s=spacing, n=name, c=command))
         print('{d}{s}}}'.format(d=dspacing, s=spacing))
-    if submenu:
+    if xopts['submenu']:
         print('{}}}'.format(dspacing))
-    if pekwmdynamic:
+    if xopts['pekwmdynamic']:
         print("}")
 
 
 def jwm():
     print('<?xml version="1.0"?>')
     print('<JWM>')
-    if submenu:
+    if xopts['submenu']:
         spacing = '  '
-        if seticon:
+        if xopts['seticon']:
             app_icon = icon_full_path(applications_icon)
             if app_icon is None:
                 print('<Menu label="{}">'.format(apps_name))
@@ -766,7 +761,7 @@ def jwm():
         cat_name = category.decode()
         cat_icon = category_icon(category)
         cat_icon = icon_full_path(cat_icon)
-        if seticon and cat_icon is not None:
+        if xopts['seticon'] and cat_icon is not None:
             print('{s}<Menu icon="{i}" label="{c}">'.format(s=spacing,
                                                             i=cat_icon,
                                                             c=cat_name))
@@ -779,22 +774,22 @@ def jwm():
             path = app.path
             if path is not None:
                 command = 'cd {p} ; {c}'.format(p=path, c=command)
-            if seticon and icon is not None:
+            if xopts['seticon'] and icon is not None:
                 print('{s}  <Program icon="{i}" label="{n}">{c}</Program>'
                       .format(s=spacing, i=icon, n=name, c=command))
             else:
                 print('{s}  <Program label="{n}">{c}</Program>'
                       .format(s=spacing, n=name, c=command))
         print('{}</Menu>'.format(spacing))
-    if submenu:
+    if xopts['submenu']:
         print('</Menu>')
     print('</JWM>')
 
 
 def compizboxmenu():
-    if submenu:
+    if xopts['submenu']:
         spacing = '  '
-        if seticon:
+        if xopts['seticon']:
             app_icon = icon_strip(applications_icon)
             print('<menu icon="{i}" name="{a}">'.format(i=app_icon,
                                                         a=apps_name))
@@ -806,7 +801,7 @@ def compizboxmenu():
         category = menu_category.category
         cat_name = category.decode()
         cat_icon = category_icon(category)
-        if seticon and cat_icon is not None:
+        if xopts['seticon'] and cat_icon is not None:
             print('{s}<menu icon="{i}" name="{c}">'.format(
                 s=spacing, i=cat_icon, c=cat_name))
         else:
@@ -819,7 +814,7 @@ def compizboxmenu():
             if path is not None:
                 path = path.replace("'", "'\\''")
                 command = 'sh -c \'cd "{p}" ;{c}\''.format(p=path, c=command)
-            if seticon and icon is not None:
+            if xopts['seticon'] and icon is not None:
                 print(('{s}  <item type="launcher"><name>{n}</name>'
                        '<icon>{i}</icon>'
                        '<command>{c}</command></item>').format(s=spacing,
@@ -831,14 +826,14 @@ def compizboxmenu():
                                                                n=name,
                                                                c=command))
         print('{}</menu>'.format(spacing))
-    if submenu:
+    if xopts['submenu']:
         print('</menu>')
 
 def twm():
-    if submenu:
+    if xopts['submenu']:
         print('menu "xdgmenu"')
         print("{")
-        if twmtitles:
+        if xopts['twmtitles']:
             print('    "{a}" f.title'.format(a=apps_name))
         for menu_category in menu():
             category = menu_category.category
@@ -850,7 +845,7 @@ def twm():
         cat_name = category.decode()
         print('menu "{}"'.format(cat_name))
         print("{")
-        if twmtitles:
+        if xopts['twmtitles']:
             print('    "{c}" f.title'.format(c=cat_name))
         for app in menu_category.applist:
             name = app.name.decode()
