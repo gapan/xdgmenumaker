@@ -295,8 +295,8 @@ def icon_full_path(icon):
     ext = os.path.splitext(icon)[1].lower()
     if os.path.exists(icon):
         if ext == ".svg" or ext == ".svgz":
-            # only jwm supports svg icons
-            if desktop == "jwm" and not nosvg:
+            # only jwm and icewm support svg icons
+            if (desktop == "jwm" or desktop == "icewm") and not nosvg:
                 return icon
         else:
             # icon is not svg
@@ -308,8 +308,8 @@ def icon_full_path(icon):
     icon = icon_strip(icon)
     icon_theme = gtk.icon_theme_get_default()
     try:
-        # JWM supports svg icons
-        if desktop == "jwm" and not nosvg:
+        # JWM and IceWM support svg icons
+        if (desktop == "jwm" or desktop == "icewm") and not nosvg:
             icon = icon_theme.lookup_icon(icon, iconsize, gtk.ICON_LOOKUP_FORCE_SVG)
         # but none of the other WMs does
         else:
