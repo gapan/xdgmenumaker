@@ -25,7 +25,6 @@ xdgmenumaker currently supports generating menus for:
 **xdgmenumaker** requires:
 * Python 3.x
 * pyxdg
-* pygobject and gobject-instrospection
 * Pillow (optional)
 
 
