@@ -43,6 +43,8 @@ generate:
 		$(PYTHON) $(MM) -f jwm -i > menus_test/jwm_icons
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=fr_FR.utf8 \
 		$(PYTHON) $(MM) -f jwm > menus_test/jwm_fr
+	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=fr_FR.utf8 \
+		$(PYTHON) $(MM) -f openbox > menus_test/openbox
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
 		$(PYTHON) $(MM) -f pekwm > menus_test/pekwm
 	XDGMENUMAKER_TEST=1 XDGMENUMAKERTERM=xterm LANG=en_US.utf8 \
