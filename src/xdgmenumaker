@@ -293,9 +293,7 @@ def icon_full_path(icon):
     ext = os.path.splitext(icon)[1].lower()
     if os.path.exists(icon):
         if ext == ".svg" or ext == ".svgz":
-            # only jwm, icewm and openbox support svg icons
-            if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm"
-                    or xopts['desktop'] == "openbox") and not xopts['nosvg']:
+            if wm_supports_icons(xopts['desktop']) and not xopts['nosvg']:
                 return icon
         else:
             # icon is not svg
@@ -307,9 +305,8 @@ def icon_full_path(icon):
     icon = icon_strip(icon)
     icon_theme = gtk.icon_theme_get_default()
     try:
-        # JWM, IceWM and Openbox support svg icons
-        if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm"
-                or xopts['desktop'] == "openbox") and not xopts['nosvg']:
+        # Only some WMs support svg icons
+        if wm_supports_icons(xopts['desktop']) and not xopts['nosvg']:
             icon = icon_theme.lookup_icon(icon, xopts['iconsize'], gtk.ICON_LOOKUP_FORCE_SVG)
         # but none of the other WMs does
         else:
@@ -436,6 +433,13 @@ def sortedcategories(applist):
         categories.append(e.category)
     categories = sorted(set(categories))
     return categories
+
+
+def wm_supports_icons(wm):
+    # only jwm, icewm and openbox support svg icons
+    if wm == "icewm" or wm == "jwm" or wm == "openbox":
+        return True
+    return False
 
 
 def desktopfilelist():
