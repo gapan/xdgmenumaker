@@ -230,6 +230,8 @@ def main(argv):
     elif xopts['desktop'] == "amiwm":
         xopts['seticon'] = False
         amiwm()
+    elif xopts['desktop'] == "openbox":
+        openbox()
     else:
         usage()
         sys.exit(2)
@@ -241,7 +243,8 @@ def usage():
     print('OPTIONS:')
     print('    -f, --format         the output format to use.')
     print('                         Valid options are amiwm, blackbox, compizboxmenu,')
-    print('                         fluxbox, fvwm, twm, icewm, jwm, windowmaker and pekwm')
+    print('                         fluxbox, fvwm, twm, icewm, jwm, openbox,')
+    print('                         windowmaker and pekwm')
     print('    -i, --icons          enable support for icons in the')
     print('                         menus. Does not work with windowmaker or amiwm')
     print('        --no-svg         Do not use SVG icons even for WMs that support it')
@@ -290,8 +293,9 @@ def icon_full_path(icon):
     ext = os.path.splitext(icon)[1].lower()
     if os.path.exists(icon):
         if ext == ".svg" or ext == ".svgz":
-            # only jwm and icewm support svg icons
-            if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm") and not xopts['nosvg']:
+            # only jwm, icewm and openbox support svg icons
+            if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm"
+                    or xopts['desktop'] == "openbox") and not xopts['nosvg']:
                 return icon
         else:
             # icon is not svg
@@ -303,8 +307,9 @@ def icon_full_path(icon):
     icon = icon_strip(icon)
     icon_theme = gtk.icon_theme_get_default()
     try:
-        # JWM and IceWM support svg icons
-        if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm") and not xopts['nosvg']:
+        # JWM, IceWM and Openbox support svg icons
+        if (xopts['desktop'] == "jwm" or xopts['desktop'] == "icewm"
+                or xopts['desktop'] == "openbox") and not xopts['nosvg']:
             icon = icon_theme.lookup_icon(icon, xopts['iconsize'], gtk.ICON_LOOKUP_FORCE_SVG)
         # but none of the other WMs does
         else:
@@ -879,6 +884,40 @@ def amiwm():
             else:
                 print('  ToolItem "{n}" "{c}" ""'.format(n=name, c=command))
         print("}")
+
+def openbox():
+    print('<?xml version="1.0" encoding="UTF-8"?>')
+    print('<openbox_pipe_menu>')
+    spacing = '  '
+    for menu_category in menu():
+        category = menu_category.category
+        cat_name = category.decode()
+        cat_id = 'apps-{}-menu'.format(cat_name.lower())
+        cat_icon = category_icon(category)
+        cat_icon = icon_full_path(cat_icon)
+        if xopts['seticon'] and cat_icon is not None:
+            print('{s}<menu id="{d}" label="{c}" icon="{i}">'
+                  .format(s=spacing, d=cat_id, c=cat_name, i=cat_icon))
+        else:
+            print('{s}<menu id="{d}" label="{c}">'
+                  .format(s=spacing, d=cat_id, c=cat_name))
+        for app in menu_category.applist:
+            name = app.name.decode()
+            command = app.command
+            icon = app.icon
+            if xopts['seticon'] and icon is not None:
+                print('{s}{s}<item label="{n}" icon="{i}">'
+                      .format(s=spacing, n=name, i=icon))
+            else:
+                print('{s}{s}<item label="{n}">'
+                      .format(s=spacing, n=name))
+            print('{s}{s}{s}<action name="Execute">'.format(s=spacing))
+            print('{s}{s}{s}{s}<command>{c}</command>'.format(s=spacing,
+                                                           c=command))
+            print('{s}{s}{s}</action>'.format(s=spacing))
+            print('{s}{s}</item>'.format(s=spacing))
+        print('{s}</menu>'.format(s=spacing))
+    print('</openbox_pipe_menu>')
 
 
 if __name__ == "__main__":
