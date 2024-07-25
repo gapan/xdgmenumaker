@@ -18,6 +18,7 @@ xdgmenumaker currently supports generating menus for:
 * fvwm
 * icewm
 * jwm
+* openbox
 * pekwm
 * twm and derivatives such as ctwm and vtwm
 * windowmaker
@@ -206,6 +207,33 @@ reloaded with the above command. You can even add a menu item that will
 refresh the menu, like this:
 
     <Program label="Refresh Menu">jwm -reload</Program>
+
+
+Openbox
+-------
+
+You can create pipe menus for Openbox running xdgmenumaker like this:
+
+    $ xdgmenumaker -f openbox > ~/.cache/openbox/apps.menu
+
+
+or if you want icons in your menu:
+
+    $ xdgmenumaker -i -f openbox > ~/.cache/openbox/apps.menu
+
+and you can then edit your `~/.config/openbox/menu.xml` file and add this
+line somewhere in `<menu id="root-menu" label="Openbox 3">` section:
+
+    <menu execute="cat ~/.cache/openbox/apps.menu" id="applications-pipe-menu" label="Applications"/>
+
+You can add the **xdgmenumaker** command as another item in your menu, if
+you want to update it, without having to run the command manually again:
+
+    <item label="Rebuild applications menu">
+      <action name="Execute">
+        <command>xdgmenumaker -i -f openbox > ~/.cache/openbox/apps.menu</command>
+      </action>
+    </item>
 
 
 pekwm
