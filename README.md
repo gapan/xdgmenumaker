@@ -226,7 +226,7 @@ line somewhere in `<menu id="root-menu" label="Openbox 3">` section:
 
     <menu execute="cat ~/.cache/openbox/apps.menu" id="applications-pipe-menu" label="Applications"/>
 
-You can add the **xdgmenumaker** command as another item in your menu, if
+You can add the xdgmenumaker command as another item in your menu, if
 you want to update it, without having to run the command manually again:
 
     <item label="Rebuild applications menu">
