@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_pipe_menu>
-  <menu id="apps-accessories-menu" label="Accessories">
-    <item label="Engrampa Archive Manager">
+  <menu id="apps-accessoires-menu" label="Accessoires">
+    <item label="Capture d'écran">
       <action name="Execute">
-        <command>engrampa </command>
+        <command>mate-screenshot --interactive</command>
       </action>
     </item>
-    <item label="GTKMan Manual Page Viewer">
+    <item label="GTKMan - visionneuse de pages de manuel">
       <action name="Execute">
         <command>gtkman salix</command>
       </action>
@@ -14,6 +14,11 @@
     <item label="Galculator">
       <action name="Execute">
         <command>galculator</command>
+      </action>
+    </item>
+    <item label="Gestionnaire d'archives Engrampa">
+      <action name="Execute">
+        <command>engrampa </command>
       </action>
     </item>
     <item label="KeePassX">
@@ -26,14 +31,9 @@
         <command>leafpad </command>
       </action>
     </item>
-    <item label="Search for Files...">
+    <item label="Rechercher des fichiers...">
       <action name="Execute">
         <command>mate-search-tool</command>
-      </action>
-    </item>
-    <item label="Take Screenshot">
-      <action name="Execute">
-        <command>mate-screenshot --interactive</command>
       </action>
     </item>
     <item label="Xournal">
@@ -41,13 +41,65 @@
         <command>xournal </command>
       </action>
     </item>
-    <item label="Zim Desktop Wiki">
+    <item label="Zim, le Wiki de bureau">
       <action name="Execute">
         <command>zim</command>
       </action>
     </item>
   </menu>
-  <menu id="apps-development-menu" label="Development">
+  <menu id="apps-bureautique-menu" label="Bureautique">
+    <item label="Dictionnaire">
+      <action name="Execute">
+        <command>mate-dictionary</command>
+      </action>
+    </item>
+    <item label="HTMLDOC">
+      <action name="Execute">
+        <command>htmldoc </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Base">
+      <action name="Execute">
+        <command>libreoffice4.4 --base </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Calc">
+      <action name="Execute">
+        <command>libreoffice4.4 --calc </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Draw">
+      <action name="Execute">
+        <command>libreoffice4.4 --draw </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Impress">
+      <action name="Execute">
+        <command>libreoffice4.4 --impress </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Math">
+      <action name="Execute">
+        <command>libreoffice4.4 --math </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Writer">
+      <action name="Execute">
+        <command>libreoffice4.4 --writer </command>
+      </action>
+    </item>
+    <item label="Visionneuse de document Atril">
+      <action name="Execute">
+        <command>atril </command>
+      </action>
+    </item>
+    <item label="calibre">
+      <action name="Execute">
+        <command>calibre </command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-développement-menu" label="Développement">
     <item label="CMake">
       <action name="Execute">
         <command>cmake-gui </command>
@@ -94,34 +146,10 @@
       </action>
     </item>
   </menu>
-  <menu id="apps-education-menu" label="Education">
-    <item label="R">
-      <action name="Execute">
-        <command>xterm -e R</command>
-      </action>
-    </item>
-  </menu>
-  <menu id="apps-games-menu" label="Games">
-    <item label="KEGS">
-      <action name="Execute">
-        <command>xterm -e aoss xkegs</command>
-      </action>
-    </item>
-  </menu>
-  <menu id="apps-graphics-menu" label="Graphics">
-    <item label="Dia Diagram Editor">
-      <action name="Execute">
-        <command>dia </command>
-      </action>
-    </item>
+  <menu id="apps-graphisme-menu" label="Graphisme">
     <item label="E-book Viewer">
       <action name="Execute">
         <command>ebook-viewer </command>
-      </action>
-    </item>
-    <item label="GNU Image Manipulation Program">
-      <action name="Execute">
-        <command>gimp-2.8 </command>
       </action>
     </item>
     <item label="Gcolor2">
@@ -134,7 +162,7 @@
         <command>lrfviewer </command>
       </action>
     </item>
-    <item label="Simple Scan">
+    <item label="Numérisation simple">
       <action name="Execute">
         <command>simple-scan</command>
       </action>
@@ -144,9 +172,58 @@
         <command>viewnior </command>
       </action>
     </item>
+    <item label="Éditeur d'image GIMP">
+      <action name="Execute">
+        <command>gimp-2.8 </command>
+      </action>
+    </item>
+    <item label="Éditeur de diagrammes Dia">
+      <action name="Execute">
+        <command>dia </command>
+      </action>
+    </item>
   </menu>
-  <menu id="apps-multimedia-menu" label="Multimedia">
-    <item label="Asunder CD Ripper">
+  <menu id="apps-internet-menu" label="Internet">
+    <item label="Claws Mail">
+      <action name="Execute">
+        <command>claws-mail </command>
+      </action>
+    </item>
+    <item label="Firefox">
+      <action name="Execute">
+        <command>firefox </command>
+      </action>
+    </item>
+    <item label="Messagerie internet Pidgin">
+      <action name="Execute">
+        <command>pidgin</command>
+      </action>
+    </item>
+    <item label="Transmission">
+      <action name="Execute">
+        <command>transmission-gtk </command>
+      </action>
+    </item>
+    <item label="gFTP">
+      <action name="Execute">
+        <command>gftp </command>
+      </action>
+    </item>
+    <item label="ownCloud desktop sync client">
+      <action name="Execute">
+        <command>/usr/bin/owncloud</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-jeux-menu" label="Jeux">
+    <item label="KEGS">
+      <action name="Execute">
+        <command>xterm -e aoss xkegs</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-multimédia-menu" label="Multimédia">
+    <item label="Asunder">
       <action name="Execute">
         <command>asunder</command>
       </action>
@@ -187,97 +264,13 @@
       </action>
     </item>
   </menu>
-  <menu id="apps-network-menu" label="Network">
-    <item label="Claws Mail">
-      <action name="Execute">
-        <command>claws-mail </command>
-      </action>
-    </item>
-    <item label="Firefox">
-      <action name="Execute">
-        <command>firefox </command>
-      </action>
-    </item>
-    <item label="Pidgin Internet Messenger">
-      <action name="Execute">
-        <command>pidgin</command>
-      </action>
-    </item>
-    <item label="Transmission">
-      <action name="Execute">
-        <command>transmission-gtk </command>
-      </action>
-    </item>
-    <item label="gFTP">
-      <action name="Execute">
-        <command>gftp </command>
-      </action>
-    </item>
-    <item label="ownCloud desktop sync client">
-      <action name="Execute">
-        <command>/usr/bin/owncloud</command>
-      </action>
-    </item>
-  </menu>
-  <menu id="apps-office-menu" label="Office">
-    <item label="Atril Document Viewer">
-      <action name="Execute">
-        <command>atril </command>
-      </action>
-    </item>
-    <item label="Dictionary">
-      <action name="Execute">
-        <command>mate-dictionary</command>
-      </action>
-    </item>
-    <item label="HTMLDOC">
-      <action name="Execute">
-        <command>htmldoc </command>
-      </action>
-    </item>
-    <item label="LibreOffice 4.4 Base">
-      <action name="Execute">
-        <command>libreoffice4.4 --base </command>
-      </action>
-    </item>
-    <item label="LibreOffice 4.4 Calc">
-      <action name="Execute">
-        <command>libreoffice4.4 --calc </command>
-      </action>
-    </item>
-    <item label="LibreOffice 4.4 Draw">
-      <action name="Execute">
-        <command>libreoffice4.4 --draw </command>
-      </action>
-    </item>
-    <item label="LibreOffice 4.4 Impress">
-      <action name="Execute">
-        <command>libreoffice4.4 --impress </command>
-      </action>
-    </item>
-    <item label="LibreOffice 4.4 Math">
-      <action name="Execute">
-        <command>libreoffice4.4 --math </command>
-      </action>
-    </item>
-    <item label="LibreOffice 4.4 Writer">
-      <action name="Execute">
-        <command>libreoffice4.4 --writer </command>
-      </action>
-    </item>
-    <item label="calibre">
-      <action name="Execute">
-        <command>calibre </command>
-      </action>
-    </item>
-  </menu>
-  <menu id="apps-settings-menu" label="Settings">
-    <item label="Bluetooth Manager">
+  <menu id="apps-paramètres-menu" label="Paramètres">
+    <item label="Gestionnaire Bluetooth">
       <action name="Execute">
         <command>blueman-manager</command>
       </action>
     </item>
-    <item label="Power Management">
+    <item label="Gestionnaire d'énergie">
       <action name="Execute">
         <command>mate-power-preferences</command>
       </action>
@@ -287,21 +280,26 @@
         <command>qtconfig</command>
       </action>
     </item>
-    <item label="Screensaver">
+    <item label="Économiseur d'écran">
       <action name="Execute">
         <command>xscreensaver-demo</command>
       </action>
     </item>
   </menu>
-  <menu id="apps-system-menu" label="System">
-    <item label="ALSA sound card">
+  <menu id="apps-système-menu" label="Système">
+    <item label="Analyseur d'utilisation des disques">
+      <action name="Execute">
+        <command>mate-disk-usage-analyzer</command>
+      </action>
+    </item>
+    <item label="Carte son ALSA">
       <action name="Execute">
         <command>gksu gtkalsasetup</command>
       </action>
     </item>
-    <item label="Disk Usage Analyzer">
+    <item label="Clavier">
       <action name="Execute">
-        <command>mate-disk-usage-analyzer</command>
+        <command>gksu gtkkeyboardsetup</command>
       </action>
     </item>
     <item label="Dotnew">
@@ -309,19 +307,29 @@
         <command>gksu dotnew-gtk</command>
       </action>
     </item>
+    <item label="Gestion des utilisateurs et groupes">
+      <action name="Execute">
+        <command>gksu gtkusersetup</command>
+      </action>
+    </item>
+    <item label="Gestionnaire d'impression">
+      <action name="Execute">
+        <command>/usr/bin/xdg-open http://localhost:631/</command>
+      </action>
+    </item>
+    <item label="Gestionnaire de paquets Gslapt">
+      <action name="Execute">
+        <command>gksu /usr/sbin/gslapt</command>
+      </action>
+    </item>
     <item label="Grsync">
       <action name="Execute">
         <command>/usr/bin/grsync -i </command>
       </action>
     </item>
-    <item label="Gslapt Package Manager">
+    <item label="Horloge système">
       <action name="Execute">
-        <command>gksu /usr/sbin/gslapt</command>
-      </action>
-    </item>
-    <item label="Hostnames">
-      <action name="Execute">
-        <command>gksu gtkhostsetup</command>
+        <command>gksu gtkclocksetup</command>
       </action>
     </item>
     <item label="Htop">
@@ -329,59 +337,51 @@
         <command>xterm -e htop</command>
       </action>
     </item>
-    <item label="Keyboard">
-      <action name="Execute">
-        <command>gksu gtkkeyboardsetup</command>
-      </action>
-    </item>
-    <item label="Log File Viewer">
-      <action name="Execute">
-        <command>mate-system-log</command>
-      </action>
-    </item>
-    <item label="MATE Terminal">
-      <action name="Execute">
-        <command>mate-terminal</command>
-      </action>
-    </item>
-    <item label="Manage Printing">
-      <action name="Execute">
-        <command>/usr/bin/xdg-open http://localhost:631/</command>
-      </action>
-    </item>
-    <item label="Power Statistics">
-      <action name="Execute">
-        <command>mate-power-statistics</command>
-      </action>
-    </item>
-    <item label="Sourcery SlackBuild Manager">
-      <action name="Execute">
-        <command>gksu sourcery</command>
-      </action>
-    </item>
-    <item label="System clock">
-      <action name="Execute">
-        <command>gksu gtkclocksetup</command>
-      </action>
-    </item>
-    <item label="System language">
+    <item label="Langue système">
       <action name="Execute">
         <command>gksu gtklocalesetup</command>
       </action>
     </item>
-    <item label="System services">
+    <item label="Noms d'hôtes">
+      <action name="Execute">
+        <command>gksu gtkhostsetup</command>
+      </action>
+    </item>
+    <item label="Services du système">
       <action name="Execute">
         <command>gksu gtkservicesetup</command>
       </action>
     </item>
-    <item label="Users and groups">
+    <item label="Sourcery, gestionnaire de SlackBuild">
       <action name="Execute">
-        <command>gksu gtkusersetup</command>
+        <command>gksu sourcery</command>
       </action>
     </item>
-    <item label="dconf Editor">
+    <item label="Statistiques de l'alimentation">
+      <action name="Execute">
+        <command>mate-power-statistics</command>
+      </action>
+    </item>
+    <item label="Terminal MATE">
+      <action name="Execute">
+        <command>mate-terminal</command>
+      </action>
+    </item>
+    <item label="Visionneur de journaux système">
+      <action name="Execute">
+        <command>mate-system-log</command>
+      </action>
+    </item>
+    <item label="Éditeur dconf">
       <action name="Execute">
         <command>dconf-editor</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-éducation-menu" label="Éducation">
+    <item label="R">
+      <action name="Execute">
+        <command>xterm -e R</command>
       </action>
     </item>
   </menu>
