@@ -35,6 +35,7 @@ according to the running user locale settings.
 - fvwm
 - icewm
 - jwm
+- openbox
 - pekwm
 - twm and compatible derivatives such as ctwm and vtwm
 - windowmaker
@@ -49,8 +50,8 @@ dependency (used by the **--max-icon-size** option).
 
 : **-f, --format**
 specify the output format to use. Valid options are //amiwm//, //blackbox//,
-//compizboxmenu//, //fluxbox//, //fvwm//, //icewm//, //jwm//, //pekwm//,
-//twm// and //windowmaker//.
+//compizboxmenu//, //fluxbox//, //fvwm//, //icewm//, //jwm//, //openbox//,
+//pekwm//, //twm// and //windowmaker//.
 Specifying the output format is mandatory.
 
 : **-i, --icons**
@@ -299,6 +300,31 @@ refresh the menu, like this:
 
 ``<Program label="Refresh Menu">jwm -reload</Program>``
 
+
+: **Openbox**
+To generate an application menu for Openbox, run **xdgmenumaker** like this:
+
+``$ xdgmenumaker -f openbox > ~/.cache/openbox/apps.menu``
+
+or if you want icons in your menu:
+
+``$ xdgmenumaker -i -f openbox > ~/.cache/openbox/apps.menu``
+
+and you can then edit your //~/.config/openbox/menu.xml// file and add this
+line somewhere in //<menu id="root-menu" label="Openbox 3">// section:
+
+``<menu execute="cat ~/.cache/openbox/apps.menu" id="applications-pipe-menu" label="Applications"/>``
+
+You can add the **xdgmenumaker** command as another item in your menu, if
+you want to update it, without having to run the command manually again:
+
+```
+<item label="Rebuild applications menu">
+  <action name="Execute">
+    <command>xdgmenumaker -i -f openbox > ~/.cache/openbox/apps.menu</command>
+  </action>
+</item>
+```
 
 : **pekwm**
 

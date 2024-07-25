@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_pipe_menu>
+  <menu id="apps-accessories-menu" label="Accessories">
+    <item label="Engrampa Archive Manager">
+      <action name="Execute">
+        <command>engrampa </command>
+      </action>
+    </item>
+    <item label="GTKMan Manual Page Viewer">
+      <action name="Execute">
+        <command>gtkman salix</command>
+      </action>
+    </item>
+    <item label="Galculator">
+      <action name="Execute">
+        <command>galculator</command>
+      </action>
+    </item>
+    <item label="KeePassX">
+      <action name="Execute">
+        <command>keepassx </command>
+      </action>
+    </item>
+    <item label="Leafpad">
+      <action name="Execute">
+        <command>leafpad </command>
+      </action>
+    </item>
+    <item label="Search for Files...">
+      <action name="Execute">
+        <command>mate-search-tool</command>
+      </action>
+    </item>
+    <item label="Take Screenshot">
+      <action name="Execute">
+        <command>mate-screenshot --interactive</command>
+      </action>
+    </item>
+    <item label="Xournal">
+      <action name="Execute">
+        <command>xournal </command>
+      </action>
+    </item>
+    <item label="Zim Desktop Wiki">
+      <action name="Execute">
+        <command>zim</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-development-menu" label="Development">
+    <item label="CMake">
+      <action name="Execute">
+        <command>cmake-gui </command>
+      </action>
+    </item>
+    <item label="Geany">
+      <action name="Execute">
+        <command>geany </command>
+      </action>
+    </item>
+    <item label="Glade">
+      <action name="Execute">
+        <command>glade-3 </command>
+      </action>
+    </item>
+    <item label="Meld">
+      <action name="Execute">
+        <command>meld </command>
+      </action>
+    </item>
+    <item label="Poedit">
+      <action name="Execute">
+        <command>poedit </command>
+      </action>
+    </item>
+    <item label="Qt4 Assistant">
+      <action name="Execute">
+        <command>assistant</command>
+      </action>
+    </item>
+    <item label="Qt4 Designer">
+      <action name="Execute">
+        <command>designer</command>
+      </action>
+    </item>
+    <item label="Qt4 Linguist">
+      <action name="Execute">
+        <command>linguist</command>
+      </action>
+    </item>
+    <item label="RStudio">
+      <action name="Execute">
+        <command>/usr/lib64/rstudio/bin/rstudio </command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-education-menu" label="Education">
+    <item label="R">
+      <action name="Execute">
+        <command>xterm -e R</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-games-menu" label="Games">
+    <item label="KEGS">
+      <action name="Execute">
+        <command>xterm -e aoss xkegs</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-graphics-menu" label="Graphics">
+    <item label="Dia Diagram Editor">
+      <action name="Execute">
+        <command>dia </command>
+      </action>
+    </item>
+    <item label="E-book Viewer">
+      <action name="Execute">
+        <command>ebook-viewer </command>
+      </action>
+    </item>
+    <item label="GNU Image Manipulation Program">
+      <action name="Execute">
+        <command>gimp-2.8 </command>
+      </action>
+    </item>
+    <item label="Gcolor2">
+      <action name="Execute">
+        <command>gcolor2</command>
+      </action>
+    </item>
+    <item label="LRF Viewer">
+      <action name="Execute">
+        <command>lrfviewer </command>
+      </action>
+    </item>
+    <item label="Simple Scan">
+      <action name="Execute">
+        <command>simple-scan</command>
+      </action>
+    </item>
+    <item label="Viewnior">
+      <action name="Execute">
+        <command>viewnior </command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-multimedia-menu" label="Multimedia">
+    <item label="Asunder CD Ripper">
+      <action name="Execute">
+        <command>asunder</command>
+      </action>
+    </item>
+    <item label="Audacity">
+      <action name="Execute">
+        <command>audacity </command>
+      </action>
+    </item>
+    <item label="Ex Falso">
+      <action name="Execute">
+        <command>exfalso</command>
+      </action>
+    </item>
+    <item label="Exaile">
+      <action name="Execute">
+        <command>exaile </command>
+      </action>
+    </item>
+    <item label="GNOME MPlayer">
+      <action name="Execute">
+        <command>gnome-mplayer </command>
+      </action>
+    </item>
+    <item label="Gaupol">
+      <action name="Execute">
+        <command>gaupol </command>
+      </action>
+    </item>
+    <item label="ISO Master">
+      <action name="Execute">
+        <command>isomaster</command>
+      </action>
+    </item>
+    <item label="Quod Libet">
+      <action name="Execute">
+        <command>quodlibet</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-network-menu" label="Network">
+    <item label="Claws Mail">
+      <action name="Execute">
+        <command>claws-mail </command>
+      </action>
+    </item>
+    <item label="Firefox">
+      <action name="Execute">
+        <command>firefox </command>
+      </action>
+    </item>
+    <item label="Pidgin Internet Messenger">
+      <action name="Execute">
+        <command>pidgin</command>
+      </action>
+    </item>
+    <item label="Transmission">
+      <action name="Execute">
+        <command>transmission-gtk </command>
+      </action>
+    </item>
+    <item label="gFTP">
+      <action name="Execute">
+        <command>gftp </command>
+      </action>
+    </item>
+    <item label="ownCloud desktop sync client">
+      <action name="Execute">
+        <command>/usr/bin/owncloud</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-office-menu" label="Office">
+    <item label="Atril Document Viewer">
+      <action name="Execute">
+        <command>atril </command>
+      </action>
+    </item>
+    <item label="Dictionary">
+      <action name="Execute">
+        <command>mate-dictionary</command>
+      </action>
+    </item>
+    <item label="HTMLDOC">
+      <action name="Execute">
+        <command>htmldoc </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Base">
+      <action name="Execute">
+        <command>libreoffice4.4 --base </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Calc">
+      <action name="Execute">
+        <command>libreoffice4.4 --calc </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Draw">
+      <action name="Execute">
+        <command>libreoffice4.4 --draw </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Impress">
+      <action name="Execute">
+        <command>libreoffice4.4 --impress </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Math">
+      <action name="Execute">
+        <command>libreoffice4.4 --math </command>
+      </action>
+    </item>
+    <item label="LibreOffice 4.4 Writer">
+      <action name="Execute">
+        <command>libreoffice4.4 --writer </command>
+      </action>
+    </item>
+    <item label="calibre">
+      <action name="Execute">
+        <command>calibre </command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-settings-menu" label="Settings">
+    <item label="Bluetooth Manager">
+      <action name="Execute">
+        <command>blueman-manager</command>
+      </action>
+    </item>
+    <item label="Power Management">
+      <action name="Execute">
+        <command>mate-power-preferences</command>
+      </action>
+    </item>
+    <item label="Qt4 Config">
+      <action name="Execute">
+        <command>qtconfig</command>
+      </action>
+    </item>
+    <item label="Screensaver">
+      <action name="Execute">
+        <command>xscreensaver-demo</command>
+      </action>
+    </item>
+  </menu>
+  <menu id="apps-system-menu" label="System">
+    <item label="ALSA sound card">
+      <action name="Execute">
+        <command>gksu gtkalsasetup</command>
+      </action>
+    </item>
+    <item label="Disk Usage Analyzer">
+      <action name="Execute">
+        <command>mate-disk-usage-analyzer</command>
+      </action>
+    </item>
+    <item label="Dotnew">
+      <action name="Execute">
+        <command>gksu dotnew-gtk</command>
+      </action>
+    </item>
+    <item label="Grsync">
+      <action name="Execute">
+        <command>/usr/bin/grsync -i </command>
+      </action>
+    </item>
+    <item label="Gslapt Package Manager">
+      <action name="Execute">
+        <command>gksu /usr/sbin/gslapt</command>
+      </action>
+    </item>
+    <item label="Hostnames">
+      <action name="Execute">
+        <command>gksu gtkhostsetup</command>
+      </action>
+    </item>
+    <item label="Htop">
+      <action name="Execute">
+        <command>xterm -e htop</command>
+      </action>
+    </item>
+    <item label="Keyboard">
+      <action name="Execute">
+        <command>gksu gtkkeyboardsetup</command>
+      </action>
+    </item>
+    <item label="Log File Viewer">
+      <action name="Execute">
+        <command>mate-system-log</command>
+      </action>
+    </item>
+    <item label="MATE Terminal">
+      <action name="Execute">
+        <command>mate-terminal</command>
+      </action>
+    </item>
+    <item label="Manage Printing">
+      <action name="Execute">
+        <command>/usr/bin/xdg-open http://localhost:631/</command>
+      </action>
+    </item>
+    <item label="Power Statistics">
+      <action name="Execute">
+        <command>mate-power-statistics</command>
+      </action>
+    </item>
+    <item label="Sourcery SlackBuild Manager">
+      <action name="Execute">
+        <command>gksu sourcery</command>
+      </action>
+    </item>
+    <item label="System clock">
+      <action name="Execute">
+        <command>gksu gtkclocksetup</command>
+      </action>
+    </item>
+    <item label="System language">
+      <action name="Execute">
+        <command>gksu gtklocalesetup</command>
+      </action>
+    </item>
+    <item label="System services">
+      <action name="Execute">
+        <command>gksu gtkservicesetup</command>
+      </action>
+    </item>
+    <item label="Users and groups">
+      <action name="Execute">
+        <command>gksu gtkusersetup</command>
+      </action>
+    </item>
+    <item label="dconf Editor">
+      <action name="Execute">
+        <command>dconf-editor</command>
+      </action>
+    </item>
+  </menu>
+</openbox_pipe_menu>
