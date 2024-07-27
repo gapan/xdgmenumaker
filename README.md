@@ -212,7 +212,20 @@ refresh the menu, like this:
 Openbox
 -------
 
-You can create pipe menus for Openbox running xdgmenumaker like this:
+xdgmenumaker creates pipe-menus for Openbox, which are, by definition,
+dynamic menus. The simplest way to have an auto-generated "Applications"
+submenu in the main Openbox menu, you can just add a line like the following
+one somewhere inside the `<menu id="root-menu">` in your
+`~/.config/openbox/menu.xml` file::
+
+    <menu execute="xdgmenumaker -i -f openbox" id="xdg-pipe-menu" label="Applications"/>
+
+This menu will be generated every time you open the Openbox menu, so it will
+always be up-to-date.
+
+Alternatively, you can create a static menu, which you can then include
+through a pipe-menu in your main menu too. To do that, run
+xdgmenumaker like this:
 
     $ xdgmenumaker -f openbox > ~/.cache/openbox/apps.menu
 
