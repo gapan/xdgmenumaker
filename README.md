@@ -229,11 +229,6 @@ xdgmenumaker like this:
 
     $ xdgmenumaker -f openbox > ~/.cache/openbox/apps.menu
 
-
-or if you want icons in your menu:
-
-    $ xdgmenumaker -i -f openbox > ~/.cache/openbox/apps.menu
-
 and you can then edit your `~/.config/openbox/menu.xml` file and add this
 line somewhere in `<menu id="root-menu" label="Openbox 3">` section:
 
