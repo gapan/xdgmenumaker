@@ -68,7 +68,7 @@ you use; some window managers don't support large icons in the menu.
 : **-n, --no-submenu**
 do not create a submenu. Instead, place the application categories menus
 in the window manager's main menu. This option does not have any effect
-for //windowmaker// menus.
+for //openbox// or //windowmaker// menus.
 
 : **--max-icon-size**
 restrict the maximum size for icons to the one specified with the

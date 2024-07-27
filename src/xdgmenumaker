@@ -250,7 +250,7 @@ def usage():
     print('        --no-svg         Do not use SVG icons even for WMs that support it')
     print('    -s, --size           preferred icon size in pixels (default: 16)')
     print('    -n, --no-submenu     do not create a submenu. Does not work with')
-    print('                         windowmaker')
+    print('                         openbox and windowmaker')
     print('        --max-icon-size  restrict the icon sizes to the specified size')
     print('        --pekwm-dynamic  generate dynamic menus for pekwm')
     print('        --twm-titles     show menu titles in twm menus')
