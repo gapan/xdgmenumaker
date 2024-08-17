@@ -336,7 +336,7 @@ def remove_command_keys(command, desktopfile, icon):
     # have to deal with extra sets of nested quotes which behave differently in
     # each WM. This is not 100% failure-proof. There might be other variations
     # of this out there, but we can't account for every single one. If someone
-    # finds one another one, I can always add it later.
+    # finds another one, I can always add it later.
     command = command.replace('-caption "%c"', '')
     command = command.replace("-caption '%c'", '')
     command = command.replace('-caption %c', '')
