@@ -13,11 +13,9 @@ from operator import attrgetter
 
 import configparser as cp
 
-# Load the gtk compatibility layer
-from gi import pygtkcompat
-pygtkcompat.enable()
-pygtkcompat.enable_gtk(version='3.0')
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk
 
 xopts = {
     'seticon': False,
@@ -303,14 +301,16 @@ def icon_full_path(icon):
                 return icon
     # fall back to looking for the icon elsewhere in the system
     icon = icon_strip(icon)
-    icon_theme = gtk.icon_theme_get_default()
+    icon_theme = Gtk.IconTheme.get_default()
     try:
         # Only some WMs support svg icons
         if wm_supports_icons(xopts['desktop']) and not xopts['nosvg']:
-            icon = icon_theme.lookup_icon(icon, xopts['iconsize'], gtk.ICON_LOOKUP_FORCE_SVG)
+            icon = icon_theme.lookup_icon(icon, xopts['iconsize'],
+                    Gtk.IconLookupFlags.FORCE_SVG)
         # but none of the other WMs does
         else:
-            icon = icon_theme.lookup_icon(icon, xopts['iconsize'], gtk.ICON_LOOKUP_NO_SVG)
+            icon = icon_theme.lookup_icon(icon, xopts['iconsize'],
+                    Gtk.IconLookupFlags.NO_SVG)
     except AttributeError:
         sys.exit('ERROR: You need to run xdgmenumaker inside an X session.')
     if icon:
