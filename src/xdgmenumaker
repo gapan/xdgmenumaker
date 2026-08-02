@@ -746,11 +746,11 @@ def pekwmmenu():
                 # path does not exist
                 command = 'cd {p} && {c} || {c}'.format(p=path, c=command)
             if xopts['seticon'] and icon is not None:
-                print('{d}{s}  Entry = "{n}" {{ Icon = "{i}"; Actions = "Exec {c} &" }}'
+                print('{d}{s}  Entry = "{n}" {{ Icon = "{i}"; Actions = "Exec {c}" }}'
                       .format(d=dspacing, s=spacing, n=name, i=icon,
                               c=command))
             else:
-                print('{d}{s}  Entry = "{n}" {{ Actions = "Exec {c} &" }}'
+                print('{d}{s}  Entry = "{n}" {{ Actions = "Exec {c}" }}'
                       .format(d=dspacing, s=spacing, n=name, c=command))
         print('{d}{s}}}'.format(d=dspacing, s=spacing))
     if xopts['submenu']:
