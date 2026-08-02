@@ -6,6 +6,7 @@ import os
 import sys
 import getopt
 import fnmatch
+import locale
 import xdg.DesktopEntry as dentry
 import xdg.Exceptions as exc
 import xdg.BaseDirectory as bd
@@ -431,7 +432,10 @@ def sortedcategories(applist):
     categories = []
     for e in applist:
         categories.append(e.category)
-    categories = sorted(set(categories))
+    categories = sorted(
+        set(categories),
+        key=lambda category: locale.strxfrm(category.decode())
+    )
     return categories
 
 
@@ -485,7 +489,13 @@ def menu(ico_paths=True):
         except exc.ParsingError:
             pass
 
-    sortedapplist = sorted(applist, key=attrgetter('category', 'app.name'))
+    sortedapplist = sorted(
+        applist,
+        key=lambda entry: (
+            locale.strxfrm(entry.category.decode()),
+            locale.strxfrm(entry.app.name.decode()),
+        )
+    )
 
     menu = []
     for c in sortedcategories(applist):
@@ -925,4 +935,5 @@ def openbox():
 
 
 if __name__ == "__main__":
+    locale.setlocale(locale.LC_COLLATE, '')
     main(sys.argv[1:])
